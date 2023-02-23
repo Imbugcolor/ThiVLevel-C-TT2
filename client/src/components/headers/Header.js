@@ -6,6 +6,7 @@ import Unknow from '../../images/unknow.jpg'
 import * as CgIcons from 'react-icons/cg'
 import * as MdIcons from 'react-icons/md'
 import * as BiIcons from 'react-icons/bi'
+import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Twirl as Hamburger } from 'hamburger-react'
@@ -59,7 +60,7 @@ function Header() {
                     <div className="cart-icon">
                         <span>{cart.length}</span>
                         <Link to="/cart">
-                            <img src={Cart} alt="" width="30" />
+                            <AiOutlineShoppingCart />
                         </Link>
                     </div>
                 </li>

@@ -7,6 +7,7 @@ import Rating from '../utils/Rating/Rating'
 import SoldIcon from './images/sold.png'
 import Instock from '../../../images/in-stock.png'
 import { FaStar } from 'react-icons/fa'
+import { BsCartCheck } from 'react-icons/bs'
 import { toast } from 'react-toastify'
 import ReviewItem from '../utils/ReviewItem/ReviewItem'
 import QuickViewProduct from '../home/QuickViewProduct'
@@ -209,7 +210,10 @@ function DetailProduct() {
                                     #{detailProduct.product_id}
                                     <label>/ Phân loại: </label> <span>{categories.find(c => c._id === detailProduct.category).name}</span>
                                 </p>
-                                <Rating value={detailProduct.rating} text={''} />
+                                <div className="review-detail-product">
+                                    <Rating value={detailProduct.rating} text={''} />
+                                    <span className='num-review-product'>/ {reviews.length} đánh giá</span>
+                                </div>
                                 <p className="product-price">
                                     ${detailProduct.price}
                                 </p>
@@ -247,13 +251,13 @@ function DetailProduct() {
                                 </div>
 
                                 <div className="product-sold">
-                                    <img src={Instock} alt="SoldIcon" />
-                                    <strong>{detailProduct.countInStock} <span>in stock.</span></strong>
+                                    <BsCartCheck />
+                                    <strong>{detailProduct.countInStock} <span> sản phẩm có sẵn .</span></strong>
                                 </div>
 
                                 <div className="product-sold">
                                     <img src={SoldIcon} alt="SoldIcon" />
-                                    <strong>{detailProduct.sold} <span>Products sold.</span></strong>
+                                    <strong>{detailProduct.sold} <span>sản phẩm đã bán.</span></strong>
                                 </div>
 
                                 <div className="quantity-btn">
@@ -268,7 +272,7 @@ function DetailProduct() {
                                         detailProduct.countInStock > 0 ?
                                             <Link to="#!" className="add-cart"
                                                 onClick={() => handleAddCart(detailProduct, color, size, quantity)}
-                                            >Thêm vào giỏ hàng</Link> : <span>Hết hàng</span>
+                                            >Thêm vào giỏ hàng</Link> : <span> Đã hết hàng.</span>
                                     }
                                 </div>
                             </div>
@@ -285,9 +289,9 @@ function DetailProduct() {
             </section>
             <div className='review-section'>
                 <div className='Reviews'>
-                    <h2 className='tag-color'>Đánh giá <span style={{ fontSize: 20, fontWeight: 700 }}>({reviews.length})</span></h2>
-                    <div className="row" >
-                        <span>Sắp xếp: </span>
+                    <h2 className='tag-color'>Đánh giá <span style={{ fontWeight: 700 }}>({reviews.length})</span></h2>
+                    <div className="row" style={{margin: '15px 0'}}>
+                        <span>Sắp xếp theo thời gian: </span>
                         <select value={reverse} onChange={e => sortReview(e.target.value)}>
                             <option value={true}>Cũ nhất</option>
                             <option value={false}>Mới nhất</option>
@@ -295,7 +299,7 @@ function DetailProduct() {
                     </div>
                     {
                         reviews.length === 0 && (
-                            <p>Không có đánh giá</p>
+                            <p style={{color: '#585151'}}>Không có đánh giá</p>
                         )
                     }
                     <ReviewItem data={reviews} />
@@ -304,7 +308,7 @@ function DetailProduct() {
 
                     <form className="form" onSubmit={submitReviewHandler}>
                         <div>
-                            <h2 className='tag-name' style={{ marginTop: '20px' }}>Đánh giá của bạn</h2>
+                            <h2 className='tag-name' style={{ margin: '20px 0' }}>Đánh giá của bạn</h2>
                         </div>
                         <div className="rating-wrapper">
                             <div className='rating-star'>
