@@ -1,0 +1,27 @@
+.payment-method-options-modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.payment-method-options-modal .payment-method{
+    width: 800px;
+    padding: 15px 25px;
+    position: relative;
+    background: #fff;
+    animation: zoomOut ease .3s;
+    border-radius: 10px;
+}
+
+.payment-method-options-modal-close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    cursor: pointer;
+    font-size: 40px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    padding: 1px;
+}
