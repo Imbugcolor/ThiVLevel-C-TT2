@@ -206,7 +206,7 @@
     z-index: 0;
 }
 
-.payment-modal>.wrapper .payment-header {
+/* .payment-modal>.wrapper .payment-header {
     width: 100%;
     text-align: center;
     text-transform: uppercase;
@@ -215,7 +215,7 @@
     border-bottom: 2px solid #333;
     margin-bottom: 10px;
     font-size: 25px;
-}
+} */
 
 .payment-modal>.wrapper .payment-detail {
     display: grid;
@@ -224,7 +224,7 @@
 
 .payment-modal>.wrapper .list-cart {
     margin-right: 20px;
-    height: 350px;
+    height: 300px;
     overflow-y: scroll;
 }
 
@@ -274,6 +274,15 @@
     display: block;
 }
 
+.heading-detail-form, .heading-payment-order {
+    margin: 15px 0;
+    background: #f1f1f1;
+}
+
+.heading-detail-form h3, .heading-payment-order h3 {
+    padding: 7px;
+}
+
 @media (max-width: 768px) {
     .payment-modal>.wrapper .payment-detail {
         grid-template-columns: 1fr;
@@ -317,6 +326,26 @@
 
 .payment-method-option-box.active {
     display: block;
+}
+
+.detail-form-input{
+    width: 100%;
+}
+
+.detail-form-input label {
+    font-weight: 600;
+    padding-bottom: 15px ;
+}
+
+.delivery-detail-form .delivery-confirm {
+    padding: 0 15px;
+    height: 45px;
+    border-radius: 4px;
+    background: #000 !important;
+    color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+    width: 100%
 }
 
 /* COD methods modal */

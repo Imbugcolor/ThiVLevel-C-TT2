@@ -176,9 +176,14 @@ function OrderDetails() {
                             <div className='complete-order-noti'>
                                 <button disabled>Đã hoàn thành</button>
                             </div> :
+                            orderDetails.status === 'Processing' || orderDetails.status === 'Shipping' || orderDetails.status === 'Cancel' ?                    
+                            <div className='cancel-order-disabled'>
+                                <button onClick={handleCancelOrder} className='disabled-btn' disabled>Hủy đơn hàng</button>
+                            </div> :
                             <div className='cancel-order'>
                                 <button onClick={handleCancelOrder} >Hủy đơn hàng</button>
                             </div> 
+                          
                         }
                         
                     </div>

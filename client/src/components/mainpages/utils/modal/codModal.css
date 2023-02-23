@@ -53,12 +53,3 @@
     border: 1px solid #ccc;
 }
 
-.delivery-detail-form .delivery-confirm {
-    padding: 0 15px;
-    height: 45px;
-    background-color: crimson;
-    border-radius: 4px;
-    color: #fff;
-    font-weight: 500;
-    text-transform: uppercase;
-}
