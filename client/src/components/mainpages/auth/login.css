@@ -82,3 +82,8 @@
     border: 2px solid #ddd !important;
     box-shadow: none !important;
 }
+
+.google-login-button-wrapper {
+    display: flex;
+    justify-content: center;
+}

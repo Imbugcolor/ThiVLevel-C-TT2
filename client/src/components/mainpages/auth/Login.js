@@ -2,22 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { GoogleLogin } from 'react-google-login'
-import { gapi } from 'gapi-script'
+import { GoogleLogin } from '@react-oauth/google'
+import jwt_decode from 'jwt-decode'
 
 function Login() {
-  const clientId = "711887640793-m0i8nt5fjdidt4urjpio2jpd88suip6n.apps.googleusercontent.com"
   const [user, setUser] = useState({
     email: '',
     password: ''
   })
   const [validateMsg, setValidateMsg] = useState('')
-
-  useEffect(() => {
-    gapi.load("client:auth2", () => {
-      gapi.auth2.init({ clientId: clientId })
-    })
-  }, [])
 
   const validate = () => {
     const msg = {}
@@ -63,11 +56,10 @@ function Login() {
   }
 
   const responseGoogleSuccess = async (res) => {
-    const result = res?.profileObj
-    const accessToken  = res.accessToken
+    const accessToken  = res.jti
     try {
-      const { name, email, imageUrl } = result
-      await axios.post('/user/googleauth', { name, email, imageUrl, accessToken })
+      const { name, email, picture } = res
+      await axios.post('/user/googleauth', { name, email, imageUrl: picture, accessToken })
 
       localStorage.setItem('firstLogin', true)
 
@@ -112,13 +104,17 @@ function Login() {
       </form>
       <div className="signin-with-social">
         <span>Hoặc đăng nhập với</span>
-        <GoogleLogin
-          clientId={clientId}
-          buttonText="Google"
-          onSuccess={responseGoogleSuccess}
-          onFailure={responseGoogleFailure}
-          cookiePolicy={'single_host_origin'}
-        />
+        <div className='google-login-button-wrapper'>
+          <GoogleLogin
+            onSuccess={credentialResponse => {
+              const data = jwt_decode(credentialResponse.credential)
+              responseGoogleSuccess(data)
+            }}
+            onError={() => {
+              responseGoogleFailure('login failed!')
+            }}
+          />
+        </div>
       </div>
    
     </div>
