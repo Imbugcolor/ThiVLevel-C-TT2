@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2'
 
 function UserAPI(token) {
     const [isLogged, setIsLogged] = useState(false)
@@ -70,15 +71,25 @@ function UserAPI(token) {
     }, [token, callback])
 
     const addCart = async (product, color, size, quantity) => {
-        if (!isLogged) return toast.warning('Đăng nhập để tiếp tục!', {
-            position: "top-center",
-            autoClose: 3000,
-        });
+        if (!isLogged) return Swal.fire({
+            title: 'Đăng nhập để tiếp tục?',
+            showCancelButton: true,
+            confirmButtonText: 'Login',
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                window.location.href = "/login"
+            } else if (result.isDenied) {
+              
+            }
+          })
 
-        if(product.countInStock < quantity ) return toast.warning('Sản phẩm này hiện không đủ số lượng đáp ứng.', {
-            position: "top-center",
-            autoClose: 3000,
-        });
+        if(product.countInStock < quantity ) return  Swal.fire({
+            width: 400,
+            icon: 'warning',
+            title: 'Sản phẩm không đủ số lượng đáp ứng!',
+            showConfirmButton: true,
+        })
 
         const check = cart.every(item => {
             return item.product_id !== product.product_id || 
@@ -92,10 +103,12 @@ function UserAPI(token) {
         }, 0)
 
 
-        if(product.countInStock < totalQuantity + quantity) return toast.warning('Sản phẩm này hiện không đủ số lượng đáp ứng.', {
-            position: "top-center",
-            autoClose: 3000,
-        });
+        if(product.countInStock < totalQuantity + quantity) return  Swal.fire({
+            width: 400,
+            icon: 'warning',
+            title: 'Sản phẩm không đủ số lượng đáp ứng!',
+            showConfirmButton: true,
+        })
 
         const guid = () => {
             const s4 = () => {
@@ -114,15 +127,20 @@ function UserAPI(token) {
             }, {
                 headers: { Authorization: token }
             })
-            toast.success('Thêm vào giỏ hàng thành công!', {
-                position: "top-center",
-                autoClose: 3000
-            });
+            Swal.fire({
+                width: 500,
+                icon: 'success',
+                title: 'Thêm vào giỏ hàng thành công!',
+                showConfirmButton: true,
+                timer: 1500
+            })
         } else {
-            toast.warning('Sản phẩm đã có sẵn trong giỏ hàng.', {
-                position: "top-center",
-                autoClose: 3000
-            });
+            Swal.fire({
+                width: 400,
+                icon: 'warning',
+                title: 'Sản phẩm đã có sẵn trong giỏ hàng!',
+                showConfirmButton: true,
+            })
         }
     }
     return {

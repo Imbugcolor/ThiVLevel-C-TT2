@@ -25,3 +25,12 @@
     display: flex;
     padding: 1px;
 }
+
+.cod-btn-confirm {
+    text-align: center;
+    margin: 15px 0;
+    background: #f5bd00;
+    color: #fff;
+    width: 100%;
+    height: 45px;
+}

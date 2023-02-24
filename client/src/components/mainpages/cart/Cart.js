@@ -6,7 +6,7 @@ import axios from 'axios'
 import Payment from './Payment'
 import { toast } from 'react-toastify';
 import * as RiIcons from 'react-icons/ri'
-
+import Swal from 'sweetalert2'
 
 function Cart() {
   const state = useContext(GlobalState)
@@ -115,19 +115,52 @@ function Cart() {
     addToCart(cart)
   }
 
-  const removeProduct = (id) => {
-    if (window.confirm("Bạn muốn xóa sản phẩm này khỏi giỏ hàng?")) {
-      cart.forEach((item, index) => {
-        if (item._id === id) {
-          item.quantity = 0
-          cart.splice(index, 1)
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
+  
+
+  const removeProduct = (id) => {   
+      swalWithBootstrapButtons.fire({
+        title: 'Xóa sản phẩm?',
+        text: "Sản phẩm đã xóa sẽ không thể phục hồi!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Delete it!',
+        cancelButtonText: 'Cancel!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          cart.forEach((item, index) => {
+            if (item._id === id) {
+              item.quantity = 0
+              cart.splice(index, 1)
+            }
+          })
+          setCart([...cart])
+          addToCart(cart)
+          swalWithBootstrapButtons.fire(
+            'Đã xóa!',
+            'Sản phẩm đã bị xóa khỏi giỏ hàng.',
+            'success'
+          )
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Đã hủy xóa!',
+            'Sản phẩm vẫn ở trong giỏ hàng.',
+            'error'
+          )
         }
       })
-      setCart([...cart])
-      addToCart(cart)
-    }
-
   }
+
 
   const tranSuccess = async (payment, detail, address) => {
 
@@ -150,10 +183,16 @@ function Cart() {
 
     setCart([])
     addToCart([])
-    toast.success('Đặt hàng thành công!', {
-      position: "top-center",
-      autoClose: 3000
-    });
+
+    Swal.fire({
+      width: 500,
+      icon: 'success',
+      title: 'Đặt hàng thành công!',
+      showConfirmButton: true,
+      timer: 3000
+    })
+
+    document.body.style.overflow = '';
   }
 
   const codSuccess = async (payment, address) => {
@@ -169,10 +208,16 @@ function Cart() {
 
     setCart([])
     addToCart([])
-    toast.success('Đặt hàng thành công!', {
-      position: "top-center",
-      autoClose: 3000
-    });
+    
+    Swal.fire({
+      width: 500,
+      icon: 'success',
+      title: 'Đặt hàng thành công!',
+      showConfirmButton: true,
+      timer: 3000
+    })
+
+    document.body.style.overflow = '';
   }
 
 
@@ -284,12 +329,15 @@ function Cart() {
     setCheckButton(true)
 
     setLoading(false)
+    
+    document.body.style.overflow = 'hidden';
 
   }
 
   const closePayment = () => {
     setCanBuy(false)
     setCheckButton(false)
+    document.body.style.overflow = '';
   }
 
 

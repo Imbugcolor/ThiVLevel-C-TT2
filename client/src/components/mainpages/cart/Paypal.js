@@ -16,7 +16,7 @@ function Paypal({ tranSuccess, cart, detail, address }) {
 
             <PayPalButtons
               
-                style={{ layout : "horizontal",
+                style={{ layout : "horizontal", height: 45,
                 color : "gold",
                 tagline : false }} 
                 createOrder={(data, actions) => {
