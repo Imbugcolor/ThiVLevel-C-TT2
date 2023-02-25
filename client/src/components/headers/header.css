@@ -29,17 +29,13 @@ header .logo {
 
 header a {
     text-transform: uppercase;
-    color: rgb(69, 116, 143) !important;
+    color: #246284 !important;
 }
 
 header .header-nav li {
     display: inline-block;
-    opacity: 0.7;
-    padding: 0 20px;
-}
-
-header .header-nav li:hover {
     opacity: 1;
+    padding: 0 20px;
 }
 
 header .header-nav {
@@ -141,7 +137,7 @@ header .navbar-tablet-mobile-wrapper.active {
 
 
 .user__container {
-    color: #45748f;
+    color: #bf6b03;
     cursor: pointer;
     position: relative;
 }
@@ -158,11 +154,10 @@ header .navbar-tablet-mobile-wrapper.active {
     visibility: hidden;
     position: absolute;
     padding: 10px 0;
-    border-radius: 5px;
     z-index: 102;
     top: calc(100% + 10px);
     right: 20px;
-    background-color: #eee;
+    background-color: #fff;
     box-shadow: 0 10px 15px #ccc;
 }
 
@@ -188,7 +183,7 @@ header .navbar-tablet-mobile-wrapper.active {
     content: "";
     border-width: 18px 20px;
     border-style: solid;
-    border-color: transparent transparent #eee transparent;
+    border-color: transparent transparent #fff transparent;
     position: absolute;
     right: 4px;
     top: -28px;

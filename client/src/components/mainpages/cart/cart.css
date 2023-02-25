@@ -166,16 +166,21 @@
 .payment .payment-buy-btn {
     display: block;
     width: 100%;
-    text-transform: uppercase;
     font-weight: 600;
-    background-color: rgb(141, 213, 254);
-    padding: 15px 0;
+    color: #fff;
+    background: #000;
+    text-transform: uppercase;
+    line-height: 45px;
+    border: 0;
+    margin-bottom: 15px;
+    border-radius: 0;
+    display: block;
+    cursor: pointer;
     transition: all .2s linear;
 }
 
 .payment .payment-buy-btn:hover {
-    color: #fff;
-    background-color: #066eba;
+    color: #888;
 }
 
 .payment .to-payment-page {
@@ -345,8 +350,14 @@
     color: #fff;
     font-weight: 500;
     text-transform: uppercase;
-    width: 100%
+    width: 100%;
+    transition: all .2s linear
 }
+
+.delivery-detail-form .delivery-confirm:hover {
+    color: #888;
+}
+
 
 .btn {
     display: inline-block;

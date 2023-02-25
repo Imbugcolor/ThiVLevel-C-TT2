@@ -109,7 +109,7 @@ function Products() {
         </div>
       }
       <div className="res-row products__container">
-        <div className="col l-3 m-3 c-0">
+        <div className="col l-3 m-3 c-0 cate-side-bar">
           <div className="products__category">
             <h3 className="products__category-heading">Danh mục sản phẩm</h3>
             <ul>

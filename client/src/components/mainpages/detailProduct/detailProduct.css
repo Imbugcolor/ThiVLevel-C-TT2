@@ -245,10 +245,11 @@
     border-radius: 0;
     display: block;
     cursor: pointer;
+    transition: all .2s linear;
 }
 
 .product-page-details .cart-btns .add-cart:hover {
-    color: #8b8989;
+    color: #888;
 }
 
 .product-page-details .cart-btns .buy-now{

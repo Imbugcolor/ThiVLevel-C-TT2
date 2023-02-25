@@ -47,7 +47,7 @@ function Filters({ setItemOffset }) {
         <div className="filter_menu product res-row">
 
             <div className="col l-6 m-12 c-12 search" >
-                <input type="text" placeholder="Nhập sản phẩm bạn muốn tìm kiếm ..."
+                <input className="search-input-bd-none" type="text" placeholder="Nhập sản phẩm bạn muốn tìm kiếm ..."
                     value={suggestions}
                     onKeyPress={handleSearch}
                     onChange={handleSuggest}
@@ -85,7 +85,7 @@ function Filters({ setItemOffset }) {
             </div>
             <div className="col l-6 m-12 c-12 tool-wrapper">
                 <div className="filter">
-                    <span>Lọc</span>
+                    <span>Lọc theo</span>
                     <select name="category" value={category} onChange={handleCategory}>
                         <option value="">Tất cả sản phẩm</option>
                         {
@@ -98,7 +98,7 @@ function Filters({ setItemOffset }) {
                     </select>
                 </div>
                 <div className="sort">
-                    <span>Sắp xếp</span>
+                    <span>Sắp xếp theo</span>
                     <select value={sort} onChange={e => setSort(e.target.value)}>
                         <option value="">Mới nhất</option>
                         <option value="sort=oldest">Cũ nhất</option>
