@@ -170,6 +170,12 @@
     color: #888;
 }
 
+.items-not-found-title {
+    text-align: center;
+    width: 100%;
+    height: 200px;
+    line-height: 200px;
+}
 /* Load more */
 .load_more {
     text-align: center;

@@ -22,7 +22,6 @@ function Filters({ setItemOffset }) {
 
     const handleCategory = (e) => {
         setCategory(e.target.value)
-        setSearch('')
         setItemOffset(0)
     }
 

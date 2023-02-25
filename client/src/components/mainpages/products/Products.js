@@ -17,7 +17,7 @@ function Products() {
   const [token] = state.token
   const [callback, setCallback] = state.productsAPI.callback
   const [isCheck, setIsCheck] = useState(false)
-
+  const [loading, setLoading] = state.productsAPI.loading
   const [currentProduct, setCurrentProduct] = useState(false)
 
   useEffect(() => {
@@ -97,6 +97,7 @@ function Products() {
     setCurrentProduct(product)
   }
 
+  // if(loading) return <div><Loading /></div>
   return (
     <>
       <Filters setItemOffset={setItemOffset} />
@@ -134,11 +135,15 @@ function Products() {
             </ul>
           </div>
         </div>
+        
         <div className="col l-9 m-9 c-12">
+        {
+          loading ? <div><Loading/></div> : 
+          <div>
           <div className="products res-row">
             {
               currentItems.length === 0 ?
-                <h2 className="no-results">Hình như không có gì thì phải :(</h2> :
+                <div className='items-not-found-title'><h2 className="no-results">Không tìm thấy kết quả tìm kiếm.</h2></div> :
                 currentItems.map(product => {
                   return <ProductItem key={product._id} product={product}
                     isAdmin={isAdmin} deleteProduct={deleteProduct} handleCheck={handleCheck}
@@ -163,6 +168,8 @@ function Products() {
               activeClassName="active"
             />
           </div>
+          </div>
+          }
         </div>
 
         <div className="product-view-detail-box">

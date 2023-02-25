@@ -43,10 +43,13 @@ function Cart() {
           return item.isPublished && item.countInStock > 0 ? amount + 1 : amount
         }, 0)
         if (countItemCanBuy === 0) {
-          toast.warning('Giỏ hàng không hợp lệ!', {
-            position: "top-center",
-            autoClose: 3000
-          });
+          Swal.fire({
+            width: 500,
+            icon: 'warning',
+            title: 'Giỏ hàng không hợp lệ!',
+            text: 'Các sản phẩm trong giỏ hàng không còn tồn tại.',
+            showConfirmButton: true,
+          })
           return false;
         }
         cart.forEach(item => {
