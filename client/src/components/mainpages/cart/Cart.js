@@ -120,8 +120,8 @@ function Cart() {
 
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
-      confirmButton: 'btn btn-success',
-      cancelButton: 'btn btn-danger'
+      confirmButton: 'btn-ok',
+      cancelButton: 'btn-cancel-swal btn-mg-r'
     },
     buttonsStyling: false
   })
@@ -133,8 +133,8 @@ function Cart() {
         text: "Sản phẩm đã xóa sẽ không thể phục hồi!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Delete it!',
-        cancelButtonText: 'Cancel!',
+        confirmButtonText: 'Xóa',
+        cancelButtonText: 'Hủy bỏ',
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {

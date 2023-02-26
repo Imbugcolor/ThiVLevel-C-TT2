@@ -17,6 +17,7 @@
     "hamburger-react": "^2.5.0",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
+    "rc-progress": "^3.4.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^4.6.0",

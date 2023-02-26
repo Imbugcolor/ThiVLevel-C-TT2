@@ -33,6 +33,7 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
+    padding-top: 5px;
 }
 
 .product_box h3 a {

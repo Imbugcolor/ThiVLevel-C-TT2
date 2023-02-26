@@ -190,8 +190,7 @@ th, td {
 }
 
 .pay-infor-wrapper .cancel-order button{
-    background-color: crimson;
-    border: 1px solid crimson;
+    background-color: #000;
     color: #fff;
     height: 45px;
     width: 100%;
@@ -210,8 +209,7 @@ th, td {
 }
 
 .pay-infor-wrapper .cancel-order button:hover {
-    color: crimson;
-    background-color: #fff;
+    color: #888;
     transition: 0.5s;
 }
 

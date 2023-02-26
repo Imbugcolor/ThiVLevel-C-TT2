@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { toast } from 'react-toastify';
 import Swal from 'sweetalert2'
 
 function UserAPI(token) {
@@ -71,10 +70,18 @@ function UserAPI(token) {
     }, [token, callback])
 
     const addCart = async (product, color, size, quantity) => {
+        
+        const swalCustomButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn-ok'
+            },
+            buttonsStyling: false
+        })
+
         if (!isLogged) return Swal.fire({
-            title: 'Đăng nhập để tiếp tục?',
+            title: `<span class='title-msg-dialog'>Đăng nhập để tiếp tục?</span>`,
             showCancelButton: true,
-            confirmButtonText: 'Login',
+            confirmButtonText: 'Đăng nhập',
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
@@ -84,10 +91,10 @@ function UserAPI(token) {
             }
           })
 
-        if(product.countInStock < quantity ) return  Swal.fire({
+        if(product.countInStock < quantity ) return  swalCustomButtons.fire({
             width: 400,
             icon: 'warning',
-            title: 'Sản phẩm không đủ số lượng đáp ứng!',
+            title: `<span class='title-msg-dialog'>Sản phẩm không đủ số lượng đáp ứng.</span>`,
             showConfirmButton: true,
         })
 
@@ -103,10 +110,10 @@ function UserAPI(token) {
         }, 0)
 
 
-        if(product.countInStock < totalQuantity + quantity) return  Swal.fire({
+        if(product.countInStock < totalQuantity + quantity) return  swalCustomButtons.fire({
             width: 400,
             icon: 'warning',
-            title: 'Sản phẩm không đủ số lượng đáp ứng!',
+            title: `<span class='title-msg-dialog'>Sản phẩm không đủ số lượng đáp ứng.</span>`,
             showConfirmButton: true,
         })
 
@@ -127,18 +134,18 @@ function UserAPI(token) {
             }, {
                 headers: { Authorization: token }
             })
-            Swal.fire({
+            swalCustomButtons.fire({
                 width: 500,
                 icon: 'success',
-                title: 'Thêm vào giỏ hàng thành công!',
+                title: `<span class='title-msg-dialog'>Thêm vào giỏ hàng thành công.</span>`,
                 showConfirmButton: true,
                 timer: 1500
             })
         } else {
-            Swal.fire({
+            swalCustomButtons.fire({
                 width: 400,
                 icon: 'warning',
-                title: 'Sản phẩm đã có sẵn trong giỏ hàng!',
+                title: `<span class='title-msg-dialog'>Sản phẩm đã có sẵn trong giỏ hàng.</span>`,
                 showConfirmButton: true,
             })
         }

@@ -5,13 +5,13 @@ import ProductItem from '../utils/productItem/ProductItem'
 import axios from 'axios'
 import Rating from '../utils/Rating/Rating'
 import SoldIcon from './images/sold.png'
-import Instock from '../../../images/in-stock.png'
 import { FaStar } from 'react-icons/fa'
 import { BsCartCheck } from 'react-icons/bs'
 import { toast } from 'react-toastify'
 import ReviewItem from '../utils/ReviewItem/ReviewItem'
 import QuickViewProduct from '../home/QuickViewProduct'
-
+import Swal from 'sweetalert2'
+import { Line } from 'rc-progress';
 
 function DetailProduct() {
     const params = useParams()
@@ -69,12 +69,21 @@ function DetailProduct() {
         setReverse(!reverse)
     }
 
+    const swalCustomButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn-ok'
+        },
+        buttonsStyling: false
+    })
+
     const submitReviewHandler = async (e) => {
         e.preventDefault()
         try {
-            if (!rating) return toast.info('Hãy chọn số sao trước khi gửi đánh giá!', {
-                position: "top-center",
-                autoClose: 3000
+            if (!rating) return swalCustomButtons.fire({
+                width: 400,
+                icon: 'warning',
+                title: `<span class='title-msg-dialog'>Bạn chưa chọn sao.</span>`,
+                showConfirmButton: true
             })
             const res = await axios.post(`/api/products/${params.id}/review`, { rating, comment }, {
                 headers: { Authorization: token }
@@ -82,16 +91,21 @@ function DetailProduct() {
             setCallback(!callback)
             setRating(0)
             setComment('')
-            toast.success(res.data.msg, {
-                position: "top-center",
-                autoClose: 3000
+            swalCustomButtons.fire({
+                width: 400,
+                icon: 'success',
+                title: `<span class='title-msg-dialog'>Cảm ơn bạn đã đánh giá!</span>`,
+                showConfirmButton: true,
+                timer: 3000
             })
         } catch (err) {
             setRating(0)
             setComment('')
-            toast.warn(err.response.data.msg, {
-                position: "top-center",
-                autoClose: 3000
+            swalCustomButtons.fire({
+                width: 400,
+                icon: 'warning',
+                title: `<span class='title-msg-dialog'>${err.response.data.msg}</span>`,
+                showConfirmButton: true
             })
         }
     }
@@ -289,7 +303,39 @@ function DetailProduct() {
             </section>
             <div className='review-section'>
                 <div className='Reviews'>
-                    <h2 className='tag-color'>Đánh giá <span style={{ fontWeight: 700 }}>({reviews.length})</span></h2>
+                    <h2 className='tag-color'>Khách hàng đánh giá ({reviews.length})</h2>
+                    <div className='rating-statistics'>
+                        <div className='rating-left-side'>
+                            <div className='rating-num-statistics'>
+                                <span>{detailProduct.rating.toFixed(1)}</span>
+                            </div>
+                            <div className='rating-stars-statistics'>
+                                <Rating value={detailProduct.rating} text={''} />
+                            </div>
+                        </div>
+                        <div className='rating-right-side'>
+                            <div className='rating-percent-statistics'>
+                                <div className='heading-right-side'>
+                                    <span>Tỉ lệ đánh giá: </span>
+                                </div>
+                                <div className='rating-bar-percent'>
+                                    <div className='label-rating-percent'><span>1 Sao</span></div><Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/><span className='rating-num-percent'>10%</span>
+                                </div>
+                                <div className='rating-bar-percent'>
+                                    <div className='label-rating-percent'><span>2 Sao</span></div><Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/><span className='rating-num-percent'>10%</span>
+                                </div>
+                                <div className='rating-bar-percent'>
+                                    <div className='label-rating-percent'><span>3 Sao</span></div><Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/><span className='rating-num-percent'>10%</span>
+                                </div>
+                                <div className='rating-bar-percent'>
+                                    <div className='label-rating-percent'><span>4 Sao</span></div><Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/><span className='rating-num-percent'>10%</span>
+                                </div>
+                                <div className='rating-bar-percent'>
+                                    <div className='label-rating-percent'><span>5 Sao</span></div><Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/><span className='rating-num-percent'>10%</span>
+                                </div>       
+                            </div>
+                        </div>
+                    </div>
                     <div className="row" style={{margin: '15px 0'}}>
                         <span>Sắp xếp theo thời gian: </span>
                         <select value={reverse} onChange={e => sortReview(e.target.value)}>

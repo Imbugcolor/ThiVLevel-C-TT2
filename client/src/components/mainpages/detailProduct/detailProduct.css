@@ -396,6 +396,52 @@
     border-radius: 50%;
 }
 
+.rating-statistics {
+    padding: 40px;
+    background: #f5f3f4;
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rating-statistics .rating-num-statistics {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.rating-left-side, .rating-right-side {
+    flex: 0 0 50%;
+}
+
+.rating-right-side {
+    font-weight: 300;
+}
+
+.heading-right-side {
+    margin-bottom: 15px;
+    color: #969897;
+}
+
+.rating-num-percent {
+    padding-left: 10px;
+}
+
+.rating-bar-percent {
+    display: -webkit-flex;
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+    -webkit-align-items: center;
+}
+
+.label-rating-percent {
+    width: 75px;
+}
+
 #comment {
     width: 700px;
     height: 120px;
@@ -452,5 +498,33 @@
 .related-products .quick-view {
     display: none;
 }
+
+.title-msg-dialog {
+    font-size: 17px;
+}
+
+.btn-ok {
+    display: inline-block;
+    padding: 0 20px;
+    height: 40px;
+    background: #00295b;
+    color: #fff;
+}
+
+.btn-cancel-swal {
+    padding: 0 20px;
+    height: 40px;
+    background: #7e7e7e;
+    color: #fff;
+}
+
+.btn-mg-r {
+    margin-right: 15px;
+}
+
+.btn-ok:hover, .btn-cancel-swal:hover {
+    color: #f5f3f4;
+}
+
 /* Pagination review*/
 @import url('../utils/ReviewItem/ReviewItem.css');
