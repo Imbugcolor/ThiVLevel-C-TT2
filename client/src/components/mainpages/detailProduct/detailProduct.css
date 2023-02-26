@@ -440,6 +440,13 @@
 
 .label-rating-percent {
     width: 75px;
+    display: inherit;
+    color: #ffce3d;
+}
+
+.label-num-rating {
+    color: #000;
+    width: 15px;
 }
 
 #comment {

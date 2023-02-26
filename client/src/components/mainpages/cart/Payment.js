@@ -88,8 +88,6 @@ function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
         const isValid = validate()
         if(!isValid) return
         onClick(e, numStreet, setAddress, "delivery-detail-form")
-
-        console.log(address)
         
         handlePaymentMethodModal()
         

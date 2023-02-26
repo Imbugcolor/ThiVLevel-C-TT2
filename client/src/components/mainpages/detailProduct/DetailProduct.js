@@ -12,6 +12,7 @@ import ReviewItem from '../utils/ReviewItem/ReviewItem'
 import QuickViewProduct from '../home/QuickViewProduct'
 import Swal from 'sweetalert2'
 import { Line } from 'rc-progress';
+import { IoIosStar } from "react-icons/io";
 
 function DetailProduct() {
     const params = useParams()
@@ -39,6 +40,26 @@ function DetailProduct() {
     const [reverse, setReverse] = useState(true)
     const slideRef = useRef()
 
+    const [perRating, setPerRating] = useState([])
+
+    const count_element_in_array = (array, x) => {
+        let count = 0;
+        for(let i=0;i<array.length;i++){
+          if(array[i]==x) 
+            count ++;
+        } 
+        return count;   
+    }
+
+    const calcPercent = (countArray, starsArray ) => {
+        const perStars = [];
+        for(let i=0; i < countArray.length; i++){
+           const per = countArray[i] / starsArray.length * 100
+           perStars.push(per.toFixed(0))
+        } 
+        return perStars
+    }
+
     useEffect(() => {
         setColor(false)
         setSize(false)
@@ -53,9 +74,24 @@ function DetailProduct() {
                     setDetailProduct(product)
                     setColor(product.colors[0])
                     setReviews(product.reviews)
+                    if(product.reviews.length > 0){
+                        const ratingsArray = product.reviews.flat()
+                        const starsArray = ratingsArray.map(item => { return item.rating; })
+            
+                        const stars = [];
+                        for(let i=1;i<=5;i++){
+                            const countStars =count_element_in_array(starsArray, i)
+                            stars.push(countStars)
+                        }  
+                        const perRatingResult = calcPercent(stars,starsArray)
+                        setPerRating(perRatingResult)
+                    } else {
+                        setPerRating([0,0,0,0,0])
+                    }
+      
                     setReverse(true)
                 }
-            })
+            })        
         }
     }, [params.id, products])
 
@@ -318,21 +354,64 @@ function DetailProduct() {
                                 <div className='heading-right-side'>
                                     <span>Tỉ lệ đánh giá: </span>
                                 </div>
+                                {
+                                   perRating.map((item,index) => {
+                                    return <div className='rating-bar-percent' key={index}>
+                                    <div className='label-rating-percent'>
+                                            <div className='label-num-rating'>{index + 1}
+                                            </div>
+                                            <IoIosStar/>
+                                        </div>
+                                        <Line percent={item} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/>
+                                        <span className='rating-num-percent'>{item}%</span>
+                                    </div>
+                                   })
+                                }
+                                {/* <div className='rating-bar-percent'>
+                                    <div className='label-rating-percent'>
+                                        <div className='label-num-rating'>1
+                                        </div>
+                                        <IoIosStar/>
+                                    </div>
+                                    <Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/>
+                                    <span className='rating-num-percent'>10%</span>
+                                    </div>
                                 <div className='rating-bar-percent'>
-                                    <div className='label-rating-percent'><span>1 Sao</span></div><Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/><span className='rating-num-percent'>10%</span>
+                                    <div className='label-rating-percent'>
+                                        <div className='label-num-rating'>2
+                                        </div>
+                                        <IoIosStar/>
+                                    </div>
+                                    <Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/>
+                                    <span className='rating-num-percent'>10%</span>
+                                    </div>
+                                <div className='rating-bar-percent'>
+                                    <div className='label-rating-percent'>
+                                        <div className='label-num-rating'>3
+                                        </div>
+                                        <IoIosStar/>
+                                    </div>
+                                    <Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/>
+                                    <span className='rating-num-percent'>10%</span>
+                                    </div>
+                                <div className='rating-bar-percent'>
+                                    <div className='label-rating-percent'>
+                                        <div className='label-num-rating'>4
+                                        </div>
+                                        <IoIosStar/>
+                                    </div>
+                                    <Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/>
+                                    <span className='rating-num-percent'>10%</span>
                                 </div>
                                 <div className='rating-bar-percent'>
-                                    <div className='label-rating-percent'><span>2 Sao</span></div><Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/><span className='rating-num-percent'>10%</span>
-                                </div>
-                                <div className='rating-bar-percent'>
-                                    <div className='label-rating-percent'><span>3 Sao</span></div><Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/><span className='rating-num-percent'>10%</span>
-                                </div>
-                                <div className='rating-bar-percent'>
-                                    <div className='label-rating-percent'><span>4 Sao</span></div><Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/><span className='rating-num-percent'>10%</span>
-                                </div>
-                                <div className='rating-bar-percent'>
-                                    <div className='label-rating-percent'><span>5 Sao</span></div><Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/><span className='rating-num-percent'>10%</span>
-                                </div>       
+                                    <div className='label-rating-percent'>
+                                        <div className='label-num-rating'>5
+                                        </div>
+                                        <IoIosStar/>
+                                    </div>
+                                    <Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/>
+                                    <span className='rating-num-percent'>10%</span>
+                                </div>        */}
                             </div>
                         </div>
                     </div>
