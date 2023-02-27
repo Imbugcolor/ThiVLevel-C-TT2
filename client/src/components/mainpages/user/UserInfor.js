@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
 import { GlobalState } from '../../../GlobalState'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 import { FaEdit } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 import Loading from '../utils/loading/Loading'
@@ -10,6 +9,7 @@ import Unknow from '../../../images/unknow.jpg'
 import UpdatePhoneForUser from '../utils/modal/UpdatePhoneForUser'
 import VerifyPhoneNumber from '../utils/modal/VerifyPhoneNumber'
 import axios from 'axios'
+import { GrSubtract } from 'react-icons/gr'
 
 function UserInfor() {
     const state = useContext(GlobalState)
@@ -201,12 +201,21 @@ function UserInfor() {
             </div>
             <div className="profile-container res-row">
                 <div className="col l-3 m-3 c-12 profile-user-avt">
-                    <img
-                        src={avtChange ? URL.createObjectURL(avt) : avt}
-                        alt="" />
-                    <input type="file" size="60" onChange={handleUpload} ref={inputRef} />
-                    <button className='select-img' onClick={() => inputRef.current.click()}>Chọn ảnh</button>
-                    <span>Kích thước file tối đa: 1 MB <br /> Định dạng: .JPEG, .PNG</span>
+                    <div>
+                        <img
+                            src={avtChange ? URL.createObjectURL(avt) : avt}
+                            alt="" />
+                        <input type="file" size="60" onChange={handleUpload} ref={inputRef} />
+                        <button className='select-img' onClick={() => inputRef.current.click()}>Chọn ảnh</button>
+                        <span>Kích thước file tối đa: 1 MB <br /> Định dạng: .JPEG, .PNG</span>
+                    </div>
+                    <div className='user__sidebar_menu'>
+                        <h3><GrSubtract/> Tài khoản của tôi</h3>
+                        <ul>
+                            <li><Link to={'/user'} className='sidebar__option-menu active'>Thông tin của tôi</Link></li>
+                            <li><Link to={'/history'} className='sidebar__option-menu'>Đơn hàng của tôi</Link></li>
+                        </ul>
+                    </div>
                 </div>
                
                 <div className="col l-6 m-6 c-12 user-infor-wrapper">
@@ -304,30 +313,30 @@ function UserInfor() {
                     !user.isLogSocialNetwork ?
                         <div className="col l-3 m-3 c-12 change-password">
                             <div className="change-password-wrapper">
-                                <h2 className="change-password-heading">Đổi mật khẩu</h2>
+                                <h4 className="change-password-heading">Đổi mật khẩu</h4>
                                 <div className="change-password-input-wrapper">
                                     <div className="password-input-item">
                                         <label htmlFor="user-current-password">Mật khẩu hiện tại</label>
                                         <input type="password" id="user-current-password"
                                             value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} />
-                                            <span style={{color: 'red', fontSize: '13px'}}>{validatePasswordMsg.current}</span>
+                                            <span style={{color: 'red', fontSize: '13px', display: 'block'}}>{validatePasswordMsg.current}</span>
                                     </div>
                                     <div className="password-input-item">
                                         <label htmlFor="user-new-password">Mật khẩu mới</label>
                                         <input type="password" id="user-new-password"
                                             value={newPassword} onChange={e => setNewPassword(e.target.value)} />
-                                            <span style={{color: 'red', fontSize: '13px'}}>{validatePasswordMsg.new}</span>
+                                            <span style={{color: 'red', fontSize: '13px', display: 'block'}}>{validatePasswordMsg.new}</span>
                                     </div>
                                     <div className="password-input-item">
                                         <label htmlFor="user-verify-password">Xác nhận mật khẩu</label>
                                         <input type="password" id="user-verify-password"
                                             value={verifyPassword} onChange={e => setVerifyPassword(e.target.value)} />
-                                            <span style={{color: 'red', fontSize: '13px'}}>{validatePasswordMsg.verify}</span>
+                                            <span style={{color: 'red', fontSize: '13px', display: 'block'}}>{validatePasswordMsg.verify}</span>
                                     </div>
                                     <button className="change-password-btn"
                                         onClick={handleChangePassword}
                                     >
-                                        Đổi mật khẩu
+                                        Lưu
                                     </button>
                                 </div>
                             </div>

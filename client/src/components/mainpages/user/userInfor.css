@@ -4,6 +4,10 @@
     border-radius: 10px;
 }
 
+.user-profile-container {
+    font-weight: 300;
+}
+
 .user-header {
     margin: 40px auto;
     text-align: center;
@@ -68,7 +72,7 @@
 }
 
 .user-infor-wrapper form .user-infor-field label {
-    width: 20%;
+    width: 100%;
     margin-right: 30px;
     display: block;
     color: #777;
@@ -79,7 +83,7 @@
     font-size: 16px;
     width: 100%;
     flex: 0.8;
-    max-width: 300px;
+    max-width: 400px;
     height: 30px;
     padding: 5px 12px;
     border: 1px solid #ddd;
@@ -97,13 +101,17 @@
 }
 
 .user-infor-wrapper form .save-btn {
+    max-width: 200px;
+    width: 100%;
+    text-align: center;
     height: 40px;
-    width: fit-content;
-    padding: 0 10px;
-    background-color: crimson;
-    border-radius: 3px;
-    color: white;
-    margin: 20px 0;
+    line-height: 30px;
+    display: inline-block;
+    background: #222;
+    color: #fff;
+    padding: 5px 12px;
+    font-size: 14px;
+    text-transform: uppercase;
 }
 
 .user-infor-field {
@@ -186,24 +194,36 @@
 
 .change-password-wrapper .password-input-item label {
     display: block;
+    width: 100%;
+    margin-right: 30px;
+    color: #777;
     margin-bottom: 5px;
 }
 
 .change-password-wrapper .password-input-item input {
     font-size: 16px;
-    padding: 5px;
-    border: 2px solid #ccc;
-    border-radius: 3px;
+    width: 100%;
+    flex: 0.8;
+    max-width: 400px;
+    height: 30px;
+    padding: 5px 12px;
+    border: 1px solid #ddd;
+    font-weight: 300;
 }
 
 .change-password-wrapper .change-password-btn {
+    max-width: 200px;
+    width: 100%;
+    text-align: center;
     height: 40px;
-    width: fit-content;
-    padding: 0 10px;
-    background-color: crimson;
-    border-radius: 3px;
-    color: white;
-    margin: 20px 0;
+    line-height: 30px;
+    display: inline-block;
+    background: #222;
+    color: #fff;
+    padding: 5px 12px;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-top: 25px;
 }
 
 /* Change phone order modal css */
@@ -227,6 +247,35 @@
     margin-left: 45px;
 }
 
+/* user sidebar menu */
+.user__sidebar_menu {
+    text-align: left;
+    margin-top: 25px;
+}
+
+.user__sidebar_menu h3 {
+    display: flex;
+    align-items: center;
+}
+.user__sidebar_menu h3 svg {
+    margin-right: 8px;
+}
+
+.user__sidebar_menu ul{
+    margin-left: 28px;
+    margin-top: 10px;
+}
+
+.user__sidebar_menu ul li, .sidebar__option-menu {
+    padding-top: 10px;
+    font-size: 14px;
+    color: #777;
+    font-weight: 600;
+}
+
+.sidebar__option-menu.active {
+    color: #222;
+}
 
 @import url('../utils/modal/ChangePhoneModal.css');
 
