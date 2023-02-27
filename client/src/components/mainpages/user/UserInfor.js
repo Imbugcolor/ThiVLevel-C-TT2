@@ -195,7 +195,7 @@ function UserInfor() {
         <div className="user-profile-container">
             <div className="res-row">
                 <div className="user-header">
-                    <h2 className="header-title">Hồ sơ của tôi</h2>
+                    <h2 className="header-title">Thông tin của tôi</h2>
                     <p className="header-description">Quản lý thông tin cá nhân</p>
                 </div>
             </div>
@@ -208,12 +208,15 @@ function UserInfor() {
                     <button className='select-img' onClick={() => inputRef.current.click()}>Chọn ảnh</button>
                     <span>Kích thước file tối đa: 1 MB <br /> Định dạng: .JPEG, .PNG</span>
                 </div>
-                <div className="divider"></div>
+               
                 <div className="col l-6 m-6 c-12 user-infor-wrapper">
+                    <div className='heading__form__user__infor'>
+                        <h4>Thông tin</h4>
+                    </div>
                     <form onSubmit={handleSubmit}>
                         <div className="user-infor-field">
-                            <label>ID Người dùng</label>
-                            <div id="user-id">{user._id}</div>
+                            <label>ID</label>
+                            <input type="text" id="user-id" value={user._id || ''} disabled/>
                         </div>
 
                         <div className="user-infor-field">
@@ -224,36 +227,38 @@ function UserInfor() {
 
                         <div className="user-infor-field">
                             <label>Email</label>
-                            <div id="user-email">{user.email}</div>
+                            <input type="text" id="user-email" value={user.email || ''} disabled/>
                         </div>
 
                         <div className="user-infor-field">
                             <label>Số điện thoại</label>
-                            <span style={{marginRight: '15px'}}>+84 {phone}</span>
-                            <a href="#!" onClick={() => handleChangePhone()}>
-                                <FaEdit style={{ color: '#9e9e9e', cursor: 'pointer' }} />
-                            </a> 
-                            
-                        </div>
-                        <div className="user-infor-field">
-                            <label>Xác thực SĐT</label>
-                            {   
-                                user.phone ? 
-                                user.isVerifyPhone ? <span>Đã xác thực</span>:
-                                <a href="#!" onClick={() => handleVerifyPhone()} className="phone-number-verify">
-                                    Chưa xác thực, Xác thực ngay.
-                                </a> : <span>Chưa cập nhật SĐT</span>
-                            }
+                            <div className='user__field__group'>
+                                <a href='#!' className='region-number'>
+                                    +84
+                                </a>
+                                <input type="text" id="user-phone" value={phone || ''} disabled/>
+                                {   
+                                    user.phone ? 
+                                    user.isVerifyPhone ? null :
+                                    <a href="#!" onClick={() => handleVerifyPhone()} className="phone-number-verify">
+                                        XÁC NHẬN
+                                    </a> : null
+                                }
+                                <a href="#!" onClick={() => handleChangePhone()} className="edit-field-icon">
+                                    <FaEdit style={{ color: '#9e9e9e', cursor: 'pointer' }} />
+                                </a> 
+                            </div>
+                          
                         </div>
 
                         <div className="user-infor-field">
                             <label>Địa chỉ</label>
-                            <div id="user-address">
-                                {address.city?.label ? `${address.detailAddress || ''} ${address.ward?.label}, ${address.district?.label}, ${address.city?.label}` : `${address}`}
-                                <a href="#!" className="change-address"
+                            <div className="user__field__group">
+                                <input type="text" id="user-address" value={address.city?.label ? `${address.detailAddress || ''} ${address.ward?.label}, ${address.district?.label}, ${address.city?.label}` : `${address}`} disabled/> 
+                                
+                                <a href="#!" className="edit-field-icon"
                                     onClick={handleChangeAddress}>
-                                    <FontAwesomeIcon icon={faEdit} />
-                                    Thay đổi địa chỉ
+                                    <FaEdit style={{ color: '#9e9e9e', cursor: 'pointer' }} />
                                 </a>
                                 <div className="address-form" ref={addressRef}>
                                     <LocationForm element={"address-form"} onSave={setAddress} initAddress={address} />
@@ -294,7 +299,7 @@ function UserInfor() {
                         <button type="submit" className="save-btn">Lưu thay đổi</button>
                     </form>
                 </div>
-                <div className="divider"></div>
+                
                 {
                     !user.isLogSocialNetwork ?
                         <div className="col l-3 m-3 c-12 change-password">

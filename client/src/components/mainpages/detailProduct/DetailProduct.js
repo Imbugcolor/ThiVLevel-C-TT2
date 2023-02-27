@@ -362,56 +362,15 @@ function DetailProduct() {
                                             </div>
                                             <IoIosStar/>
                                         </div>
-                                        <Line percent={item} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/>
+                                        <Line percent={item} 
+                                            strokeWidth={1} 
+                                            strokeColor="#000"
+                                            strokeLinecap='square'
+                                            style={{height: '10px', maxWidth: '250px', width: '100%'}}/>
                                         <span className='rating-num-percent'>{item}%</span>
                                     </div>
                                    })
                                 }
-                                {/* <div className='rating-bar-percent'>
-                                    <div className='label-rating-percent'>
-                                        <div className='label-num-rating'>1
-                                        </div>
-                                        <IoIosStar/>
-                                    </div>
-                                    <Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/>
-                                    <span className='rating-num-percent'>10%</span>
-                                    </div>
-                                <div className='rating-bar-percent'>
-                                    <div className='label-rating-percent'>
-                                        <div className='label-num-rating'>2
-                                        </div>
-                                        <IoIosStar/>
-                                    </div>
-                                    <Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/>
-                                    <span className='rating-num-percent'>10%</span>
-                                    </div>
-                                <div className='rating-bar-percent'>
-                                    <div className='label-rating-percent'>
-                                        <div className='label-num-rating'>3
-                                        </div>
-                                        <IoIosStar/>
-                                    </div>
-                                    <Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/>
-                                    <span className='rating-num-percent'>10%</span>
-                                    </div>
-                                <div className='rating-bar-percent'>
-                                    <div className='label-rating-percent'>
-                                        <div className='label-num-rating'>4
-                                        </div>
-                                        <IoIosStar/>
-                                    </div>
-                                    <Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/>
-                                    <span className='rating-num-percent'>10%</span>
-                                </div>
-                                <div className='rating-bar-percent'>
-                                    <div className='label-rating-percent'>
-                                        <div className='label-num-rating'>5
-                                        </div>
-                                        <IoIosStar/>
-                                    </div>
-                                    <Line percent={10} strokeWidth={1} strokeColor="#000" style={{height: '10px', maxWidth: '250px', width: '100%'}}/>
-                                    <span className='rating-num-percent'>10%</span>
-                                </div>        */}
                             </div>
                         </div>
                     </div>

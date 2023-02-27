@@ -7,17 +7,14 @@
 .user-header {
     margin: 40px auto;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .header-title {
-    text-transform: capitalize;
     color: #333;
     font-size: 2rem;
+    font-weight: 600;
 }
-
-.header-description {}
-
-.profile-container {}
 
 .profile-container .divider {
     height: auto;
@@ -26,6 +23,9 @@
     margin-bottom: 20px;
 }
 
+.heading__form__user__infor {
+    margin-bottom: 15px;
+}
 .profile-user-avt {
     text-align: center;
     padding: 0 50px;
@@ -64,25 +64,31 @@
 }
 
 .user-infor-wrapper form .user-infor-field {
-    display: flex;
-    align-items: baseline;
+
 }
 
 .user-infor-wrapper form .user-infor-field label {
-    text-align: right;
     width: 20%;
     margin-right: 30px;
     display: block;
+    color: #777;
+    margin-bottom: 5px;
 }
 
 .user-infor-wrapper form .user-infor-field input {
     font-size: 16px;
-    padding: 5px;
-    border: 2px solid #ccc;
-    border-radius: 3px;
     width: 100%;
     flex: 0.8;
-    max-width: 270px;
+    max-width: 300px;
+    height: 30px;
+    padding: 5px 12px;
+    border: 1px solid #ddd;
+    font-weight: 300;
+}
+
+.user__field__group {
+    display: flex;
+    align-items: center;
 }
 
 .user-infor-wrapper form .user-infor-field input[type=date] {
@@ -118,10 +124,34 @@
 }
 
 .user-infor-field .change-address:link,
-.user-infor-field .change-address:visited,
-.user-infor-field .phone-number-verify:link,
-.user-infor-field .phone-number-verify:visited {
+.user-infor-field .change-address:visited {
     color: blue;
+}
+
+.phone-number-verify {
+    display: inline-block;
+    background: #222;
+    color: #fff;
+    padding: 5px 12px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 300;
+    border: 1px #222 solid;
+}
+
+.region-number {
+    display: inline-block;
+    padding: 5px 12px;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #222;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-right: none;
+}
+
+.edit-field-icon {
+    margin-left: 15px;
 }
 
 .user-infor-field .change-address svg {

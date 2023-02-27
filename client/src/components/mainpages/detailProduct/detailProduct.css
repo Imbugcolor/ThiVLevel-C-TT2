@@ -212,7 +212,6 @@
 .product-page-details .product-sold span{
     font-size: 0.9rem;
     text-transform: uppercase;
-    color: crimson;
     font-weight: 500;
 }
 
@@ -233,7 +232,7 @@
 }
 
 .product-page-details .cart-btns .add-cart{
-    padding: 0 40px;
+    padding: 0 45px;
     text-align: center;
     font-size: 17px;
     color: #fff;
@@ -246,6 +245,7 @@
     display: block;
     cursor: pointer;
     transition: all .2s linear;
+    font-weight: 300;
 }
 
 .product-page-details .cart-btns .add-cart:hover {
@@ -272,6 +272,7 @@
     border: 1px solid #f7f7f7;
     border-radius: 3px;
     color: #333;
+    font-weight: 300;
 }
 
 
@@ -334,7 +335,6 @@
 }
 
 .quantity-btn span {
-    color: crimson;
     padding: 0 20px;
     font-weight: 500;
 }
@@ -382,6 +382,7 @@
 
 .review .review-wrapper {
     display: flex;
+    font-weight: 300;
 }
 
 .Reviews .review span {
