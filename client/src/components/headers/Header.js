@@ -39,13 +39,13 @@ function Header() {
                         <li>
                             <Link to="/user">
                                 <CgIcons.CgProfile style={{ fontSize: 20 }} />
-                                <span>Hồ sơ</span>
+                                <span>Thông tin</span>
                             </Link>
                         </li>
                         <li>
                             <Link to="/history">
                                 <MdIcons.MdHistory style={{ fontSize: 20 }} />
-                                <span>Lịch sử mua hàng</span>
+                                <span>Đơn hàng của tôi</span>
                             </Link>
                         </li>
                         <li>

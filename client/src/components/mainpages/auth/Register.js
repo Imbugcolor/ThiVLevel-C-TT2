@@ -71,39 +71,45 @@ function Register() {
   return (
     <div className="login-page">
       <form onSubmit={registerSubmit} className="form-signin-signout">
-        <h2>Đăng ký</h2>
+        <div className='auth__heading_form'>
+          <div className='sign__in_heading'>
+            <h2><Link to="/login">Đăng nhập</Link></h2>
+          </div>
+          <div className='sign__up_heading'>
+            <h2 className='active'>Đăng ký</h2>
+          </div>
+        </div>
 
-        <label>Tên tài khoản</label>
-        <input type="text" name="username"
+    
+        <input type="text" name="username" placeholder="Nhập họ tên..."
           value={user.username}
           onChange={onChangeInput}
         />
-        <span style={{color: 'red'}}>{validateMsg.username}</span>
+        <span style={{color: 'red', fontWeight: '300'}}>{validateMsg.username}</span>
 
-        <label>Email</label>
-        <input type="text" name="email"
+      
+        <input type="text" name="email" placeholder="Nhập email..."
           value={user.email}
           onChange={onChangeInput}
         />
-        <span style={{color: 'red'}}>{validateMsg.email}</span>
+        <span style={{color: 'red', fontWeight: '300'}}>{validateMsg.email}</span>
 
-        <label>Mật khẩu</label>
-        <input type="password" name="password"
+     
+        <input type="password" name="password" placeholder="Mật khẩu"
           value={user.password}
           onChange={onChangeInput}
         />
-        <span style={{color: 'red'}}>{validateMsg.password}</span>
+        <span style={{color: 'red', fontWeight: '300'}}>{validateMsg.password}</span>
 
-        <label>Xác nhận mật khẩu</label>
-        <input type="password" name="verify_password"
+ 
+        <input type="password" name="verify_password" placeholder="Xác nhận mật khẩu"
           value={user.verify_password}
           onChange={onChangeInput}
         />
-        <span style={{color: 'red'}}>{validateMsg.verify_password}</span>
+        <span style={{color: 'red', fontWeight: '300'}}>{validateMsg.verify_password}</span>
         
         <div className="row">
           <button type="submit">Đăng ký</button>
-          <Link to="/login">Đăng nhập</Link>
         </div>
       </form>
     </div>

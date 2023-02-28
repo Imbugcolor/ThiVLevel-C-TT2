@@ -77,29 +77,35 @@ function Login() {
   return (
     <div className="login-page">
       <form onSubmit={loginSubmit} className="form-signin-signout">
-        <h2>Đăng nhập</h2>
-        <label>Email</label>
-        <input type="text" name="email"
+        <div className='auth__heading_form'>
+          <div className='sign__in_heading'>
+            <h2 className='active'>Đăng nhập</h2>
+          </div>
+          <div className='sign__up_heading'>
+            <h2><Link to="/register">Đăng ký</Link></h2>
+          </div>
+        </div>
+    
+        <input className="email-field-input" type="text" name="email" placeholder='Nhập email...'
           value={user.email}
           onChange={onChangeInput}
         />
-        <span style={{color: 'red'}}>{validateMsg.email}</span>
+        <span style={{color: 'red', fontWeight: '300'}}>{validateMsg.email}</span>
 
-        <label>Mật khẩu</label>
-        <input type="password" name="password"
+   
+        <input className="password-field-input" type="password" name="password" placeholder='Mật khẩu'
           value={user.password}
           autoComplete="on"
           onChange={onChangeInput}
         />
-        <span style={{color: 'red'}}>{validateMsg.password}</span>
+        <span style={{color: 'red', fontWeight: '300'}}>{validateMsg.password}</span>
 
-        <div className="row">
+        <div className="sign-up-btn-link">
           <button type="submit">Đăng nhập</button>
-          <span>Chưa có tài khoản? <Link to="/register">Đăng ký ngay!</Link></span>
         </div>
 
-        <div className="row">
-          <span><Link to="/forgotpassword">Quên mật khẩu</Link></span>
+        <div className="forget__btn_link">
+          <span><Link to="/forgotpassword">Quên mật khẩu?</Link></span>
         </div>
       </form>
       <div className="signin-with-social">

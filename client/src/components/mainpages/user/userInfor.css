@@ -90,6 +90,10 @@
     font-weight: 300;
 }
 
+#user-phone {
+    max-width: 349.92px;
+}
+
 .user__field__group {
     display: flex;
     align-items: center;
@@ -251,6 +255,8 @@
 .user__sidebar_menu {
     text-align: left;
     margin-top: 25px;
+    padding: 15px;
+    background-color: #f5f3f4;
 }
 
 .user__sidebar_menu h3 {
@@ -262,8 +268,7 @@
 }
 
 .user__sidebar_menu ul{
-    margin-left: 28px;
-    margin-top: 10px;
+    margin: 10px 0 10px 28px;
 }
 
 .user__sidebar_menu ul li, .sidebar__option-menu {

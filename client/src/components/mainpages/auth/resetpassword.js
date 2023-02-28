@@ -62,25 +62,31 @@ function Resetpassword() {
   return (
     <div className="login-page">
       <form onSubmit={registerSubmit} className="form-signin-signout">
-        <h2>Đặt lại mật khẩu</h2>
-
-        <label>Mật khẩu mới</label>
-        <input type="password" name="password"
+        <div className='auth__heading_form'>
+          <div className='sign__in_heading'>
+            <h2 className='active'>Khôi phục tài khoản</h2>
+          </div>
+        </div>
+      
+        <input type="password" name="password" placeholder='Nhập mật khẩu mới'
           onChange={(e) => setPassword(e.target.value)}
           required
           disabled={isUpdated}
         />
 
-        <label>Xác nhận mật khẩu</label>
-        <input type="password" name="confirmPassword"
+        <input type="password" name="confirmPassword" placeholder='Xác nhận mật khẩu'
           autoComplete="on"
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
           disabled={isUpdated}
         />
+
         <div className="row">
           <button type="submit">Xác nhận</button>
-          <Link to="/login">Đăng nhập</Link>
+        </div>
+
+        <div className="sign__btn_link">
+          <span><Link to="/login">Đăng nhập</Link></span>
         </div>
       </form>
     </div>
