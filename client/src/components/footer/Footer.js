@@ -1,18 +1,21 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Logo from '../logo/thiv_level-logo-2.png'
+import FbIcon from '../../images/icon_fbn.webp'
+import InsIcon from '../../images/icon_instan.webp'
+import TiktokIcon from '../../images/icon_tiktok.webp'
+import PaypalIcon from '../../images/Paypal_2014_logo.png'
+import CodLogo from '../../images/cash-on-delivery.png'
 import * as AiIcons from 'react-icons/ai'
 import * as ImIcons from 'react-icons/im'
 import { Link } from 'react-router-dom'
-import { GlobalState } from '../../GlobalState'
+
 function Footer() {
-    const state = useContext(GlobalState)
-    const [categories] = state.categoriesAPI.categories
 
     return (
         <footer className="footer res-row">
             <div className="col l-10 l-o-1 m-10 m-o-1 c-12">
                 <div className="res-row">
-                    <div className="col l-3 m-3 c-12 footer-item">
+                    <div className="col l-4 m-4 c-12 footer-item">
                         <div className="footer-logo">
                             <img src={Logo} alt="" />
                             <ul>
@@ -37,40 +40,9 @@ function Footer() {
                             </ul>
                         </div>
                     </div>
-                    <div className="col l-3 m-3 c-6 footer-item">
-                        <div className="footer-item social-network">
-                            <h3 className="footer-item-header">Mạng xã hội</h3>
-                            <ul>
-                                <li>
-                                    <a href="https://www.facebook.com/profile.php?id=100088054956329" target="_blank">
-                                        <AiIcons.AiFillFacebook />
-                                        <span>
-                                            Fanpage ThiV Level
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#!">
-                                        <AiIcons.AiFillInstagram />
-                                        <span>
-                                            Instagram ThiV Level
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#!">
-                                        <AiIcons.AiFillYoutube />
-                                        <span>
-                                            Youtube ThiV Level
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="col l-3 m-3 c-6 footer-item">
+                    <div className="col l-4 m-4 c-6 footer-item">
                         <div className="footer-item policy">
-                            <h3 className="footer-item-header">Về ThivLevel</h3>
+                            <h4 className="footer-item-header">Về ThivLevel</h4>
                             <ul>
                                 <li>
                                     <Link to="/pages/introduction">
@@ -95,24 +67,49 @@ function Footer() {
                             </ul>
                         </div>
                     </div>
-                    <div className="col l-3 m-3 c-6 footer-item">
-                        <div className="footer-item category">
-                            <h3 className="footer-item-header">Danh mục</h3>
-                            <ul>
-                                {
-                                    categories.map((category) => (
-                                        <li key={category._id}>
-                                            <Link to="#!">
-                                                {category.name}
-                                            </Link>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
+                    <div className="col l-4 m-4 c-6 footer-item">
+                        <div className="footer-item social-network">
+                            <div>
+                                <h4 className="footer-item-header">THEO DÕI CHÚNG TÔI</h4>
+                                <ul>
+                                    <li>
+                                        <a href="https://www.facebook.com/profile.php?id=100088054956329" target="_blank">
+                                        
+                                            <img className="social__media_icon" src={FbIcon} />
+                                            <span>
+                                                Fanpage ThiV Level
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">
+                                            <img className="social__media_icon" src={InsIcon}/>
+                                            <span>
+                                                Instagram ThiV Level
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">
+                                            <img className="social__media_icon" src={TiktokIcon}/>
+                                            <span>
+                                                Tiktok ThiV Level
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className='payment__method_footer'>
+                                <h4 className="footer-item-header">Phương thức thanh toán</h4>
+                                <div className='payment__method_icon'>
+                                    <img className="social__media_icon" src={CodLogo}/>
+                                    <img className="social__media_icon" src={PaypalIcon}/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="col l-12 m-12 c-12">
-                        <h5 className="copyright">Designed by Thuần Việt Corporation</h5>
+                        <h5 className="copyright">@Since 2022 THIVLEVEL</h5>
                     </div>
                 </div>
             </div>

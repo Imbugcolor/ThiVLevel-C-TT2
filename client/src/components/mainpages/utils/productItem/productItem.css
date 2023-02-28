@@ -34,6 +34,8 @@
     -webkit-line-clamp: 2;
     overflow: hidden;
     padding-top: 5px;
+    font-weight: 500;
+    font-size: 18px;
 }
 
 .product_box h3 a {
@@ -45,8 +47,10 @@
     color: #246284;
 }
 
-.product_card span {
-    color: crimson;
+.product_card .product_box span{
+    color: #777;
+    font-weight: 300;
+    font-size: 15px;
 }
 
 .product_card .product_img {
@@ -116,6 +120,8 @@
     text-align: right;
     font-size: 18px;
     display: block;
+    padding: 5px 0;
+    font-weight: 500;
 }
 
 .product_box p {

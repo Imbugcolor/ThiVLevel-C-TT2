@@ -166,9 +166,8 @@
 .product-page-details .product-options button{
     width: 25px;
     height: 25px;
-    border: 2px solid #ddd;
+    border: 1px solid #ddd;
     outline: none;
-    border-radius: 3px;
     cursor: pointer;
     overflow: hidden;
     margin: 0 5px;

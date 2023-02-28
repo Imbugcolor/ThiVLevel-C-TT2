@@ -30,7 +30,7 @@ header .logo {
 header a {
     text-transform: uppercase;
     color: #246284 !important;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 header .header-nav li {

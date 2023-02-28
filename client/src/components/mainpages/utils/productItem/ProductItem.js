@@ -1,6 +1,6 @@
 import React from 'react'
 import Rating from '../Rating/Rating'
-import SoldOut from '../../../../images/sold-out-1.png'
+import SoldOut from '../../../../images/sold-out-2.png'
 import { Link } from 'react-router-dom'
 
 function ProductItem({ product, isAdmin, deleteProduct, handleCheck, setCurrentProduct, handleViewDetail }) {
@@ -32,7 +32,7 @@ function ProductItem({ product, isAdmin, deleteProduct, handleCheck, setCurrentP
             value={product.rating}
             text={`${product.numReviews} reviews`}
           />
-          <span className="product_price">${product.price}</span>
+          <h4 className="product_price">${product.price}</h4>
         </div>
 
       </div>

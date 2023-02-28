@@ -9,9 +9,9 @@
 
 .footer .footer-item-header {
     text-transform: uppercase;
-    font-size: 20px;
     margin-bottom: 15px;
-    color: #323232;
+    color: #5c5c5c;
+    font-size: 20px;
 }
 
 .footer .footer-item {
@@ -59,4 +59,12 @@
     color: #236084;
 }
 
+.footer .social__media_icon {
+    width: 100%;
+    max-width: 50px;
+    margin-right: 15px ;
+}
 
+.footer .payment__method_footer {
+    margin-top: 10px;
+}
