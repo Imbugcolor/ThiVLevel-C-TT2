@@ -1,5 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react'
 import MySlider from '../slider/MySlider'
+import NewABanner from '../../../images/img-banner-index.jpg'
+import BestSABanner from '../../../images/best-seller-banner.jpg'
+import RecomFYBanner from '../../../images/banner-clothing.jpg'
 import * as FiIcons from 'react-icons/fi'
 import * as RiIcons from 'react-icons/ri'
 import * as SlIcons from 'react-icons/sl'
@@ -76,11 +79,9 @@ function Home() {
             </div>
             <div className="col l-10 l-o-1">
                 <div className="res-row best-seller-container">
-                    <h1 className="best-seller__heading">
-                        <MdIcons.MdOutlineRecommend style={{ margin: 10 }} />
-                        Recommended For You
-                        <MdIcons.MdOutlineRecommend style={{ margin: 10 }} />
-                    </h1>
+                    <div className='banner__products_wrapper'>
+                        <img className="banner__products_type_list" src={RecomFYBanner}/>
+                    </div>
                     <div className="col l-12 m-12 c-12">
                         <div className="res-row products">
                             {
@@ -94,11 +95,9 @@ function Home() {
                     </div>
                 </div>
                 <div className="res-row best-seller-container">
-                    <h1 className="best-seller__heading">
-                        <GiIcons.GiCutDiamond style={{ margin: 10 }} />
-                        Best seller
-                        <GiIcons.GiCutDiamond style={{ margin: 10 }} />
-                    </h1>
+                    <div className='banner__products_wrapper'>
+                        <img className="banner__products_type_list" src={BestSABanner}/>
+                    </div>
                     <div className="col l-12 m-12 c-12">
                         <div className="res-row products">
                             {
@@ -113,11 +112,9 @@ function Home() {
                 </div>
 
                 <div className="res-row best-seller-container">
-                    <h1 className="best-seller__heading">
-                        <HiIcons.HiOutlineSparkles style={{ margin: 10 }} />
-                        New arrival
-                        <HiIcons.HiOutlineSparkles style={{ margin: 10 }} />
-                    </h1>
+                    <div className='banner__products_wrapper'>
+                        <img className="banner__products_type_list" src={NewABanner}/>
+                    </div>
                     <div className="col l-12 m-12 c-12">
                         <div className="res-row products">
                             {

@@ -445,8 +445,7 @@ function DetailProduct() {
 
                     </form>
 
-                ) : (<h4 className='sign-in-msg'><Link to='/login' style={{ color: 'crimson' }}
-                >Đăng nhập</Link> để viết đánh giá nhé!</h4>)}
+                ) : null }
             </div>
             <div className="related-products">
                 <h2 className='tag-color'>Sản phẩm liên quan</h2>

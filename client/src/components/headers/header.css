@@ -12,7 +12,6 @@ header {
     left: 0;
     right: 0;
     background: #fff;
-    box-shadow: 0 0 10px #a4a4a4;
     transition: box-shadow .4s;
 }
 

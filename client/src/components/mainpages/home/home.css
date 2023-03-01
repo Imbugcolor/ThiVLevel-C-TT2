@@ -5,12 +5,12 @@
 .service-container .service-item {
     display: flex;
     align-items: center;
-    box-shadow: 0 0 10px #ccc;
     padding: 15px 10px;
-    border-radius: 5px;
     cursor: pointer;
     transition: transform .1s linear;
     margin-top: 10px;
+    border: 1px solid #ccc;
+    font-weight: 300;
 }
 
 .service-container .service-item:hover {
@@ -41,18 +41,9 @@
 }
 
 /* best seller */
-.best-seller-container .best-seller__heading {
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 2rem;
-    color: #246284;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    user-select: none;
-    background: #e1f4fc;
+.best-seller-container .banner__products_wrapper,
+.best-seller-container .banner__products_type_list {
     width: 100%;
-    justify-content: center;
 }
 
 .watch-more-products-wrapper {
@@ -63,19 +54,19 @@
 .watch-more-products {
     width: fit-content;
     text-align: center;
-    margin: 10px auto;
-    display: block;
-    padding: 15px 25px;
-    border-radius: 10px;
-    background: #fff;
-    color: #246284;
+    font-size: 17px;
+    color: #fff;
+    background: #000;
     text-transform: uppercase;
-    font-weight: 500;
-    border: 2px solid #246284;
-    transition: .1s linear;
+    line-height: 45px;
+    border: 0;
+    margin-bottom: 15px;
+    border-radius: 0;
+    cursor: pointer;
+    padding: 13px 25px;
+    font-weight: 300;
 }
 
 .watch-more-products:hover {
-    background: #246284;
-    color: #fff;
+    color: #888;
 }
