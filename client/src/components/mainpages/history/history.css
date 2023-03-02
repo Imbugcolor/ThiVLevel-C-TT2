@@ -1,33 +1,9 @@
-.history-page {
-    overflow-x: auto;
-}
-
 .history-page h2, 
 .history-page h4 {
     text-align: center;
     margin: 20px;
     text-transform: uppercase;
     letter-spacing: 1.2px;
-}
-
-.history-page table {
-    width: 100%;
-    border-collapse: collapse;
-    box-sizing: border-box;
-    border: 0.5px solid #d5d6d7;
-}
-
-.history-page table thead {
-    background-color: #f4f5f7;
-}
-
-.history-page table thead th {
-    box-sizing: border-box;
-    border: 0 solid #d5d6d7;
-}
-
-.history-page table tbody td {
-    border: none;
 }
 
 th, td {
@@ -125,7 +101,7 @@ th, td {
 
 .order-infor-container {
     margin-top: 30px;
-    background: #d9f1ff;
+    background: #f0f0f0;
 }
 
 .order-infor-container .order-infor {
@@ -137,12 +113,13 @@ th, td {
 
 .order-infor .infor span {
     display: block;
+    line-height: 25px;
 }
 
 .order-infor .thumbnail {
     min-width: 48px;
     height: 48px;
-    background-color: #b1d6e7;
+    background-color: #fff;
     color: #187095;
     border-radius: 50%;
     display: flex;
@@ -155,18 +132,51 @@ th, td {
     margin: 30px 0;
 }
 
+.list-product-order-client{
+    margin-bottom: 25px;
+}
+
+.list-product-order-client .oder-product-list-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.list-product-order-client .oder-product-list-table thead{
+    background-color: #f4f5f7;
+}
+.list-product-order-client .oder-product-list-table thead th {
+    box-sizing: border-box;
+    border: 0 solid #d5d6d7;
+}
+
+.list-product-order-client .oder-product-list-table tbody td {
+    border: none;
+    justify-content: center;
+}
+
+.table-product-column {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.table-thumbnail-product {
+    width: 35px;
+    height: 35px;
+    display: block;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+
 .order-detail table{
-    margin: unset;
-    width: unset;
-    flex: 1;
-    margin-right: 20px;
-    height: 100%;
+    width: 100%;  
 }
 
 .order-detail .pay-infor {
     padding: 15px;
-    background-color: #f4f5f7;
-    border-radius: 5px;  
+    font-size: 15px;
+    font-weight: 300;
     border: 1px solid #ccc;
     line-height: 30px;
 }
@@ -174,7 +184,7 @@ th, td {
 .pay-infor .divider {
     width: 100%;
     margin-top: 5px;
-    border-top: 2px dashed #ccc;
+    border-top: 1px solid #ccc;
 }
 
 .pay-infor .item {
@@ -207,9 +217,18 @@ th, td {
     margin-top: 20px;
 }
 
-
 .sidebar__filter_orders input,
-.sidebar__filter_orders select,
+.sidebar__filter_orders select
+{
+    border: 1px solid #e3e3e3;
+    padding: 0 10px;
+    outline: none;
+    height: 40px;
+    width: 100%;
+    background-color: #e3e3e3;
+    max-width: 250px;
+}
+
 .order-search-client input {
     border: 1px solid #ccc;
     padding: 0 10px;
@@ -219,11 +238,15 @@ th, td {
     width: 100%;
 }
 
+.order-filter-client-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
 .order-filter-client-wrapper .order-search-client{
     width: 100%;
-    max-width: 800px;
-    display: flex;
-    align-items: center;
+    max-width: 500px;   
 }
 
 .sidebar__filter_orders .order-sortdate-client {
@@ -234,6 +257,11 @@ th, td {
     max-width: 150px;
 }
 
+.number_total_orders {
+    font-size: 15px;
+    font-weight: 300;
+    color: #666666;
+}
 
 .pay-infor-wrapper .cancel-order, .pay-infor-wrapper .cancel-order-disabled {
     margin-top: 25px;
@@ -242,8 +270,8 @@ th, td {
 
 .pay-infor-wrapper .complete-order-noti button{
     width: 100%;
-    background-color: green;
-    color: #fff;
+    background-color: #e3e3e3;
+    color: #aaa;
     height: 50px;
     margin-top: 25px;
 }
@@ -307,6 +335,10 @@ td.method-payment {
     align-items: center;
     justify-content: center;
     border: none;
+}
+
+.flx-center {
+    justify-content: center !important;
 }
 
 @media (max-width: 768px) {

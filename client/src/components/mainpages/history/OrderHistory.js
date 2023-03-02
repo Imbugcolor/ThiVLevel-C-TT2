@@ -3,10 +3,6 @@ import { GlobalState } from '../../../GlobalState'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import ReactPaginate from 'react-paginate'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye } from '@fortawesome/free-solid-svg-icons'
-import * as FaIcons from 'react-icons/fa'
-import * as BsIcons from 'react-icons/bs'
 import moment from 'moment'
 function OrderHistory() {
 
@@ -66,7 +62,6 @@ function OrderHistory() {
     return (
         <div className="history-page">
             <h2>Đơn hàng của bạn</h2>
-            <h4>Bạn đã đặt {history.length} đơn hàng</h4>
             <div className="order-filter-client-wrapper">
                 <div className='order-search-client'>
                     <input className="search-order-input" value={searchPhrase} type="text" placeholder="Tìm kiếm bằng mã đơn/tên/email/Sđt"
@@ -110,7 +105,12 @@ function OrderHistory() {
                             </select>
                         </div>
                 </div>
-                <div className="my__order_list_wrapper col l-9 m-9 c-12">     
+                <div className="my__order_list_wrapper col l-9 m-9 c-12"> 
+                    {
+                        history.length !== 0 ?  <span className='number_total_orders'>{history.length} đơn hàng</span> : 
+                        <span className='number_total_orders'>Không tìm thấy kết quả tìm kiếm.</span>
+                    }  
+                   
                     {
                         currentItems.map(item => (                                
                             <div className="my__order_item" key={item._id}>

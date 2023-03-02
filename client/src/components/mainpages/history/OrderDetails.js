@@ -93,38 +93,47 @@ function OrderDetails() {
 
             <div className="order-detail col l-12 m-12 c-12">
                 <div className="res-row">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Sản phẩm</th>
-                                <th>Size - Màu</th>
-                                <th>Số lượng</th>
-                                <th>Tổng cộng</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                orderDetails.cart.map(item => {
-                                    if (item.quantity > 0) {
-                                        const thumbnail = item.images[0].url
-                                        return (
-                                            <tr key={item._id}>
-                                                <td><img className='img__order_view_detail' src={thumbnail} alt="" /></td>
-                                                <td>{item.title}</td>
-                                                <td className="size-color-td">
-                                                    <span>{item.size} - </span>
-                                                    <div style={{ backgroundColor: `${item.color}` }}></div>
-                                                </td>
-                                                <td>{item.quantity}</td>
-                                                <td>${item.price * item.quantity}</td>
-                                            </tr>)
-                                    } else return null
-                                })
-                            }
-                        </tbody>
-                    </table>
-                    <div className='pay-infor-wrapper col l-5 m-5 c-12'>
+                    <div className='list-product-order-client col l-9 m-12 c-12'>
+                        <table className="oder-product-list-table">
+                            <thead className="table-header">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>SẢN PHẨM</th>
+                                    <th>SIZE/MÀU</th>
+                                    <th>SỐ LƯỢNG</th>
+                                    <th>GIÁ</th>
+                                    <th>TỔNG CỘNG</th>
+                                </tr>
+                            </thead>
+                            <tbody className="table-body">
+                                {
+                                    orderDetails.cart?.map((item, index) => {
+                                        if (item.quantity > 0) {
+                                            return (
+                                                <tr key={item._id}>
+                                                    <td>{index + 1}</td>
+                                                    <td>
+                                                        <div className='table-product-column'>
+                                                            <img className='table-thumbnail-product' src={item.images[0].url} alt='hinh'></img>
+                                                            <span style={{ marginLeft: 5}} >{item.title}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td className='table-product-column flx-center'>
+                                                        <span>{item.size} - </span>
+                                                        <div style={{ backgroundColor: `${item.color}`, width: '15px', height: '15px', border: '1px solid #ccc' }}></div>
+                                                    </td>
+                                                    <td className='table-quantity'>{item.quantity}</td>
+                                                    <td className='table-item-price'>${item.price}</td>
+                                                    <td className='table-amount'>${item.quantity * item.price}</td>
+                                                </tr>
+                                            )
+                                        } else return null
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className='pay-infor-wrapper col l-3 m-12 c-12'>
                         <div className="pay-infor">
 
                             <div className="item fw600">

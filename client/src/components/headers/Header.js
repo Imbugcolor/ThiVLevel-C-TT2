@@ -33,7 +33,7 @@ function Header() {
                 <li className="user__container">
                     <div className="user__wrapper">
                         <div className="user__name">Hi, {user.username}</div>
-                        <img src={user.imageProfile?.url ?? Unknow} alt="" />
+                        <img src={user.imageProfile?.url ?? Unknow} referrerPolicy="no-referrer" alt="profile-avt" />
                     </div>
                     <ul className="user__dropdown">
                         <li>
@@ -125,7 +125,7 @@ function Header() {
                 {
                     isLogged ?
                         <div className="user__wrapper">
-                            <img src={user.imageProfile?.url ?? Unknow} alt="" />
+                            <img src={user.imageProfile?.url ?? Unknow} referrerPolicy="no-referrer" alt="profile-avt" />
                         </div>
                     : null
                 }
