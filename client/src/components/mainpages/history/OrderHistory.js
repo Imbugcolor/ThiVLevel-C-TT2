@@ -65,7 +65,7 @@ function OrderHistory() {
 
     return (
         <div className="history-page">
-            <h2>Lịch sử mua hàng</h2>
+            <h2>Đơn hàng của bạn</h2>
             <h4>Bạn đã đặt {history.length} đơn hàng</h4>
             <div className="order-filter-client-wrapper">
                 <div className='order-search-client'>
@@ -73,81 +73,83 @@ function OrderHistory() {
                     onChange={search}/>
                 </div>
 
-                <div className="order-status-client">
-                    <span>Trạng thái: </span>
-                    <select name="status" value={status} onChange={handleStatus}>
-                        <option value="">Tất cả đơn hàng</option>
-                    
-                        <option value="status=Pending">
-                            Đang chờ
-                        </option>
-                        
-                        <option value="status=Processing">
-                            Đang xử lý
-                        </option>
-
-                        <option value="status=Shipping">
-                            Đang giao hàng
-                        </option>
-
-                        <option value="status=Delivered">
-                            Đã giao hàng
-                        </option>
-
-                        <option value="status=Cancel">
-                            Đơn bị hủy
-                        </option>
-                        
-                    </select>
-                </div>
-
-                <div className="order-sortdate-client">
-                    <span>Sắp xếp: </span>
-                    <select value={sort} onChange={e => setSort(e.target.value)}>
-                        <option value="">Mới nhất</option>
-                        <option value="sort=oldest">Cũ nhất</option>
-                    </select>
-                </div>
-            </div>       
-            <table>
-                <thead>
-                    <tr>
-                        <th>Mã đơn</th>
-                        <th>Phương thức thanh toán</th>
-                        <th>Tổng cộng</th>
-                        <th>Ngày đặt</th>
-                        <th>Trạng thái</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        currentItems.map(item => (
-                            <tr key={item._id}>
-                                <td style={{textTransform: 'uppercase'}}>{item._id}</td>
-                                { item.method === 'Paypal' ? 
-                                <td className="method-payment"><BsIcons.BsPaypal style={{marginRight: 5, color: '#1111a9'}}/>{item.method}</td>
-                                :<td className="method-payment"><FaIcons.FaTruck style={{marginRight: 5, color: 'coral'}}/>{item.method}</td>
-                            }
+            </div>  
+            <div className='my__order_wrapper res-row'>
+                <div className='sidebar__filter_orders col l-3 m-3 c-12'>
+                        <div className="order-status-client">
+                            <select name="status" value={status} onChange={handleStatus}>
+                                <option value="">Tất cả đơn hàng</option>
+                            
+                                <option value="status=Pending">
+                                    Đang chờ
+                                </option>
                                 
-                                {/* <td>{new Date(item.createdAt).toLocaleDateString()}</td> */}
-                                <td>${item.total}</td>
-                                <td>{new Date(item.createdAt).toLocaleDateString()}  {moment(item.createdAt).format('LT')}</td>
-                                <td>
-                                    <span className={item.status ? item.status.toLowerCase() : "non-status"}>
-                                        {item.status}
-                                    </span>
-                                </td>
-                                <td>
-                                    <Link to={`/history/${item._id}`}>
-                                        <FontAwesomeIcon icon={faEye} /> View
+                                <option value="status=Processing">
+                                    Đang xử lý
+                                </option>
+
+                                <option value="status=Shipping">
+                                    Đang giao hàng
+                                </option>
+
+                                <option value="status=Delivered">
+                                    Đã giao hàng
+                                </option>
+
+                                <option value="status=Cancel">
+                                    Đơn bị hủy
+                                </option>
+                                
+                            </select>
+                        </div>
+
+                        <div className="order-sortdate-client">
+                            <select value={sort} onChange={e => setSort(e.target.value)}>
+                                <option value="">Mới nhất</option>
+                                <option value="sort=oldest">Cũ nhất</option>
+                            </select>
+                        </div>
+                </div>
+                <div className="my__order_list_wrapper col l-9 m-9 c-12">     
+                    {
+                        currentItems.map(item => (                                
+                            <div className="my__order_item" key={item._id}>
+                                <div className="my__order_item_heading">
+                                    <h3 className="my_order_status">
+
+                                        {
+                                            item.status === 'Pending' ? <span className='dot__order_status dot_pending'></span> :
+                                            item.status === 'Processing' ? <span className='dot__order_status dot_processing'></span> :
+                                            item.status === 'Shipping' ? <span className='dot__order_status dot_shipping'></span> :
+                                            item.status === 'Delivered' ? <span className='dot__order_status dot_delivered'></span> :
+                                            <span className='dot__order_status dot_cancel'></span>
+                                        }                             
+                                    
+                                        {
+                                        item.status === 'Pending' ? 'Đang chờ xử lý' : item.status === 'Processing' ? 'Đang xử lý': 
+                                        item.status === 'Shipping' ? 'Đang giao hàng' : item.status === 'Delivered' ? 'Đã giao hàng' : 'Đã hủy'
+                                        }
+                                    </h3>
+                                    <span className='my__order_number'>Đơn hàng #</span>
+                                    <span className='my__order_number uppercase'>{item._id}</span>
+                                </div>
+                                <div className="my__order_item_images">
+                                    <img src={item.cart[0].images[0].url}/>
+                                </div>
+                                <div className="my__order_item_bottom">
+                                    <span>{item.cart.length} sản phẩm tổng cộng:</span>
+                                    <h4>{item.total}$</h4>
+                                </div>
+                                <div className="my__order_item_view">
+                                    <Link to={`/history/${item._id}`} >
+                                        Xem chi tiết
                                     </Link>
-                                </td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+                                </div>
+                            </div>
+                        )) }
+                </div>
+            </div>     
+         
             <ReactPaginate
                 breakLabel="..."
                 nextLabel=">"

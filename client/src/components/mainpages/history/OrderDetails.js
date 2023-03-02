@@ -110,7 +110,7 @@ function OrderDetails() {
                                         const thumbnail = item.images[0].url
                                         return (
                                             <tr key={item._id}>
-                                                <td><img src={thumbnail} alt="" /></td>
+                                                <td><img className='img__order_view_detail' src={thumbnail} alt="" /></td>
                                                 <td>{item.title}</td>
                                                 <td className="size-color-td">
                                                     <span>{item.size} - </span>
