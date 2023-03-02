@@ -7,6 +7,8 @@ import * as FaIcons from 'react-icons/fa'
 import { GlobalState } from '../../../GlobalState'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { GrFormSubtract } from 'react-icons/gr'
+import { FiPlus } from 'react-icons/fi'
 
 function QuickViewProduct({ detailProduct }) {
     const state = useContext(GlobalState)
@@ -184,11 +186,14 @@ function QuickViewProduct({ detailProduct }) {
                         <img src={SoldIcon} alt="SoldIcon" />
                         <strong>{detailProduct.sold} <span>Products sold.</span></strong>
                     </div>
+                 
                     <div className="quantity-btn">
-                        <span>Số lượng: </span>
-                        <button onClick={() => quantity === 1 ? setQuantity(1) : setQuantity(quantity - 1)}>-</button>
-                        <span>{quantity}</span>
-                        <button onClick={() => setQuantity(quantity + 1)}>+</button>
+                        <span className='quantity__label'>Số lượng: </span>
+                        <div className='quantity__controll_wrapper'>
+                            <button onClick={() => quantity === 1 ? setQuantity(1) : setQuantity(quantity - 1)}><GrFormSubtract /></button>
+                            <span>{quantity}</span>
+                            <button onClick={() => setQuantity(quantity + 1)}><FiPlus /></button>
+                        </div>
                     </div>
 
                     <div className="cart-btns">

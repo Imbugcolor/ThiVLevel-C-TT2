@@ -13,11 +13,13 @@ function UserAPI(token) {
     const [allUserCopy, setAllUserCopy] = useState([])
     const [allStaff, setAllStaff] = useState([])
     const [allStaffCopy, setAllStaffCopy] = useState([])
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         if (token) {
             const getUser = async () => {
                 try {
+                    setLoading(true)
                     const res = await axios.get('/user/infor', {
                         headers: { Authorization: token }
                     })
@@ -26,6 +28,8 @@ function UserAPI(token) {
                     res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false)
                     setUser(res.data)
                     setCart(res.data.cart)
+                    
+                    setLoading(false)
 
                     if(res.data.role === 1)
                     {
@@ -161,7 +165,8 @@ function UserAPI(token) {
         allUser: [allUser, setAllUser],
         allUserCopy: [allUserCopy, setAllUserCopy],
         allStaff: [allStaff, setAllStaff],
-        allStaffCopy: [allStaffCopy, setAllStaffCopy]
+        allStaffCopy: [allStaffCopy, setAllStaffCopy],
+        loading: [loading, setLoading]
     }
 }
 

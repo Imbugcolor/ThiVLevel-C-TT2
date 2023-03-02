@@ -66,24 +66,28 @@
     padding: 10px 0;
 }
 
-.product-in-stock {
-    text-align: right;
-    color: brown;
+.product-in-stock{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .amount {
     padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.amount span {
-    color: crimson;
-    padding: 0 20px;
+.total_num_bottom  {
+    display: flex;
 }
 
-.amount button {
-    width: 25px;
-    height: 25px;
-    border: 1px solid #777;
+.total_num_bottom span, .product-in-stock span {
+    font-size: 15px;
+    color: #666666;
+    padding-right: 10px;
+    font-weight: 300;
 }
 
 .payment {
@@ -103,6 +107,14 @@
 .grand-total {
     display: flex;
     justify-content: space-between;
+}
+
+.discount-cost {
+    margin-bottom: 15px;
+}
+
+.grand-total {
+    padding-bottom: 15px;
 }
 
 .ship-cost {
@@ -158,10 +170,8 @@
 .payment .divider {
     width: 100%;
     margin: 15px 0;
-    border-bottom: 1px dashed #ccc;
+    border-bottom: 1px solid #ccc;
 }
-
-.payment .payment-method {}
 
 .payment .payment-buy-btn {
     display: block;

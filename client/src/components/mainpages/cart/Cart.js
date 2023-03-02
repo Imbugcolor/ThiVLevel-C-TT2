@@ -7,17 +7,19 @@ import Payment from './Payment'
 import { toast } from 'react-toastify';
 import * as RiIcons from 'react-icons/ri'
 import Swal from 'sweetalert2'
+import { GrFormSubtract } from 'react-icons/gr'
+import { FiPlus } from 'react-icons/fi'
+import Loading from '../utils/loading/Loading'
 
 function Cart() {
   const state = useContext(GlobalState)
   const [cart, setCart] = state.userAPI.cart
   const [products] = state.productsAPI.products
   const [callback, setCallback] = state.productsAPI.callback
-
+  const [loading, setLoading] = state.userAPI.loading
   const [user] = state.userAPI.user
   const [token] = state.token
   const [total, setTotal] = useState(0)
-  const [loading, setLoading] = useState(false)
   const [canBuy, setCanBuy] = useState(false)
   const [checkButton, setCheckButton] = useState(false)
   const paymentRef = useRef()
@@ -246,13 +248,19 @@ function Cart() {
               <strong>Size: {item.size}</strong> : <strong>Size: No Available</strong>
           }
           <div className='product-in-stock'>
-            <span>SL trong kho:{item.countInStock}</span>
+            <span>SL trong kho:</span>
+            <h4>{item.countInStock}</h4> 
           </div>
-          <div className="amount">
-            <span>Tổng cộng: ${item.price * item.quantity}</span>
-            <button onClick={() => decrement(item._id)}>-</button>
-            <span>{item.quantity}</span>
-            <button onClick={() => increment(item._id)}>+</button>
+          <div className="amount">         
+            <div className='quantity__controll_wrapper'>       
+              <button onClick={() => decrement(item._id)}><GrFormSubtract /></button>
+              <span>{item.quantity}</span>
+              <button onClick={() => increment(item._id)}><FiPlus /></button>
+            </div>
+            <div className='total_num_bottom'>
+              <span>Tổng cộng:</span>
+              <h4>${item.price * item.quantity}</h4>  
+            </div>
           </div>
 
         </div>
@@ -360,6 +368,7 @@ function Cart() {
   }
 
   return (
+    loading ? <div><Loading /></div> :
     <div className="res-row">
       <h2 className="cart-heading col l-12 m-12 c-12">
         <FontAwesomeIcon icon={faCartShopping} style={{ paddingRight: 10 }} />

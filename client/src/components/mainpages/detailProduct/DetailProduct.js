@@ -13,6 +13,8 @@ import QuickViewProduct from '../home/QuickViewProduct'
 import Swal from 'sweetalert2'
 import { Line } from 'rc-progress';
 import { IoIosStar } from "react-icons/io";
+import { GrFormSubtract } from 'react-icons/gr'
+import { FiPlus } from 'react-icons/fi'
 
 function DetailProduct() {
     const params = useParams()
@@ -311,10 +313,12 @@ function DetailProduct() {
                                 </div>
 
                                 <div className="quantity-btn">
-                                    <span>Số lượng: </span>
-                                    <button onClick={() => quantity === 1 ? setQuantity(1) : setQuantity(quantity - 1)}>-</button>
-                                    <span>{quantity}</span>
-                                    <button onClick={() => setQuantity(quantity + 1)}>+</button>
+                                    <span className='quantity__label'>Số lượng: </span>
+                                    <div className='quantity__controll_wrapper'>
+                                        <button onClick={() => quantity === 1 ? setQuantity(1) : setQuantity(quantity - 1)}><GrFormSubtract /></button>
+                                        <span>{quantity}</span>
+                                        <button onClick={() => setQuantity(quantity + 1)}><FiPlus /></button>
+                                    </div>
                                 </div>
 
                                 <div className="cart-btns">

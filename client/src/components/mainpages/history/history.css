@@ -134,6 +134,7 @@ th, td {
 
 .list-product-order-client{
     margin-bottom: 25px;
+    overflow-x: scroll;
 }
 
 .list-product-order-client .oder-product-list-table {

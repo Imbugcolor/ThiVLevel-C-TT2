@@ -323,19 +323,50 @@
     height: 20px;
 }
 
-.quantity-btn{
-    padding: 10px 0;
+.quantity__controll_wrapper {
+    width: 140px;
+    height: 45px;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
-.quantity-btn button {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #777;
+.quantity-btn {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
 }
 
-.quantity-btn span {
-    padding: 0 20px;
+.quantity-btn .quantity__label {
+    font-size: 1rem;
+    color: #1f1f1f;
+    font-weight: 600;
+    margin-right: 15px;
+}
+
+.quantity__controll_wrapper button {
+    width: 45px;
+    height: 100%;
+    cursor: pointer;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.quantity__controll_wrapper span {
+    width: calc(100% - 90px);
+    height: 100%;
+    border-left: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+    background-color: #f7f7f7;
+    color: #555;
     font-weight: 500;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .tag-name {
