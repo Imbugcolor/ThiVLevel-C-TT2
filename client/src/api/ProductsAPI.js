@@ -14,7 +14,7 @@ function ProductsAPI() {
     const [bestSeller, setBestSeller] = useState([])
     const [newArrival, setNewArrival] = useState([])
     const [searchItem, setSearchItem] = useState([])
-    const [suggestions, setSuggestions] = useState('')
+    const [suggestions, setSuggestions] = useState([])
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -54,20 +54,15 @@ function ProductsAPI() {
 
         getNewArrival()
 
+        const getFilterProducts = async () => {
+            const res = await axios.get(`/api/products`)
+            setSuggestions(res.data.products)
+        }
+        getFilterProducts()
+
     }, [callback, category, sort, search])
 
-    useEffect(() => {
-        let isCancelled = false;
 
-        const getProducts = async () => {
-            const res = await axios.get(`/api/products?${category}&${sort}&title[regex]=${suggestions}`)
-            if (isCancelled) setSearchItem(res.data.products)
-        }
-        getProducts()
-        return () => {
-            isCancelled = true;
-        }
-    }, [suggestions])
 
     return {
         products: [products, setProducts],

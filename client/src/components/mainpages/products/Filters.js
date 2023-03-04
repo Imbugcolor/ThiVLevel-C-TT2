@@ -7,10 +7,13 @@ function Filters({ setItemOffset }) {
     const state = useContext(GlobalState)
     const [categories] = state.categoriesAPI.categories
     const [category, setCategory] = state.productsAPI.category
+    const [data, setData] = state.productsAPI.suggestions
+    const [filterData, setFilterData] = useState([])
+    const [wordEntered, setWordEntered] = useState('')
     const [sort, setSort] = state.productsAPI.sort
     const [search, setSearch] = state.productsAPI.search
     const [searchItem] = state.productsAPI.searchItem
-    const [suggestions, setSuggestions] = state.productsAPI.suggestions
+    
 
     const [open, setOpen] = useState(false)
 
@@ -37,18 +40,29 @@ function Filters({ setItemOffset }) {
         setSearch(value.toLowerCase())
         setItemOffset(0)
         setOpen(false)
+        setData(state.productsAPI.productsAvailable)
     }
 
     const handleSuggest = e => {
-        setSuggestions(e.target.value.toLowerCase())
+        const searchWord = e.target.value
+        setWordEntered(searchWord)
+        const newFilter = data.filter((product) => {
+            return product.title.toLowerCase().includes(searchWord.toLowerCase())
+        })
+        // setSuggestions(e.target.value.toLowerCase())
+        if(searchWord === '') {
+            setFilterData([])
+        } else {
+            setFilterData(newFilter)
+        }
+        
     }
     return (
         <div className="filter_menu product res-row">
 
             <div className="col l-6 m-12 c-12 search" >
                 <input className="search-input-bd-none" type="text" placeholder="Nhập sản phẩm bạn muốn tìm kiếm ..."
-                    value={suggestions}
-                    onKeyPress={handleSearch}
+                    value={wordEntered}
                     onChange={handleSuggest}
                     onFocus={() => setOpen(true)}
                     onBlur={e => {
@@ -57,19 +71,18 @@ function Filters({ setItemOffset }) {
                             setOpen(false)
                     }}
                 />
-                <button className="search-btn" onClick={() => handleSearchBtn(suggestions)}>
+                <button className="search-btn" onClick={() => handleSearchBtn(wordEntered)}>
                     <GoIcons.GoSearch />
                 </button>
                 {
-                    open && searchItem.length > 0 ?
+                    open && filterData.length > 0 ?
                         <ul className="result-list">
                             {
-                                searchItem.map((item, index) => {
+                                filterData.map((item, index) => {
                                     return index > 4 ? null :
                                         <li key={item._id} className="result-item">
                                             <a href="#!" className="result-link" onClick={(e) => {
                                                 setSearch(e.target.innerText.toLowerCase())
-                                                setSuggestions(e.target.innerText.toLowerCase())
                                                 setItemOffset(0)
                                                 setOpen(false)
                                             }}>

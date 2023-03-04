@@ -3,7 +3,7 @@ header {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ddd;
     position: fixed;
@@ -13,12 +13,9 @@ header {
     right: 0;
     background: #fff;
     transition: box-shadow .4s;
+    margin: 0 10px; 
 }
 
-header .logo {
-    flex: 1;
-    margin-left: 10px;
-}
 
 .logo .header-logo {
     display: block;
@@ -135,11 +132,22 @@ header .navbar-tablet-mobile-wrapper.active {
     margin: 5px 10px;
 }
 
+header .header-nav .login__nav_icon span {
+    font-size: 25px;
+    color: #666666;
+    display: flex;
+}
 
 .user__container {
     color: #bf6b03;
     cursor: pointer;
     position: relative;
+}
+
+.user__container  .user_dropdown__icon{
+    font-size: 30px;
+    color: #000;
+    display: flex;
 }
 
 .user__container:hover .user__dropdown {
@@ -214,7 +222,6 @@ header .navbar-tablet-mobile-wrapper.active {
     height: var(--avt-size);
     border-radius: 50%;
     padding: 1px;
-    border: 2px solid #ccc;
 }
 
 .user__container .user__wrapper .user__name {
@@ -238,7 +245,7 @@ header .navbar-tablet-mobile-wrapper.active {
 }
 
 .cart-icon>span {
-    background: crimson;
+    background: #000;
     border-radius: 20px;
     color: white;
     position: absolute;
