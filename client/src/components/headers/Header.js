@@ -12,6 +12,7 @@ import axios from 'axios'
 import { Twirl as Hamburger } from 'hamburger-react'
 import { IoMdArrowDropdown } from 'react-icons/io'
 import { CiUser } from 'react-icons/ci'
+import SearchBar from '../mainpages/utils/searchBar/SearchBar'
 
 function Header() {
     const state = useContext(GlobalState)
@@ -34,9 +35,6 @@ function Header() {
             <>
                 <li className="user__container">
                     <div className="user__wrapper">
-                        <div className='user_dropdown__icon'>
-                            <IoMdArrowDropdown />
-                        </div>
                         <img src={user.imageProfile?.url ?? Unknow} referrerPolicy="no-referrer" alt="profile-avt" />
                     </div>
                     <ul className="user__dropdown">
@@ -109,25 +107,30 @@ function Header() {
     if (isAdmin) return null;
     return (
         <header>
-            <div className="logo">
-                <div style={{ width: 'fit-content' }}>
-                    <Link to="/">
-                        <img src={Logo} alt="" className="header-logo" />
-                    </Link>
+            <div className='header__top'>
+                <div className="logo">
+                    <div style={{ width: 'fit-content' }}>
+                        <Link to="/">
+                            <img src={Logo} alt="" className="header-logo" />
+                        </Link>
+                    </div>
                 </div>
-            </div>
-
-            <ul className="header-nav">
-                <li><Link to="/">Trang chủ</Link></li>
-                <li><Link to="/products">Sản phẩm</Link></li>
-                <li><Link to="/pages/introduction">Giới thiệu</Link></li>
-      
-            </ul>
-            <ul className="header-nav">
+                <div className='search__bar_header'>
+                    <SearchBar />
+                </div>
+                <ul className="header-nav left__top_header">
                 {
                     isLogged ? loggedRouter() : <li><div className='login__nav_icon'><Link to="/login"><span><CiUser /></span></Link></div></li>
                 }
+                </ul>
+            </div>
+
+            <ul className="header-nav wd100 pd-btm-15">
+                <li><Link to="/">Trang chủ</Link></li>
+                <li><Link to="/products">Sản phẩm</Link></li>
+                <li><Link to="/pages/introduction">Giới thiệu</Link></li>
             </ul>
+            
             <div className="header-nav-tablet-mobile">
                 {
                     isLogged ?

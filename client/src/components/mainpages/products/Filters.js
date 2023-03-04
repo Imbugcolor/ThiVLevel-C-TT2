@@ -28,9 +28,10 @@ function Filters({ setItemOffset }) {
         setItemOffset(0)
     }
 
-    const handleSearch = (e) => {
+    const handleSearch = (e, keySearch) => {
         if (e.key === 'Enter') {
-            setSearch(e.target.value.toLowerCase())
+            setWordEntered(keySearch)
+            setSearch(keySearch.toLowerCase())
             setItemOffset(0)
             setOpen(false)
         }
@@ -39,11 +40,11 @@ function Filters({ setItemOffset }) {
     const handleSearchBtn = (value) => {
         setSearch(value.toLowerCase())
         setItemOffset(0)
-        setOpen(false)
-        setData(state.productsAPI.productsAvailable)
+        setOpen(false)     
     }
 
     const handleSuggest = e => {
+        setOpen(true)
         const searchWord = e.target.value
         setWordEntered(searchWord)
         const newFilter = data.filter((product) => {
@@ -63,6 +64,7 @@ function Filters({ setItemOffset }) {
             <div className="col l-6 m-12 c-12 search" >
                 <input className="search-input-bd-none" type="text" placeholder="Nhập sản phẩm bạn muốn tìm kiếm ..."
                     value={wordEntered}
+                    onKeyPress={(e) => {handleSearch(e,wordEntered)}}
                     onChange={handleSuggest}
                     onFocus={() => setOpen(true)}
                     onBlur={e => {
@@ -82,6 +84,7 @@ function Filters({ setItemOffset }) {
                                     return index > 4 ? null :
                                         <li key={item._id} className="result-item">
                                             <a href="#!" className="result-link" onClick={(e) => {
+                                                setWordEntered(e.target.innerText)
                                                 setSearch(e.target.innerText.toLowerCase())
                                                 setItemOffset(0)
                                                 setOpen(false)

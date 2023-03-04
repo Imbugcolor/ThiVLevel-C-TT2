@@ -16,11 +16,34 @@ header {
     margin: 0 10px; 
 }
 
+.header__top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wd100 {
+    width: 100%;
+}
+
+.pd-btm-15 {
+    padding-bottom: 15px;
+}
+
+.header__top .search__bar_header {
+    max-width: 800px;
+    width: 100%;
+}
 
 .logo .header-logo {
     display: block;
     padding: 5px 0;
     height: 65px;
+}
+
+.header__top .left__top_header {
+    display: block;
 }
 
 header a {
@@ -142,12 +165,6 @@ header .header-nav .login__nav_icon span {
     color: #bf6b03;
     cursor: pointer;
     position: relative;
-}
-
-.user__container  .user_dropdown__icon{
-    font-size: 30px;
-    color: #000;
-    display: flex;
 }
 
 .user__container:hover .user__dropdown {
@@ -283,11 +300,20 @@ header .header-nav .login__nav_icon span {
 /* Mobile - tablet navigation */
 
 @media (max-width: 768px) {
+    header .header__top .header-nav,
     header .header-nav {
         display: none;
+    }
+
+    header .header__top {
+        width: unset;
     }
 
     header .header-nav-tablet-mobile {
         display: flex;
     }
+
 }
+
+/* Search Bar Css */
+@import url(../mainpages/utils/searchBar/searchbar.css);
