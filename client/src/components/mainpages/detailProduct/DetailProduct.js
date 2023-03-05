@@ -15,6 +15,7 @@ import { Line } from 'rc-progress';
 import { IoIosStar } from "react-icons/io";
 import { GrFormSubtract } from 'react-icons/gr'
 import { FiPlus } from 'react-icons/fi'
+import Loading from '../utils/loading/Loading'
 
 function DetailProduct() {
     const params = useParams()
@@ -43,6 +44,8 @@ function DetailProduct() {
     const slideRef = useRef()
 
     const [perRating, setPerRating] = useState([])
+
+    const [loading, setLoading] = state.productsAPI.loadingItem
 
     const count_element_in_array = (array, x) => {
         let count = 0;
@@ -217,9 +220,10 @@ function DetailProduct() {
     }, [width, slideIndex])
 
     if (detailProduct.length === 0) return null
+    if (loading) return <div><Loading /></div>
     return (
         <React.Fragment>
-            <section className="product-details res-row p30-tb-im">
+            <section className="product-details res-row p30-tb-im">                     
                 <div className="col l-12 m-12 c-12">
                     <div className="res-row">
                         <div className="col l-4 m-6 c-12">

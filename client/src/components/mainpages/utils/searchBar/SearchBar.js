@@ -9,9 +9,17 @@ function SearchBar() {
     const [data, setData] = state.productsAPI.suggestions
     const [filterData, setFilterData] = useState([])
     const [wordEntered, setWordEntered] = useState('')
-    
+    const [sort, setSort] = state.productsAPI.sort
+    const [search, setSearch] = state.productsAPI.search
+    const [category, setCategory] = state.productsAPI.category
 
     const [open, setOpen] = useState(false)
+
+    useEffect(() => {
+        setSearch('')
+        setSort('')
+        setCategory('')
+    }, [])
 
     const handleSearch = (e, keySearch) => {
         if (e.key === 'Enter') {
@@ -63,7 +71,9 @@ function SearchBar() {
                                         <li key={item._id} className="item_suggest_result">
                                             <div className='left__item_suggest_result'>
                                                 <Link to={`/detail/${item._id}`} className="redirect_item_result" onClick={(e) => {
-                                                    setWordEntered(e.target.innerText)                                            
+                                                    setWordEntered(e.target.innerText)  
+                                                    setSearch('')  
+                                                    setCategory('')                                        
                                                     setOpen(false)
                                                 }}>
                                                     {item.title}
@@ -72,6 +82,8 @@ function SearchBar() {
                                             </div>
                                             <div className='right__item_suggest_result'>
                                                 <Link to={`/detail/${item._id}`} className="redirect_item_result" onClick={(e) => {
+                                                    setSearch('')
+                                                    setCategory('')
                                                     setWordEntered(e.target.innerText)                                            
                                                     setOpen(false)
                                                 }}>

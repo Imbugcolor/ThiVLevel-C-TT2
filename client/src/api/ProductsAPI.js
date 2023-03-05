@@ -16,12 +16,15 @@ function ProductsAPI() {
     const [searchItem, setSearchItem] = useState([])
     const [suggestions, setSuggestions] = useState([])
     const [loading, setLoading] = useState(false)
+    const [loadingItem, setLoadingItem] = useState(false)
 
     useEffect(() => {
         const getProducts = async () => {
+            setLoadingItem(true)
             const res = await axios.get(`/api/products?${category}&${sort}&title[regex]=${search}`)
             setProducts(res.data.products)
             setResult(res.data.result)
+            setLoadingItem(false)
         }
         getProducts()
 
@@ -78,7 +81,8 @@ function ProductsAPI() {
         newArrival: [newArrival, setNewArrival],
         searchItem: [searchItem, setSearchItem],
         suggestions: [suggestions, setSuggestions],
-        loading: [loading, setLoading]
+        loading: [loading, setLoading],
+        loadingItem: [loadingItem, setLoadingItem]
     }
 }
 

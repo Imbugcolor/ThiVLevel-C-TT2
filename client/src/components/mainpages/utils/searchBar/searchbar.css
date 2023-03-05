@@ -1,17 +1,22 @@
-.search__bar_wrapper {
-    border: 2px solid;
-    border-radius: 40px;
-}
-
 .search__bar_wrapper .search__bar_input{
     font-weight: 300;
-    border: none;
+    border: 1px solid #d5d3d2;
+    border-radius: unset;
+    border-left: none;
 }
 
 .search__bar_wrapper .search__input_icon {
     display: flex;
     padding: 0 10px;
     align-items: center;
+    width: 50px;
+    height: 40px;
+    background: #246284;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border: none;
 }
 
 .search__bar_wrapper .list_item_suggest {

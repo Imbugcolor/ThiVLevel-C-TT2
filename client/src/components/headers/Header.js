@@ -117,19 +117,30 @@ function Header() {
                 </div>
                 <div className='search__bar_header'>
                     <SearchBar />
+                    <ul className="header-nav wd100 pd-btm-15">
+                        <li><Link to="/">Trang chủ</Link></li>
+                        <li><Link to="/products">Sản phẩm</Link></li>
+                        <li><Link to="/pages/introduction">Giới thiệu</Link></li>
+                    </ul>
                 </div>
+            
                 <ul className="header-nav left__top_header">
-                {
-                    isLogged ? loggedRouter() : <li><div className='login__nav_icon'><Link to="/login"><span><CiUser /></span></Link></div></li>
-                }
+                    {
+                        isLogged ? loggedRouter() : 
+                        <li>
+                            <div className='login__nav_icon'>
+                                <Link to="/login"><span><CiUser /></span></Link>
+                            </div>
+                            <div className='login_sign_up_nav'>
+                                <span><Link to="/login">Đăng nhập</Link></span>                
+                                <span><Link to="/register">Đăng ký</Link></span>
+                            </div>
+                        </li>
+                    }
                 </ul>
+               
             </div>
-
-            <ul className="header-nav wd100 pd-btm-15">
-                <li><Link to="/">Trang chủ</Link></li>
-                <li><Link to="/products">Sản phẩm</Link></li>
-                <li><Link to="/pages/introduction">Giới thiệu</Link></li>
-            </ul>
+         
             
             <div className="header-nav-tablet-mobile">
                 {
