@@ -48,7 +48,7 @@ header {
 
 header a {
     text-transform: uppercase;
-    color: #246284 !important;
+    color: #246284;
     font-weight: 500;
 }
 
