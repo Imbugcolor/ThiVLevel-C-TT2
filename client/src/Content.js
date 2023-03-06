@@ -4,6 +4,7 @@ import Header from './components/headers/Header'
 import MainPages from './components/mainpages/Pages'
 import Sidebar from './components/adminPage/Sidebar'
 import Footer from './components/footer/Footer'
+import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs'
 
 function Content() {
 
@@ -20,6 +21,7 @@ function Content() {
         <>
             <Header />
             <div className="client grid">
+                <Breadcrumbs />
                 <MainPages />
             </div>
             <Footer />

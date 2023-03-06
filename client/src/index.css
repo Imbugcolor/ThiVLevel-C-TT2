@@ -112,3 +112,6 @@ table {
 
 /* Footer */
 @import url("./components/footer/footer.css");
+
+/* Breadcrumbs */
+@import url("./components/Breadcrumbs/breadcrumbs.css");
