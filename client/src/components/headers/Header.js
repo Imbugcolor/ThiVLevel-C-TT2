@@ -11,6 +11,7 @@ import axios from 'axios'
 import { Twirl as Hamburger } from 'hamburger-react'
 import { CiUser } from 'react-icons/ci'
 import SearchBar from '../mainpages/utils/searchBar/SearchBar'
+import { RiArrowDropDownLine } from 'react-icons/ri'
 
 function Header() {
     const state = useContext(GlobalState)
@@ -76,6 +77,10 @@ function Header() {
             <>
                 <li className="user__container">
                     <div className="user__wrapper">
+                        <div className='user__name'>
+                            <span>{user.username}</span>
+                            <RiArrowDropDownLine />
+                        </div>
                         <img src={user.imageProfile?.url ?? Unknow} referrerPolicy="no-referrer" alt="profile-avt" />
                     </div>
                     <ul className="user__dropdown">
@@ -125,13 +130,13 @@ function Header() {
                         <li>
                             <Link to="/user" onClick={() => setOpen(false)}>
                                 <CgIcons.CgProfile style={{ fontSize: 24, marginRight: 15 }} />
-                                <span>Hồ sơ</span>
+                                <span>Thông tin</span>
                             </Link>
                         </li>
                         <li>
                             <Link to="/history" onClick={() => setOpen(false)}>
                                 <MdIcons.MdHistory style={{ fontSize: 24, marginRight: 15 }} />
-                                <span>Lịch sử mua hàng</span>
+                                <span>Đơn hàng của tôi</span>
                             </Link>
                         </li>
                         <li>

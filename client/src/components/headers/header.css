@@ -197,6 +197,7 @@ header .navbar-tablet-mobile-wrapper.active {
     color: #246284;
     padding-right: 5px;
     text-transform: uppercase;
+
 }
 
 .user__container-mobile ul li {
@@ -311,7 +312,20 @@ header .header-nav .login_sign_up_nav {
 
 .user__container .user__wrapper .user__name {
     padding-right: 5px;
-    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 300;
+    color: #666;
+}
+
+.user__container .user__wrapper .user__name span {
+    width: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    height: 20px;
 }
 
 .user__container-mobile .cart-icon>span {
