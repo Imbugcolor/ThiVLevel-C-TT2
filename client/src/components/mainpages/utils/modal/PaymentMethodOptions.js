@@ -35,7 +35,7 @@ function PaymentMethodOptions({user, cart, tranSuccess, codSuccess, address, det
                     color: '#444'}}><Link to={'/user/'}>Xác thực số điện thoại</Link> để thanh toán qua Paypal</span>
             }
             <div className="payment-method-options-modal-close" onClick={handleCloseView}>
-                    <FaRegTimesCircle style={{ color: 'crimson' }} />
+                    <FaRegTimesCircle style={{ color: '#d93938' }} />
             </div>
         </div> 
     </div>

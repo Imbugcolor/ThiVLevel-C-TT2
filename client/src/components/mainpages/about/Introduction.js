@@ -1,5 +1,5 @@
 import React from 'react'
-import Intro from '../../../images/slider-1.png'
+import Intro from '../../../images/slider4.png'
 function Introduction() {
     return (
         <div>

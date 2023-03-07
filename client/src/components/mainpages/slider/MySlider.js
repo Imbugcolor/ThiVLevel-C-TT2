@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-import Slider1 from './slide-images/slider-1.png'
+import Slider1 from './slide-images/slider4.png'
 import Slider2 from './slide-images/slider2.png'
 import Slider3 from './slide-images/slider3.png'
 

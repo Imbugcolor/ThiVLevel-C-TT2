@@ -101,7 +101,7 @@ function DetailUserModal({ detailUser }) {
                 </div>
             </div>
             <div className="user-view-close" onClick={handleCloseView}>
-                    <FaIcons.FaRegTimesCircle style={{ color: 'crimson' }} />
+                    <FaIcons.FaRegTimesCircle style={{ color: '#d93938' }} />
             </div>
          </section>
     </div>

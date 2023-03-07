@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { GlobalState } from '../../GlobalState'
-import Logo from '../logo/thiv_level-logo_2-no_tagline.png'
+import Logo from '../logo/thivlevel-logo-4.png'
 import Unknow from '../../images/unknow.jpg'
 import * as CgIcons from 'react-icons/cg'
 import * as MdIcons from 'react-icons/md'
@@ -195,11 +195,14 @@ function Header() {
                 }
                 <div className="navbar-icon">
                     <Hamburger
-                        color="rgb(36, 98, 132)" toggled={open}
+                        color="rgb(0, 0, 0)" toggled={open}
                         size="40" rounded toggle={setOpen}
                     />
                 </div>
                 <div className={`navbar-tablet-mobile-wrapper ${open ? 'active' : ''}`}>
+                    <div className='search__bar_mobile'>
+                        <SearchBar />
+                    </div>
                     <ul>
                         <li><Link to="/" onClick={() => setOpen(false)}>Trang chủ</Link></li>
                         <li><Link to="/products" onClick={() => setOpen(false)}>Shop</Link></li>

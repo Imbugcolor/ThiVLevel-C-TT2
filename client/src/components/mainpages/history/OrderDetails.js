@@ -168,7 +168,7 @@ function OrderDetails() {
                             <div className="divider"></div>
                             <div className="item fw600">
                                 <div>Tổng thanh toán</div>
-                                <div style={{ color: 'crimson' }}>${orderDetails.total}</div>
+                                <div style={{ color: '#d93938' }}>${orderDetails.total}</div>
                             </div>
                             <div className="item fw600">
                                 <div>Thời gian thanh toán</div>

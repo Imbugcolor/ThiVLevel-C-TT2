@@ -12,7 +12,7 @@ import QuickViewProduct from './QuickViewProduct'
 import { Link } from 'react-router-dom'
 
 const iconStyle = {
-    color: '#246184',
+    color: '#d93938',
     fontSize: '26px'
 }
 

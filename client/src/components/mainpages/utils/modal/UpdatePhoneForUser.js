@@ -81,7 +81,7 @@ function UpdatePhoneForUser() {
                 </div>
             </div>
             <div className="phone-close" onClick={handleCloseView}>
-                    <FaRegTimesCircle style={{ color: 'crimson' }} />
+                    <FaRegTimesCircle style={{ color: '#d93938' }} />
             </div>
             <div className='btn-ctrl-modal'>
                 <button className='cancel-change-phone-modal-btn' onClick={handleCloseView}>Cancel</button>

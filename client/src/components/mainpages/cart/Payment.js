@@ -161,7 +161,7 @@ function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
                             </div>
                             <div className='grand-total divider'>
                                 <p>Tổng cộng:</p>
-                                <span style={{ color: 'crimson' }}>$ {total}</span>
+                                <span style={{ color: '#d93938' }}>$ {total}</span>
                             </div>
                         </div>
                         {/* <div className="payment-method">
@@ -279,7 +279,7 @@ function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
                     </form>
                 </div>
                 <div className="payment-close" onClick={closePayment}>
-                    <FaIcons.FaRegTimesCircle style={{ color: 'crimson' }} />
+                    <FaIcons.FaRegTimesCircle style={{ color: '#d93938' }} />
                 </div>
                 
             </div>

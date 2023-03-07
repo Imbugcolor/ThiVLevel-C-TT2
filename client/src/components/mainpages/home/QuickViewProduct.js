@@ -209,7 +209,7 @@ function QuickViewProduct({ detailProduct }) {
                     </div>
                 </div>
                 <div className="view-close" onClick={handleCloseView}>
-                    <FaIcons.FaRegTimesCircle style={{ color: 'crimson' }} />
+                    <FaIcons.FaRegTimesCircle style={{ color: '#d93938' }} />
                 </div>
             </section>
         </div>

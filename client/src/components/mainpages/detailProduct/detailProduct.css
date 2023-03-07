@@ -102,7 +102,7 @@
 }
 
 .product-page-img .slider-img .slider-box.active {
-    border: 2px solid crimson;
+    border: 2px solid #d93938;
     opacity: 1;
 }
 
@@ -174,7 +174,7 @@
 }
 
 .product-page-details .product-options button.active{
-    border: 2px solid crimson;
+    border: 2px solid #d93938;
 }
 
 .product-page-details .product-page-offer {
@@ -225,7 +225,7 @@
 .product-page-details .cart-btns span {
     display: block;
     font-style: italic;
-    color: crimson;
+    color: #d93938;
     cursor: default;
     user-select: none;
 }
@@ -252,7 +252,7 @@
 }
 
 .product-page-details .cart-btns .buy-now{
-    background: crimson;
+    background: #d93938;
     margin-left: 10px;
 }
 

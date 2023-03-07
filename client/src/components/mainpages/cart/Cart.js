@@ -400,7 +400,7 @@ function Cart() {
             </div>
             <div className='grand-total divider'>
               <p>Tổng cộng:</p>
-              <span style={{ color: 'crimson' }}>$ {total}</span>
+              <span style={{ color: '#d93938' }}>$ {total}</span>
             </div>
 
             <button

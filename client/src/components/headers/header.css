@@ -5,7 +5,7 @@ header {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    /* transition: box-shadow .4s; */
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%);
     position: fixed;
     top: 0;
     left: 0;
@@ -46,7 +46,7 @@ header .logo {
     margin-left: 10px;
 }
 
-.header__top .search__bar_header {
+.header__top .search__bar_header, .search__bar_mobile {
     max-width: 800px;
     width: 100%;
 }
@@ -65,7 +65,7 @@ header .logo {
 
 header a {
     text-transform: uppercase;
-    color: #246284;
+    color: #525151;
     font-weight: 500;
 }
 
@@ -205,7 +205,7 @@ header .navbar-tablet-mobile-wrapper.active {
 
 header .header-nav .login__nav_icon span {
     font-size: 25px;
-    color: #246284;
+    color: #d93938;
     display: flex;
 }
 
@@ -330,7 +330,7 @@ header .header-nav .login_sign_up_nav {
 }
 
 .cart-icon>span {
-    background: #000;
+    background: #d93938;
     border-radius: 20px;
     color: white;
     position: absolute;
@@ -389,6 +389,10 @@ header .header-nav .login_sign_up_nav {
     }
 
     .menu__nav_header_bottom {
+        display: none;
+    }
+
+    .header__top .search__bar_header {
         display: none;
     }
 }

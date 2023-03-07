@@ -1,6 +1,6 @@
 :root {
     --text-color: #323232;
-    --header-text: #246284;
+    --header-text: #d93938;
 }
 
 .about-container {
@@ -46,13 +46,13 @@
 }
 
 .about-container .page-wrapper img {
-    width: 100%;
+    width: 90%;
 }
 
 .about-container .page-wrapper .content {
-    font-size: 18px;
     padding: 15px 0;
-    color: #45748f;
+    color: #383a3a;
+    font-weight: 300;
 }
 
 .about-container .page-wrapper .content .term .term_heading {

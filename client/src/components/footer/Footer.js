@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from '../logo/thiv_level-logo-2.png'
+import Logo from '../logo/thivlevel-logo-4.png'
 import FbIcon from '../../images/icon_fbn.webp'
 import InsIcon from '../../images/icon_instan.webp'
 import TiktokIcon from '../../images/icon_tiktok.webp'
