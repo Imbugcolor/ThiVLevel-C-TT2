@@ -3,6 +3,8 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import Slider1 from './slide-images/slider-1.png'
+import Slider2 from './slide-images/slider2.png'
+import Slider3 from './slide-images/slider3.png'
 
 function MySlider() {
   function NextArrow(props) {
@@ -39,9 +41,9 @@ function MySlider() {
     );
   }
   const images = [
-    "https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100,format=auto/uploads/October2022/Hero-BST-Dong-ppp_21.jpeg",
     Slider1,
-    "https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100,format=auto/uploads/July2022/Banner-Coolmate-Active-opt-1.jpeg",
+    Slider2,
+    Slider3
   ]
   const settings = {
     dots: true,

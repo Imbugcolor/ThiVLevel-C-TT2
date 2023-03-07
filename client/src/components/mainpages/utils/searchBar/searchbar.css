@@ -11,7 +11,7 @@
     align-items: center;
     width: 50px;
     height: 40px;
-    background: #246284;
+    background: #d93938;
     color: #fff;
     text-align: center;
     display: flex;
@@ -31,6 +31,7 @@
     overflow: hidden;
     overflow-y: auto;
     max-height: 700px;
+    z-index: 999;
 }
 
 .list_item_suggest .item_suggest_result {

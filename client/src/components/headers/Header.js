@@ -1,16 +1,14 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { GlobalState } from '../../GlobalState'
-import Cart from './icon/cart.svg'
 import Logo from '../logo/thiv_level-logo_2-no_tagline.png'
 import Unknow from '../../images/unknow.jpg'
 import * as CgIcons from 'react-icons/cg'
 import * as MdIcons from 'react-icons/md'
 import * as BiIcons from 'react-icons/bi'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { Twirl as Hamburger } from 'hamburger-react'
-import { IoMdArrowDropdown } from 'react-icons/io'
 import { CiUser } from 'react-icons/ci'
 import SearchBar from '../mainpages/utils/searchBar/SearchBar'
 
@@ -23,12 +21,55 @@ function Header() {
 
     const [open, setOpen] = useState(false)
 
+    const location = useLocation ()
+    const pathname = location.pathname
+    const pathnames = pathname.split("/").filter(x => x);
+    
+
+    useEffect(() =>{
+        if (pathnames.length <= 0) {
+            document.querySelector('.nav_1').classList.add('menu_nav_active')
+            document.querySelector('.nav_2').classList.remove('menu_nav_active')
+            document.querySelector('.nav_3').classList.remove('menu_nav_active')        
+        }
+        if (pathnames.includes('products') || pathnames.includes('detail')) {
+            document.querySelector('.nav_2').classList.add('menu_nav_active')
+            document.querySelector('.nav_1').classList.remove('menu_nav_active')
+            document.querySelector('.nav_3').classList.remove('menu_nav_active')
+        }
+        if (pathnames.includes('pages')) {
+            document.querySelector('.nav_3').classList.add('menu_nav_active')
+            document.querySelector('.nav_1').classList.remove('menu_nav_active')
+            document.querySelector('.nav_2').classList.remove('menu_nav_active')
+        }
+        if (pathnames.length > 0 && !pathnames.includes('pages') && !pathnames.includes('products') && !pathnames.includes('detail')) { 
+            document.querySelector('.nav_3').classList.remove('menu_nav_active')
+            document.querySelector('.nav_1').classList.remove('menu_nav_active')
+            document.querySelector('.nav_2').classList.remove('menu_nav_active')
+        }
+     
+    },[pathnames])
+
     const logoutUser = async () => {
         await axios.get('/user/logout')
         localStorage.removeItem('firstLogin')
         window.location.href = "/"
         setOpen(false)
     }
+
+    // window.onscroll = function() {
+    //     headerFixedHandle()
+    // }
+
+    // function headerFixedHandle() {
+
+    //     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+    //         document.querySelector('header').classList.add('fix-scroll')
+    //     } else {
+    //         document.querySelector('header').classList.remove('fix-scroll')
+    //     }
+
+    // }
 
     const loggedRouter = () => {
         return (
@@ -117,11 +158,6 @@ function Header() {
                 </div>
                 <div className='search__bar_header'>
                     <SearchBar />
-                    <ul className="header-nav wd100 pd-btm-15">
-                        <li><Link to="/">Trang chủ</Link></li>
-                        <li><Link to="/products">Sản phẩm</Link></li>
-                        <li><Link to="/pages/introduction">Giới thiệu</Link></li>
-                    </ul>
                 </div>
             
                 <ul className="header-nav left__top_header">
@@ -139,6 +175,13 @@ function Header() {
                     }
                 </ul>
                
+            </div>
+            <div className='menu__nav_header_bottom'>
+                <ul className="header-nav">
+                    <li className="nav_1 menu_nav_li"><Link to="/">Trang chủ</Link></li>
+                    <li className="nav_2 menu_nav_li"><Link to="/products">Sản phẩm</Link></li>
+                    <li className="nav_3 menu_nav_li"><Link to="/pages/introduction">Giới thiệu</Link></li>
+                </ul>
             </div>
          
             
