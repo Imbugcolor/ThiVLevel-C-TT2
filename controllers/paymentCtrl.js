@@ -1,6 +1,8 @@
 const Payments = require('../models/paymentModel')
 const Users = require('../models/userModels')
 const Products = require('../models/productsModel')
+require('dotenv').config()
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 
 
 class APIfeatures {
@@ -221,6 +223,31 @@ const paymentCtrl = {
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
+    },
+    checkoutStripe: async (req, res) => {
+        try {
+            const session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                mode: 'payment',
+                line_items: req.body.items.map(item => {
+                    return {
+                        price_data: {
+                            currency: "usd",
+                            product_data: {
+                                name: item.title,
+                            },
+                            unit_amount: Math.round(item.price * 100),
+                        },
+                        quantity: item.quantity
+                    }
+                }),
+                success_url: `${process.env.CLIENT_CART_URL}?success=true`,
+                cancel_url: `${process.env.CLIENT_CART_URL}?canceled=true`,
+            })
+            res.json({url: session.url, status: session.payment_status})
+        } catch (err) {
+            res.status(500).json({msg: err.message})
+        }      
     }
 }
 

@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { GlobalState } from '../../../../GlobalState'
+import axios from 'axios'
 import { FaRegTimesCircle } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Paypal from '../../cart/Paypal'
 
 function PaymentMethodOptions({user, cart, tranSuccess, codSuccess, address, detail}) {
-    
+    const state = useContext(GlobalState)
+    const [token] = state.token
+    const cartItems = []
+
+    cart.map(item => {
+        const { product_id, size, color, price, quantity } = item
+        const obj = { product_id, size, color, price, quantity }
+        cartItems.push(obj)
+    })
+
     const handleCloseView = (e) => {
         e.preventDefault()
         const viewbox = document.querySelector('.payment-method-option-box')
@@ -13,6 +24,20 @@ function PaymentMethodOptions({user, cart, tranSuccess, codSuccess, address, det
 
     const handlePaymentCOD = () => {
         codSuccess(detail, address)
+    }
+
+    const checkoutStripeHandle = async() => {
+        try {
+            const checkout = await axios.post('/api/create-checkout-session', { items: cart.filter(item => item.isPublished === true && item.countInStock > 0), cartItems, name: detail.name, phone: detail.phone, address}, {
+                headers: { Authorization: token }
+            })
+           
+            window.location = checkout.data.url
+
+        } catch (err) {
+            console.log(err.response.data.msg)
+        }
+
     }
 
    
@@ -34,6 +59,7 @@ function PaymentMethodOptions({user, cart, tranSuccess, codSuccess, address, det
                     fontStyle: 'italic',
                     color: '#444'}}><Link to={'/user/'}>Xác thực số điện thoại</Link> để thanh toán qua Paypal</span>
             }
+            <button className='stripe-checkout' onClick={checkoutStripeHandle}>Pay with Credit Card</button>
             <div className="payment-method-options-modal-close" onClick={handleCloseView}>
                     <FaRegTimesCircle style={{ color: '#d93938' }} />
             </div>

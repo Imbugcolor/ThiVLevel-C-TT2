@@ -21,6 +21,7 @@ app.use('/api', require('./routes/categoryRouter'))
 app.use('/api', require('./routes/upload'))
 app.use('/api', require('./routes/productsRouter'))
 app.use('/api', require('./routes/paymentRouter'))
+app.use('/api', require('./routes/stripeRouter'))
 
 
 //Connect to mongoDB

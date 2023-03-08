@@ -22,5 +22,9 @@ router.route('/payment/changeaddress/:id')
 
 router.route('/payment/changephonenumber/:id')
     .patch(auth, paymentCtrl.changePhoneNumber)
+
+router.route('/checkout-session-stripe')
+    .post(auth, paymentCtrl.checkoutStripe)
+
     
 module.exports = router
