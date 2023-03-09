@@ -102,9 +102,10 @@
 
 .payment .total,
 .payment-total,
+.payment-total-checkout,
 .discount-cost,
 .ship-cost,
-.grand-total {
+.grand-total, .grand-total-checkout {
     display: flex;
     justify-content: space-between;
 }
@@ -163,6 +164,27 @@
     margin-left: 10px;
 }
 
+.box-detail .thumb__product_checkout {
+    display: flex;
+    align-items: center;
+    width: 100px;
+    position: relative;
+}
+
+.box-detail .thumb__product_checkout .quantity__product_checkout {
+    font-size: 0.85714em;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 0.15em 0.65em;
+    border-radius: 2em;
+    background-color: rgba(153,153,153,0.9);
+    color: #fff;
+    position: absolute;
+    right: -0.75em;
+    top: -0.75em;
+    z-index: 2;
+}
+
 .amount {
     text-align: right
 }
@@ -216,11 +238,15 @@
     background: #fff;
     padding: 20px;
     border-radius: 5px;
+    min-width: 100px;
     position: relative;
     margin: 0 20px;
     z-index: 0;
 }
 
+.payment-modal>.wrapper .order__form_payment {
+    display: flex;
+}
 /* .payment-modal>.wrapper .payment-header {
     width: 100%;
     text-align: center;
@@ -233,24 +259,34 @@
 } */
 
 .payment-modal>.wrapper .payment-detail {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    margin-right: 25px;
 }
 
 .payment-modal>.wrapper .list-cart {
-    margin-right: 20px;
     max-height: 300px;
     overflow-y: scroll;
 }
 
 .payment-modal .payment-total-wrapper {
-    background: #f1f1f1;
     padding: 15px;
     margin-bottom: 15px;
+    color: #666666;
+    font-weight: 300;
+    border-top: 1px solid #d5d3d2;
+}
+
+.other_cost {
+    border-bottom: 1px solid #d5d3d2;
+}
+
+.grand-total-checkout {
+    padding: 15px 0;
 }
 
 .payment-modal>.wrapper h2 {
     font-size: 16px;
+    font-weight: 300;
+    text-transform: capitalize;
 }
 
 .payment-modal>.wrapper .box-detail {
@@ -258,15 +294,12 @@
 }
 
 .payment-modal>.wrapper .item-amount {
-    display: flex;
-    justify-content: space-between;
+    text-align: right;
 }
 
 .payment-modal>.wrapper .item-amount span {
-    display: block;
-    color: #d93938;
-    font-weight: 500;
-    margin: 5px 50px 0 0;
+    color: #666666;
+    font-weight: 300;
 }
 
 .payment-modal .payment-close {
@@ -301,6 +334,19 @@
 @media (max-width: 768px) {
     .payment-modal>.wrapper .payment-detail {
         grid-template-columns: 1fr;
+    }
+
+    .payment-modal>.wrapper .order__form_payment {
+        display: block;
+    }
+
+    .payment-modal>.wrapper {
+        overflow-y: scroll;
+        max-height: 650px;
+    }
+
+    .payment-modal>.wrapper .payment-detail {
+        margin-right: 0;
     }
 
     .cart-heading {
@@ -348,7 +394,6 @@
 }
 
 .detail-form-input label {
-    font-weight: 600;
     padding-bottom: 15px ;
 }
 
@@ -398,6 +443,16 @@
     color: #fff;
     background-color: #dc3545;
     border-color: #dc3545;
+}
+
+.delivery-detail-form input,
+.delivery-detail-form textarea {
+    width: 100%;
+    min-height: 40px;
+    padding: 0 5px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
 }
 /* COD methods modal */
 @import url('../utils/modal/codModal.css');

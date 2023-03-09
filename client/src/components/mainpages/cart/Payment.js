@@ -99,23 +99,22 @@ function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
             <div className="detail cart" key={item._id}>
                 <div className="box-detail">
                     <div style={{display: 'flex'}}>
-                        <div style={{display: 'flex', alignItems: 'center', width: '100px'}}>
+                        <div className="thumb__product_checkout">
                             <img src={item.images[0].url} style={{width: '100%'}}/>
+                            <span className='quantity__product_checkout'>{item.quantity}</span>
                         </div>
                         <div style={{width: '100%', marginLeft: '15px'}}>
                             <h2>{item.title}</h2>
-                            <h3>$ {item.price}</h3>
-
+                            
                             <div style={{display:'flex', alignItems:'center'}}>
-                                <button style={{ background: item.color, width: '20px', height: '20px', borderRadius: '50%', border: '1px solid #ccc' }}></button> /            
-                                <strong>{item.size}</strong> 
+                                <button style={{ background: item.color, width: '15px', height: '15px', borderRadius: '50%', border: '1px solid #ccc' }}></button> /            
+                                <span>{item.size}</span> 
                             </div>       
                             
                         </div>
                     </div>
                     <div className="item-amount">
-                        <span>Tổng cộng: ${item.price * item.quantity}</span>
-                        <span>Số lượng: x{item.quantity}</span>
+                        <span>${item.price * item.quantity}</span>
                     </div>
                 </div>
             </div>
@@ -130,153 +129,134 @@ function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
     return (
         <div className="payment-modal">
             <div className="wrapper">
-                <div className='heading-payment-order'>
-                    <h3>ĐƠN HÀNG</h3>
-                </div>
-                <div className="payment-detail">
-                    <div className='list-cart'>
-                        {
-                            cart.map(product => (
-                                product.isPublished && product.countInStock > 0 ?
-                                    <ValidItem item={product} key={product._id} /> :
-                                    null
-                            ))
-                        }
-                    </div>
-                    <div>
-                        <div className='payment-total-wrapper'>
-                            <div className="payment-total divider">
-                                <p>Đơn hàng:</p>
-                                <span>$ {total}</span>
-                            </div>
-                            <div className='divider'>
-                                <div className='discount-cost'>
-                                    <p>Giảm giá:</p>
-                                    <span>$0</span>
-                                </div>
-                                <div className='ship-cost'>
-                                    <p>Phí vận chuyển:</p>
-                                    <span>$0</span>
-                                </div>
-                            </div>
-                            <div className='grand-total divider'>
-                                <p>Tổng cộng:</p>
-                                <span style={{ color: '#d93938' }}>$ {total}</span>
-                            </div>
+                <div className='order__form_payment'>
+                    <div className="payment-detail">
+                        <div className='heading-payment-order'>
+                            <h3>ĐƠN HÀNG</h3>
                         </div>
-                        {/* <div className="payment-method">
-                            <p style={{ color: '#555' }}>Choose payment methods: </p>
+                        <div className='list-cart'>
                             {
-                                user.phone && user.isVerifyPhone ? 
-                                <Paypal
-                                    tranSuccess={tranSuccess}
-                                    cart={cart}
-                                /> : <span 
-                                    style={{lineHeight: '50px',
-                                    fontStyle: 'italic',
-                                    color: '#444'}}><Link to={'/user/'}>Xác thực số điện thoại</Link> để thanh toán qua Paypal</span>
+                                cart.map(product => (
+                                    product.isPublished && product.countInStock > 0 ?
+                                        <ValidItem item={product} key={product._id} /> :
+                                        null
+                                ))
                             }
-
-                            <button onClick={() => handleConfirmPayPalModal()}>Paypal</button>
-
-                            <span style={{ display: 'block', width: '100%', textAlign: 'center' }}>Or</span>
-                            <CodModal
-                                codSuccess={codSuccess}
-                                user={user}
-                            />
-                        </div> */}
-                    </div>
-                </div>
-                <div className='confirm-detail-order-form'>
-                    <div className='heading-detail-form'>
-                        <h3>THÔNG TIN THANH TOÁN</h3>
-                    </div>
-                    <form className='delivery-detail-form' onSubmit = {handleSuccess}>
-                        <div className="row" style={{display:'flex', justifyContent:'space-between'}}>
-                            <div className="detail-form-input" style={{marginRight: '15px'}}>
-                                <label htmlFor="name">Tên khách hàng</label>
-                                <input style={{marginTop:'10px'}} type="text" name="name" id="name" placeholder='Họ và tên'
-                                    value={detail.name}
-                                    onChange={handleChangeInput}
-                                />
-                                <span style={{color: 'red', fontSize: '12px'}}>{validateMsg.name}</span>
-                            </div>
-
-                            <div className="detail-form-input">
-                                <label htmlFor="phone">Điện thoại</label>
-                                <input style={{marginTop:'10px'}} type="text" name="phone" id="phone" placeholder='Số điện thoại'
-                                    value={detail.phone}
-                                    onChange={handleChangeInput}
-                                />
-                                <span style={{color: 'red', fontSize: '12px'}}>{validateMsg.phone}</span>
-                            </div>
                         </div>
-
-
-                        <div className="row">
-                            <label htmlFor="address">Địa chỉ</label>
-                            <div id="user-address" style={{marginTop:'10px'}}>
-                            {/* <a href="#!" className="change-address"
-                            onClick={handleChangeAddress}>
-                            <FontAwesomeIcon icon={faEdit} />
-                            Thay đổi địa chỉ
-                            </a> */}
-                                <div className="confirm-address-select-container">
-                                    <div className="confirm-address-select-item" style={{display:'flex'}}>
-                                        <div style={{width: '100%'}}>
-                                       
-                                            <Select
-                                                name="cityId"
-                                                key={`cityId_${selectedCity?.value}`}
-                                                isDisabled={cityOptions.length === 0}
-                                                options={cityOptions}
-                                                onChange={(option) => onCitySelect(option)}
-                                                placeholder="Tỉnh/Thành"
-                                                defaultValue={selectedCity}
-                                                styles={customStyle}
-                                            />
-                                            <span style={{color: 'red', fontSize: '12px'}}>{validateMsg.city}</span>
-                                        </div>
-                                        <div style={{width: '100%', margin: '0 15px'}}>
-                                      
-                                            <Select
-                                                name="districtId"
-                                                key={`districtId_${selectedDistrict?.value}`}
-                                                isDisabled={districtOptions.length === 0}
-                                                options={districtOptions}
-                                                onChange={(option) => onDistrictSelect(option)}
-                                                placeholder="Quận/Huyện"
-                                                defaultValue={selectedDistrict}
-                                                styles={customStyle}
-                                            />
-                                            <span style={{color: 'red', fontSize: '12px'}}>{validateMsg.district}</span>
-                                        </div>
-                                        <div style={{width: '100%'}}>
-                                       
-                                            <Select
-                                                name="wardId"
-                                                key={`wardId_${selectedWard?.value}`}
-                                                isDisabled={wardOptions.length === 0}
-                                                options={wardOptions}
-                                                placeholder="Phường/Xã"
-                                                onChange={(option) => onWardSelect(option)}
-                                                defaultValue={selectedWard}
-                                                styles={customStyle}
-                                            />
-                                            <span style={{color: 'red', fontSize: '12px'}}>{validateMsg.ward}</span>
-                                        </div>
+                        <div>
+                            <div className='payment-total-wrapper'>
+                                <div className="payment-total">
+                                    <p>Đơn hàng:</p>
+                                    <span>$ {total}</span>
+                                </div>
+                                <div className='other_cost'>
+                                    <div className='discount-cost'>
+                                        <p>Giảm giá:</p>
+                                        <span>$0</span>
                                     </div>
-                                           
-                                    <input type="text" placeholder="Số nhà/đường..."
-                                        value={numStreet || ''}
-                                        onChange={e => setNumStreet(e.target.value)}
-                                        className="address-detail-input" />
-                                    <span style={{color: 'red', fontSize: '12px'}}>{validateMsg.numstreet}</span>
+                                    <div className='ship-cost'>
+                                        <p>Phí vận chuyển:</p>
+                                        <span>$0</span>
+                                    </div>
+                                </div>
+                                <div className='grand-total-checkout divider'>
+                                    <p>Tổng cộng:</p>
+                                    <span style={{ color: '#d93938' }}>$ {total}</span>
+                                </div>
+                            </div>                
+                        </div>
+                    </div>
+                    <div className='confirm-detail-order-form'>
+                        <div className='heading-detail-form'>
+                            <h3>THÔNG TIN THANH TOÁN</h3>
+                        </div>
+                        <form className='delivery-detail-form' onSubmit = {handleSuccess}>
+                            <div className="row" style={{display:'flex', justifyContent:'space-between'}}>
+                                <div className="detail-form-input" style={{marginRight: '15px'}}>
+                                    <label htmlFor="name">Tên khách hàng</label>
+                                    <input style={{marginTop:'10px'}} type="text" name="name" id="name" placeholder='Họ và tên'
+                                        value={detail.name}
+                                        onChange={handleChangeInput}
+                                    />
+                                    <span style={{color: 'red', fontSize: '12px'}}>{validateMsg.name}</span>
+                                </div>
+
+                                <div className="detail-form-input">
+                                    <label htmlFor="phone">Điện thoại</label>
+                                    <input style={{marginTop:'10px'}} type="text" name="phone" id="phone" placeholder='Số điện thoại'
+                                        value={detail.phone}
+                                        onChange={handleChangeInput}
+                                    />
+                                    <span style={{color: 'red', fontSize: '12px'}}>{validateMsg.phone}</span>
                                 </div>
                             </div>
-                        </div>
-                    <button type="submit" className='delivery-confirm'>Thanh toán</button>
-                    </form>
+
+
+                            <div className="row">
+                                <label htmlFor="address">Địa chỉ</label>
+                                <div id="user-address" style={{marginTop:'10px'}}>
+                                {/* <a href="#!" className="change-address"
+                                onClick={handleChangeAddress}>
+                                <FontAwesomeIcon icon={faEdit} />
+                                Thay đổi địa chỉ
+                                </a> */}
+                                    <div className="confirm-address-select-container">
+                                        <div className="confirm-address-select-item">
+                                            <div style={{width: '100%'}}>
+                                        
+                                                <Select
+                                                    name="cityId"
+                                                    key={`cityId_${selectedCity?.value}`}
+                                                    isDisabled={cityOptions.length === 0}
+                                                    options={cityOptions}
+                                                    onChange={(option) => onCitySelect(option)}
+                                                    placeholder="Tỉnh/Thành"
+                                                    defaultValue={selectedCity}
+                                                    styles={customStyle}
+                                                />
+                                                <span style={{color: 'red', fontSize: '12px'}}>{validateMsg.city}</span>
+                                            </div>
+                                            <div>
+                                        
+                                                <Select
+                                                    name="districtId"
+                                                    key={`districtId_${selectedDistrict?.value}`}
+                                                    isDisabled={districtOptions.length === 0}
+                                                    options={districtOptions}
+                                                    onChange={(option) => onDistrictSelect(option)}
+                                                    placeholder="Quận/Huyện"
+                                                    defaultValue={selectedDistrict}
+                                                    styles={customStyle}
+                                                />
+                                                <span style={{color: 'red', fontSize: '12px'}}>{validateMsg.district}</span>
+                                            </div>
+                                            <div style={{width: '100%'}}>
+                                        
+                                                <Select
+                                                    name="wardId"
+                                                    key={`wardId_${selectedWard?.value}`}
+                                                    isDisabled={wardOptions.length === 0}
+                                                    options={wardOptions}
+                                                    placeholder="Phường/Xã"
+                                                    onChange={(option) => onWardSelect(option)}
+                                                    defaultValue={selectedWard}
+                                                    styles={customStyle}
+                                                />
+                                                <span style={{color: 'red', fontSize: '12px'}}>{validateMsg.ward}</span>
+                                            </div>
+                                        </div>
+                                            
+                                        <input type="text" placeholder="Số nhà/đường..."
+                                            value={numStreet || ''}
+                                            onChange={e => setNumStreet(e.target.value)}
+                                            className="address-detail-input" />
+                                        <span style={{color: 'red', fontSize: '12px'}}>{validateMsg.numstreet}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        <button type="submit" className='delivery-confirm'>Thanh toán</button>
+                        </form>
+                    </div>
                 </div>
                 <div className="payment-close" onClick={closePayment}>
                     <FaIcons.FaRegTimesCircle style={{ color: '#d93938' }} />

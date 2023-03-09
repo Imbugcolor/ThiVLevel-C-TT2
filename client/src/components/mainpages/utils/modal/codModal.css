@@ -40,16 +40,5 @@
     margin: 15px 0;
 }
 
-.delivery-detail-form .row>label {
-    font-weight: 600;
-    display: block;
-}
 
-.delivery-detail-form input,
-.delivery-detail-form textarea {
-    width: 100%;
-    min-height: 40px;
-    padding: 0 5px;
-    border: 1px solid #ccc;
-}
 
