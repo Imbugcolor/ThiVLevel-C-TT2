@@ -28,9 +28,17 @@
 
 .cod-btn-confirm {
     text-align: center;
-    margin: 15px 0;
     background: #f5bd00;
     color: #fff;
     width: 100%;
-    height: 45px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.stripe-checkout {
+    width: 100%;
+    background: #3c3764;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
 }

@@ -110,7 +110,7 @@ function OrderDetails() {
                                     orderDetails.cart?.map((item, index) => {
                                         if (item.quantity > 0) {
                                             return (
-                                                <tr key={item._id}>
+                                                <tr key={index}>
                                                     <td>{index + 1}</td>
                                                     <td>
                                                         <div className='table-product-column'>
@@ -173,9 +173,9 @@ function OrderDetails() {
                             <div className="item fw600">
                                 <div>Thời gian thanh toán</div>
                                 <div>
-                                    {orderDetails.method === 'Paypal' ?
-                                        `Đã thanh toán vào ${new Date(orderDetails.createdAt).toLocaleDateString() + ' ' + moment(orderDetails.createdAt).format('LT')}`
-                                        : 'Chưa thanh toán'
+                                    {orderDetails.isPaid === true ?
+                                        `Đã thanh toán vào ${new Date(orderDetails.updatedAt).toLocaleDateString() + ' ' + moment(orderDetails.updatedAt).format('LT')}`
+                                        :  'Chưa thanh toán'
                                     }
                                 </div>
                             </div>

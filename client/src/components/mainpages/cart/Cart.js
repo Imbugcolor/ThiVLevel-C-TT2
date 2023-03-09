@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from 'react'
+import { useLocation } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { GlobalState } from '../../../GlobalState'
@@ -25,6 +26,9 @@ function Cart() {
   const paymentRef = useRef()
   const [isInStock, setIsInStock] = useState(true)
 
+  const location = useLocation()
+  const queryParameters = new URLSearchParams(location.search)
+
   useEffect(() => {
     const getTotal = () => {
       const total = cart.reduce((result, item) => {
@@ -35,6 +39,27 @@ function Cart() {
     getTotal()
 
   }, [cart])
+
+  useEffect(()=> {
+    if(queryParameters.get('success') === 'true'){
+      Swal.fire({
+        width: 500,
+        icon: 'success',
+        title: `<span class='title-msg-dialog'>Đặt hàng thành công.</span>`,
+        showConfirmButton: true,
+        timer: 3000
+      })
+    }
+    if(queryParameters.get('canceled') === 'true'){
+      Swal.fire({
+        width: 500,
+        icon: 'warning',
+        title: `<span class='title-msg-dialog'>Đặt hàng thất bại.</span>`,
+        showConfirmButton: true,
+        timer: 3000
+      })
+    }
+  },[])
 
   useEffect(() => {
 

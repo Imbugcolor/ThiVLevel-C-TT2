@@ -3,7 +3,8 @@ import { GlobalState } from '../../../GlobalState'
 import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import * as FaIcons from 'react-icons/fa'
-import { BsTruck, BsPaypal } from 'react-icons/bs'
+import { BsTruck } from 'react-icons/bs'
+import { MdPayment } from 'react-icons/md'
 import moment from 'moment'
 
 function ListOrders() {
@@ -133,12 +134,12 @@ function ListOrders() {
                                             </div>
                                         </td>
                                         <td>{order.phone ? order.phone : ''}</td>
-                                        <td>{order.method === 'Paypal' ?
-                                            <span style={{ backgroundColor: '#0e2ab1' }} className="method-span">
-                                                <BsPaypal style={{ color: 'coral', paddingRight: '3px' }} />
-                                                Paypal
+                                        <td>{order.method === 'Paypal' || order.method === 'Online' ?
+                                            <span style={{ backgroundColor: '#57a7af', display: 'flex', alignItems: 'center' }} className="method-span">
+                                                <MdPayment style={{ color: '#fff', paddingRight: '3px' }}/>
+                                                Online
                                             </span> :
-                                            <span style={{ backgroundColor: 'coral' }} className="method-span">
+                                            <span style={{ backgroundColor: 'coral', display: 'flex', alignItems: 'center' }} className="method-span">
                                                 <BsTruck style={{ color: '#fff', paddingRight: '3px' }} />
                                                 COD
                                             </span>}

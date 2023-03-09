@@ -53,15 +53,17 @@ const createOrder = async(customer,data) => {
 
         const cart = JSON.parse(customer.metadata.cart)
         const address = JSON.parse(customer.metadata.address)
-        cart.map(async(item) => {
-            const product = await Products.findOne({ product_id: item.product_id })
+        
+        const newCart = await Promise.all(cart.map(async(item) => {
+            const product = await Products.findOne({product_id: item.product_id})
             const { title, images } = product
-            const newItem = Object.assign( item, {title, images} )
-            return item = newItem
-        })
+            return { ...item, title, images }     
+        }))
+
         const newPayment = new Payments({
-            user_id: _id, name: customer.metadata.name, email, cart, address, total: data.amount_total / 100, phone: customer.metadata.phone, method: 'Online', isPaid: true
+            user_id: _id, name: customer.metadata.name, email, cart: newCart, paymentID: data.payment_intent, address, total: data.amount_total / 100, phone: customer.metadata.phone, method: 'Online', isPaid: true
         })
+
 
         // cart.filter(item => {
         //     return sold(item._id, item.quantity, item.sold)
@@ -84,7 +86,9 @@ const createOrder = async(customer,data) => {
         });
         
         await newPayment.save()
-        
+        await Users.findOneAndUpdate({ _id: customer.metadata.user_id }, {
+            cart: []
+        })
     } catch (err) {
         console.log(err)
     }
@@ -135,8 +139,6 @@ router.post('/webhook', express.raw({type: 'application/json'}), (req, res) => {
         stripe.customers
             .retrieve(data.customer)
             .then((customer) => {
-                console.log(customer)
-                console.log("data:", data)
                 createOrder(customer, data)
             }).catch((err) => console.log(err.message))
     }

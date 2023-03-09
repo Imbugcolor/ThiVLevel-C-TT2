@@ -180,7 +180,7 @@ function DetailOrderAdmin() {
                                     detailOrder.cart?.map((item, index) => {
                                         if (item.quantity > 0) {
                                             return (
-                                                <tr key={item._id}>
+                                                <tr key={index}>
                                                     <td>{index + 1}</td>
                                                     <td>
                                                         <div className='table-product-column'>

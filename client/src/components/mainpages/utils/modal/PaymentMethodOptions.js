@@ -57,9 +57,9 @@ function PaymentMethodOptions({user, cart, tranSuccess, codSuccess, address, det
                 /> : <span 
                     style={{lineHeight: '50px',
                     fontStyle: 'italic',
-                    color: '#444'}}><Link to={'/user/'}>Xác thực số điện thoại</Link> để thanh toán qua Paypal</span>
+                    color: '#444', display: 'block'}}><Link to={'/user/'}>Xác thực số điện thoại</Link> để thanh toán qua Paypal</span>
             }
-            <button className='stripe-checkout' onClick={checkoutStripeHandle}>Pay with Credit Card</button>
+            <button className='stripe-checkout' onClick={checkoutStripeHandle}>Chekout with Stripe</button>
             <div className="payment-method-options-modal-close" onClick={handleCloseView}>
                     <FaRegTimesCircle style={{ color: '#d93938' }} />
             </div>
