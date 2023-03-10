@@ -220,33 +220,10 @@
 }
 
 /* payment modal */
-
-.payment-modal {
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.4);
-}
-
 .payment-modal>.wrapper {
     background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    min-width: 100px;
-    position: relative;
-    margin: 0 20px;
-    z-index: 0;
 }
 
-.payment-modal>.wrapper .order__form_payment {
-    display: flex;
-}
 /* .payment-modal>.wrapper .payment-header {
     width: 100%;
     text-align: center;
@@ -259,20 +236,14 @@
 } */
 
 .payment-modal>.wrapper .payment-detail {
-    margin-right: 25px;
+    margin-right: 0;
 }
 
-.payment-modal>.wrapper .list-cart {
-    max-height: 300px;
-    overflow-y: scroll;
-}
 
 .payment-modal .payment-total-wrapper {
-    padding: 15px;
-    margin-bottom: 15px;
     color: #666666;
     font-weight: 300;
-    border-top: 1px solid #d5d3d2;
+    margin: 15px 0;
 }
 
 .other_cost {
@@ -303,15 +274,9 @@
 }
 
 .payment-modal .payment-close {
-    position: absolute;
-    top: -15px;
-    right: -15px;
-    font-size: 30px;
-    background: #fff;
-    border-radius: 50%;
     padding: 2px;
-    display: flex;
     cursor: pointer;
+    width: fit-content;
 }
 
 .payment-modal-container {
@@ -336,15 +301,6 @@
         grid-template-columns: 1fr;
     }
 
-    .payment-modal>.wrapper .order__form_payment {
-        display: block;
-    }
-
-    .payment-modal>.wrapper {
-        overflow-y: scroll;
-        max-height: 650px;
-    }
-
     .payment-modal>.wrapper .payment-detail {
         margin-right: 0;
     }
@@ -365,13 +321,6 @@
         width: 100%;
     }
 
-    .payment-modal>.wrapper .list-cart {
-        height: 325px;
-    }
-
-    .payment-modal .payment-total-wrapper {
-        margin-top: 15px;
-    }
 }
 
 .payment-method-option-box {
@@ -391,10 +340,12 @@
 
 .detail-form-input{
     width: 100%;
+    margin: 15px 0;
 }
 
 .detail-form-input label {
     padding-bottom: 15px ;
+    font-weight: 300;
 }
 
 .delivery-detail-form .delivery-confirm {

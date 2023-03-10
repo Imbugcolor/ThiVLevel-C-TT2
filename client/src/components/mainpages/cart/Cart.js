@@ -29,6 +29,8 @@ function Cart() {
   const location = useLocation()
   const queryParameters = new URLSearchParams(location.search)
 
+  const [page, setPage] = useState(0)
+
   useEffect(() => {
     const getTotal = () => {
       const total = cart.reduce((result, item) => {
@@ -366,14 +368,13 @@ function Cart() {
 
     setLoading(false)
     
-    document.body.style.overflow = 'hidden';
+    setPage(1)
 
   }
 
   const closePayment = () => {
     setCanBuy(false)
     setCheckButton(false)
-    document.body.style.overflow = '';
   }
 
 
@@ -394,6 +395,14 @@ function Cart() {
 
   return (
     loading ? <div><Loading /></div> :
+    page === 1 && canBuy ? <Payment 
+    total={total}
+    tranSuccess={tranSuccess}
+    cart={cart}
+    codSuccess={codSuccess}
+    user={user}
+    closePayment={closePayment}
+    /> :
     <div className="res-row">
       <h2 className="cart-heading col l-12 m-12 c-12">
         <FontAwesomeIcon icon={faCartShopping} style={{ paddingRight: 10 }} />
@@ -439,7 +448,7 @@ function Cart() {
           </div>
         </div>
       </div>
-      <div className={`payment-modal-container ${canBuy ? 'active' : ''}`} ref={paymentRef}>
+      {/* <div className={`payment-modal-container ${canBuy ? 'active' : ''}`} ref={paymentRef}>
         <Payment
           total={total}
           tranSuccess={tranSuccess}
@@ -448,7 +457,7 @@ function Cart() {
           user={user}
           closePayment={closePayment}
         />
-      </div>
+      </div> */}
     </div>
   )
 }

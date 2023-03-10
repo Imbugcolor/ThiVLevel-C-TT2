@@ -129,8 +129,11 @@ function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
     return (
         <div className="payment-modal">
             <div className="wrapper">
-                <div className='order__form_payment'>
-                    <div className="payment-detail">
+                <div className="payment-close" onClick={closePayment}>
+                    Back
+                </div>
+                <div className='res-row order__form_payment'>
+                    <div className="payment-detail col l-5 m-12 c-12">
                         <div className='heading-payment-order'>
                             <h3>ĐƠN HÀNG</h3>
                         </div>
@@ -166,12 +169,12 @@ function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
                             </div>                
                         </div>
                     </div>
-                    <div className='confirm-detail-order-form'>
+                    <div className='confirm-detail-order-form col l-7 m-12 c-12'>
                         <div className='heading-detail-form'>
                             <h3>THÔNG TIN THANH TOÁN</h3>
                         </div>
                         <form className='delivery-detail-form' onSubmit = {handleSuccess}>
-                            <div className="row" style={{display:'flex', justifyContent:'space-between'}}>
+                            <div>
                                 <div className="detail-form-input" style={{marginRight: '15px'}}>
                                     <label htmlFor="name">Tên khách hàng</label>
                                     <input style={{marginTop:'10px'}} type="text" name="name" id="name" placeholder='Họ và tên'
@@ -193,7 +196,7 @@ function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
 
 
                             <div className="row">
-                                <label htmlFor="address">Địa chỉ</label>
+                                <label htmlFor="address" style={{fontWeight: '300'}}>Địa chỉ</label>
                                 <div id="user-address" style={{marginTop:'10px'}}>
                                 {/* <a href="#!" className="change-address"
                                 onClick={handleChangeAddress}>
@@ -257,9 +260,6 @@ function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
                         <button type="submit" className='delivery-confirm'>Thanh toán</button>
                         </form>
                     </div>
-                </div>
-                <div className="payment-close" onClick={closePayment}>
-                    <FaIcons.FaRegTimesCircle style={{ color: '#d93938' }} />
                 </div>
                 
             </div>
