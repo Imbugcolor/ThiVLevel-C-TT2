@@ -62,6 +62,9 @@ function Cart() {
         timer: 3000
       })
     }
+    if(performance.navigation.type == 2){
+      window.location = window.location
+    }
   },[])
 
   useEffect(() => {
