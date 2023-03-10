@@ -145,7 +145,7 @@ header .overlay {
 }
 
 header .header-nav-tablet-mobile .navbar-icon {
-    margin-right: 10px;
+    margin-right: 0;
     padding: 5px;
 }
 
@@ -392,6 +392,7 @@ header .header-nav .login_sign_up_nav {
 
     header .header__top {
         width: unset;
+        margin: 0
     }
 
     header .logo .header-logo {

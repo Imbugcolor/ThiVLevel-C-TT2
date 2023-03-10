@@ -114,6 +114,12 @@
     margin-bottom: 15px;
 }
 
+.discount__payment_confirm {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
 .grand-total {
     padding-bottom: 15px;
 }
@@ -211,6 +217,10 @@
     transition: all .2s linear;
 }
 
+.payment .payment-buy-btn svg {
+    font-size: 16px;
+}
+
 .payment .payment-buy-btn:hover {
     color: #888;
 }
@@ -220,11 +230,12 @@
 }
 
 /* payment modal */
-.payment-modal>.wrapper {
+.payment-section>.wrapper {
     background: #fff;
+    margin: 0 100px;
 }
 
-/* .payment-modal>.wrapper .payment-header {
+/* .payment-section>.wrapper .payment-header {
     width: 100%;
     text-align: center;
     text-transform: uppercase;
@@ -235,12 +246,12 @@
     font-size: 25px;
 } */
 
-.payment-modal>.wrapper .payment-detail {
+.payment-section>.wrapper .payment-detail {
     margin-right: 0;
 }
 
 
-.payment-modal .payment-total-wrapper {
+.payment-section .payment-total-wrapper {
     color: #666666;
     font-weight: 300;
     margin: 15px 0;
@@ -254,36 +265,43 @@
     padding: 15px 0;
 }
 
-.payment-modal>.wrapper h2 {
+.payment-section>.wrapper h2 {
     font-size: 16px;
     font-weight: 300;
     text-transform: capitalize;
 }
 
-.payment-modal>.wrapper .box-detail {
+.payment-section>.wrapper .box-detail {
     margin: 0;
 }
 
-.payment-modal>.wrapper .item-amount {
+.payment-section>.wrapper .item-amount {
     text-align: right;
 }
 
-.payment-modal>.wrapper .item-amount span {
+.payment-section>.wrapper .item-amount span {
     color: #666666;
     font-weight: 300;
 }
 
-.payment-modal .payment-close {
+.payment-section .payment-close {
     padding: 2px;
     cursor: pointer;
     width: fit-content;
+    display: flex;
+    align-items: center;
+    font-weight: 300;
 }
 
-.payment-modal-container {
+.payment-section .payment-close svg {
+    margin-right: 5px;
+}
+
+.payment-section-container {
     display: none;
 }
 
-.payment-modal-container.active {
+.payment-section-container.active {
     display: block;
 }
 
@@ -297,12 +315,16 @@
 }
 
 @media (max-width: 768px) {
-    .payment-modal>.wrapper .payment-detail {
+    .payment-section>.wrapper .payment-detail {
         grid-template-columns: 1fr;
     }
 
-    .payment-modal>.wrapper .payment-detail {
+    .payment-section>.wrapper .payment-detail {
         margin-right: 0;
+    }
+
+    .payment-section>.wrapper {
+        margin: 0 ;
     }
 
     .cart-heading {

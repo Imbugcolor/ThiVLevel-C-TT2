@@ -16,6 +16,7 @@ function Cart() {
   const state = useContext(GlobalState)
   const [cart, setCart] = state.userAPI.cart
   const [products] = state.productsAPI.products
+  const [loadingItem] = state.productsAPI.loadingItem
   const [callback, setCallback] = state.productsAPI.callback
   const [loading, setLoading] = state.userAPI.loading
   const [user] = state.userAPI.user
@@ -286,7 +287,7 @@ function Cart() {
             </div>
             <div className='total_num_bottom'>
               <span>Tổng cộng:</span>
-              <h4>${item.price * item.quantity}</h4>  
+              <h4>${(item.price * item.quantity).toFixed(2)}</h4>  
             </div>
           </div>
 
@@ -361,12 +362,8 @@ function Cart() {
   const handleBuyClick = (e) => {
     e.preventDefault()
 
-    setLoading(true)
-
     setCallback(!callback)
     setCheckButton(true)
-
-    setLoading(false)
     
     setPage(1)
 
@@ -425,11 +422,11 @@ function Cart() {
             <div className='divider'>
               <div className='discount-cost'>
                 <p>Giảm giá:</p>
-                <span>$0</span>
+                <span>$ 0</span>
               </div>
               <div className='ship-cost'>
                 <p>Phí vận chuyển:</p>
-                <span>$0</span>
+                <span>$ 0</span>
               </div>
             </div>
             <div className='grand-total divider'>
@@ -440,9 +437,9 @@ function Cart() {
             <button
               className="payment-buy-btn" onClick={handleBuyClick} >
               {
-                loading ?
+                loadingItem ?
                   <FontAwesomeIcon icon={faSpinner} className="fa-spin" /> :
-                  "Tiếp tục thanh toán"
+                  "Tiếp tục thanh toán"           
               }
             </button>
           </div>

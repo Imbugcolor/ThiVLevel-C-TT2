@@ -18,7 +18,9 @@ function PaymentMethodOptions({user, cart, tranSuccess, codSuccess, address, det
     const [msgValidate, setMsgValidate] = useState('')
     const [loading, setLoading] = useState(false)
 
-    cart.map(item => {
+    const cartValid = cart.filter(item => item.isPublished === true && item.countInStock > 0)
+    
+    cartValid.map(item => {
         const { product_id, size, color, price, quantity } = item
         const obj = { product_id, size, color, price, quantity }
         cartItems.push(obj)

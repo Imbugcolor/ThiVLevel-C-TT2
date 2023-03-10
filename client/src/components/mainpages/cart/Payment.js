@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Paypal from './Paypal'
-import CodModal from '../utils/modal/codModal'
-import * as FaIcons from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import useLocationForm from '../utils/address/useLocationForm'
 import Select from 'react-select'
 import PaymentMethodOptions from '../utils/modal/PaymentMethodOptions'
+import { IoReturnDownBackSharp } from 'react-icons/io5'
 
 function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
 
@@ -28,9 +27,20 @@ function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
 
 
     const customStyle = {
+        control: (baseStyles) => ({
+            ...baseStyles,
+            height: '45px',
+        }),
         container: (prodived) => ({
             ...prodived,
-            marginBottom: 20
+            marginBottom: 20,
+            height: '45px'
+        }),
+        input: (prodived) => ({
+            ...prodived,
+            margin: 0,
+            paddingBottom: 0,
+            paddingTop: 0
         })
     }
 
@@ -114,7 +124,7 @@ function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
                         </div>
                     </div>
                     <div className="item-amount">
-                        <span>${item.price * item.quantity}</span>
+                        <span>$ {(item.price * item.quantity).toFixed(2)}</span>
                     </div>
                 </div>
             </div>
@@ -127,10 +137,10 @@ function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
     }
 
     return (
-        <div className="payment-modal">
+        <div className="payment-section">
             <div className="wrapper">
                 <div className="payment-close" onClick={closePayment}>
-                    Back
+                    <IoReturnDownBackSharp /> Quay lại
                 </div>
                 <div className='res-row order__form_payment'>
                     <div className="payment-detail col l-5 m-12 c-12">
@@ -153,13 +163,13 @@ function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
                                     <span>$ {total}</span>
                                 </div>
                                 <div className='other_cost'>
-                                    <div className='discount-cost'>
+                                    <div className='discount__payment_confirm'>
                                         <p>Giảm giá:</p>
-                                        <span>$0</span>
+                                        <span>$ 0</span>
                                     </div>
                                     <div className='ship-cost'>
                                         <p>Phí vận chuyển:</p>
-                                        <span>$0</span>
+                                        <span>$ 0</span>
                                     </div>
                                 </div>
                                 <div className='grand-total-checkout divider'>
@@ -171,7 +181,7 @@ function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
                     </div>
                     <div className='confirm-detail-order-form col l-7 m-12 c-12'>
                         <div className='heading-detail-form'>
-                            <h3>THÔNG TIN THANH TOÁN</h3>
+                            <h3>THÔNG TIN GIAO HÀNG</h3>
                         </div>
                         <form className='delivery-detail-form' onSubmit = {handleSuccess}>
                             <div>

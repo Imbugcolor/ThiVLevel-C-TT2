@@ -200,7 +200,7 @@ function Header() {
                 }
                 <div className="navbar-icon">
                     <Hamburger
-                        color="rgb(0, 0, 0)" toggled={open}
+                        color="rgb(64, 64, 64)" toggled={open}
                         size="40" rounded toggle={setOpen}
                     />
                 </div>
