@@ -24,7 +24,6 @@ function Cart() {
   const [total, setTotal] = useState(0)
   const [canBuy, setCanBuy] = useState(false)
   const [checkButton, setCheckButton] = useState(false)
-  const paymentRef = useRef()
   const [isInStock, setIsInStock] = useState(true)
 
   const location = useLocation()
@@ -85,26 +84,36 @@ function Cart() {
           })
           return false;
         }
-        cart.forEach(item => {
-          products.find(p => {
-            if (p.product_id === item.product_id) {
-              const totalQuantity = cart.reduce((acc, curr) => {
-                return (curr.product_id === p.product_id) ? acc + curr.quantity : acc
-              }, 0)
-              if (p.countInStock < totalQuantity) {
-
-                toast.warning(`Sản phẩm ${p.title} không đủ số lượng!`, {
-                  position: "top-center",
-                  autoClose: 3000
-                });
-                return setIsInStock(false)
-              }
-            }
-          }
-          )
-        })
-        if (!isInStock) return false
-
+        let prodOutStock;
+        const isValid = () => {
+          let count = 0;
+          cart.forEach(item => {
+              products.find(p => {
+                if (p.product_id === item.product_id && item.isPublished) {
+                  const totalQuantity = cart.reduce((acc, curr) => {
+                    return (curr.product_id === p.product_id) ? acc + curr.quantity : acc
+                  }, 0)
+                  if (p.countInStock < totalQuantity) {
+                    count = count +1;
+                    prodOutStock = p.title
+                    return false
+        
+                  }
+                }
+              })
+            })
+        if(count > 0) return false
+        return true
+        }
+        if(!isValid()) {
+          Swal.fire({
+            width: 500,
+            icon: 'warning',
+            title: `<span class='title-msg-dialog'>Sản phẩm ${prodOutStock} không đủ sl</span>`,
+            showConfirmButton: true,
+          })
+          return false 
+        }
         return true
       }
       if (checkButton) {
@@ -223,7 +232,7 @@ function Cart() {
     Swal.fire({
       width: 500,
       icon: 'success',
-      title: 'Đặt hàng thành công!',
+      title: `<span class='title-msg-dialog'>Đặt hàng thành công.</span>`,
       showConfirmButton: true,
       timer: 3000
     })
@@ -248,7 +257,7 @@ function Cart() {
     Swal.fire({
       width: 500,
       icon: 'success',
-      title: 'Đặt hàng thành công!',
+      title: `<span class='title-msg-dialog'>Đặt hàng thành công.</span>`,
       showConfirmButton: true,
       timer: 3000
     })
@@ -295,16 +304,17 @@ function Cart() {
           </div>
 
         </div>
-        {item.isPublished ||
+        { item.isPublished ||
           <div className="unvailible-layer">
             <span>Không có sẵn</span>
           </div>
         }
+       
         {
-          item.countInStock > 0 ||
+          item.countInStock  > 0 ||
           <div className="unvailible-layer">
             <span>Đã hết hàng</span>
-          </div>
+          </div> 
         }
         <div className="delete" onClick={() => removeProduct(item._id)}><RiIcons.RiDeleteBinFill /></div>
       </div>
@@ -325,12 +335,7 @@ function Cart() {
     const checkItem = products.find(p => {
       if (p.product_id === product.product_id) {
         if (p.countInStock <= 0) {
-          updateCartItem(product._id, "countInStock", p.countInStock)
-          if (product.countInStock <= 0)
-            toast.warning(`Sản phẩm ${p.title} đã hết hàng!`, {
-              position: "top-center",
-              autoClose: 3000
-            });
+          updateCartItem(product._id, "countInStock", p.countInStock)    
         }
         if (p.countInStock > 0) {
           updateCartItem(product._id, "countInStock", p.countInStock)
