@@ -20,7 +20,7 @@ import Loading from '../utils/loading/Loading'
 function DetailProduct() {
     const params = useParams()
     const state = useContext(GlobalState)
-    const [products] = state.productsAPI.products
+    const [products] = state.productsAPI.productsAvailable
     const [categories] = state.categoriesAPI.categories
     const [user] = state.userAPI.user
     const addCart = state.userAPI.addCart
@@ -45,7 +45,7 @@ function DetailProduct() {
 
     const [perRating, setPerRating] = useState([])
 
-    const [loading, setLoading] = state.productsAPI.loadingItem
+    const [loading, setLoading] = state.productsAPI.loading
 
     const count_element_in_array = (array, x) => {
         let count = 0;
@@ -220,8 +220,9 @@ function DetailProduct() {
     }, [width, slideIndex])
 
     if (detailProduct.length === 0) return null
-    if (loading) return <div><Loading /></div>
+  
     return (
+        loading ? <div><Loading /></div> :
         <React.Fragment>
             <section className="product-details res-row p30-tb-im">                     
                 <div className="col l-12 m-12 c-12">
@@ -337,7 +338,7 @@ function DetailProduct() {
                         </div>
                         <div className="col l-12 m-12 c-12">
                             <div className="product-page-content">
-                                <h3>Nội dung</h3>
+                                <h3>Thông tin sản phẩm</h3>
                                 <p>{detailProduct.content}</p>
                             </div>
                         </div>
@@ -391,7 +392,7 @@ function DetailProduct() {
                     </div>
                     {
                         reviews.length === 0 && (
-                            <p style={{color: '#585151'}}>Không có đánh giá</p>
+                            <p style={{color: '#585151', fontWeight: '300', fontSize: '15px', fontStyle: 'italic'}}>Không có đánh giá</p>
                         )
                     }
                     <ReviewItem data={reviews} />
@@ -400,7 +401,7 @@ function DetailProduct() {
 
                     <form className="form" onSubmit={submitReviewHandler}>
                         <div>
-                            <h2 className='tag-name' style={{ margin: '20px 0' }}>Đánh giá của bạn</h2>
+                            <h2 className='tag-name' style={{ marginTop: '20px' }}>Đánh giá của bạn</h2>
                         </div>
                         <div className="rating-wrapper">
                             <div className='rating-star'>

@@ -59,7 +59,7 @@ function ProductsAPI() {
 
         const getFilterProducts = async () => {
             const res = await axios.get(`/api/products`)
-            setSuggestions(res.data.products)
+            setSuggestions(res.data.products.filter(product => product.isPublished === true))
         }
         getFilterProducts()
 
