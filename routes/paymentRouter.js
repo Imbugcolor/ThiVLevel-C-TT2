@@ -26,5 +26,6 @@ router.route('/payment/changephonenumber/:id')
 router.route('/checkout-session-stripe')
     .post(auth, paymentCtrl.checkoutStripe)
 
+router.get('/check-valid-payment', auth, paymentCtrl.checkValidPayment)
     
 module.exports = router

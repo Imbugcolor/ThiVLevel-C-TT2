@@ -224,6 +224,37 @@ const paymentCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
+    checkValidPayment: async (req, res) => {
+        try {
+            const user = await Users.findById(req.user.id)
+            const products = await Products.find(req.query)      
+            const { cart } = user
+            const isValid = () => {
+                let count = 0;
+                cart.forEach(item => {
+                    products.find(p => {
+                        if (p.product_id === item.product_id && item.isPublished) {
+                        const totalQuantity = cart.reduce((acc, curr) => {
+                            return (curr.product_id === p.product_id) ? acc + curr.quantity : acc
+                        }, 0)
+                        if (p.countInStock < totalQuantity) {
+                            count = count +1;
+                            return false
+                        }
+                        }
+                    })
+                })
+                if(count > 0) return false
+                return true
+            }
+            if(!isValid()) {
+                return res.status(400).json({ msg: 'Lỗi thanh toán, kiểm tra lại giỏ hàng.' })
+            }
+            res.json('Checking completed.')
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
     checkoutStripe: async (req, res) => {
         try {
             const session = await stripe.checkout.sessions.create({

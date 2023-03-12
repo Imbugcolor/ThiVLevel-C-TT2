@@ -13,12 +13,17 @@ function OrdersAPI(token) {
     useEffect(() => {
         if (token) {
             const getOrders = async () => {
-                try {                
-                    const res = await axios.get(`/api/payment?${status}&${sort}`, {
+                try { 
+                    const user = await axios.get('/user/infor', {
                         headers: { Authorization: token }
-                    })
-                    setOrders(res.data);
-                    setDataFilter(res.data)          
+                    })   
+                    if(user.data.role === 1) {
+                        const res = await axios.get(`/api/payment?${status}&${sort}`, {
+                            headers: { Authorization: token }
+                        }) 
+                        setOrders(res.data);
+                        setDataFilter(res.data)          
+                    }       
                 } catch (err) {
                     console.log(err.response.data.msg)
                 }

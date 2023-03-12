@@ -6,20 +6,31 @@ import { faUser, faTruck, faMapLocation } from '@fortawesome/free-solid-svg-icon
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import moment from 'moment'
+import Loading from '../utils/loading/Loading'
 
 function OrderDetails() {
     const state = useContext(GlobalState)
     const [history] = state.userAPI.history
     const [token] = state.token
     const [orderDetails, setOrderDetails] = useState([])
-
+    const [loading, setLoading] = useState(false)
 
     const params = useParams()
     useEffect(() => {
         if (params.id) {
-            history.forEach(item => {
-                if (item._id === params.id) setOrderDetails(item)
-            })
+            if (token) {
+                const getHistory = async () => {
+                    setLoading(true)
+                    const res = await axios.get(`/user/history`, {
+                        headers: { Authorization: token }
+                    })                     
+                    res.data.forEach(item => {
+                        if (item._id === params.id) setOrderDetails(item)
+                    })
+                    setLoading(false)              
+                }
+                getHistory()
+            }
         }
     }, [params.id, history])
 
@@ -46,6 +57,7 @@ function OrderDetails() {
 
     if (orderDetails.length === 0) return null;
     return (
+        loading ? <div><Loading /></div> :
         <div className="history-page res-row">
             <div className="order-infor-container col l-12 m-12 c-12">
                 <div className="res-row">
@@ -124,7 +136,7 @@ function OrderDetails() {
                                                     </td>
                                                     <td className='table-quantity'>{item.quantity}</td>
                                                     <td className='table-item-price'>${item.price}</td>
-                                                    <td className='table-amount'>${item.quantity * item.price}</td>
+                                                    <td className='table-amount'>${(item.quantity * item.price).toFixed(2)}</td>
                                                 </tr>
                                             )
                                         } else return null

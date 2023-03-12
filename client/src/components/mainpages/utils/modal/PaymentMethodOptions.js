@@ -8,6 +8,7 @@ import CodIcon from '../../../../images/cod_icon.PNG'
 import StripeIcon from '../../../../images/stripe.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import Swal from 'sweetalert2'
 
 function PaymentMethodOptions({user, cart, tranSuccess, codSuccess, address, detail}) {
     const state = useContext(GlobalState)
@@ -65,16 +66,35 @@ function PaymentMethodOptions({user, cart, tranSuccess, codSuccess, address, det
         setMethod(e.target.value)
     }
 
-    const handleComplete = () => {
+    const handleComplete = async() => {
         const isValid = validate()
         if(!isValid) return 
+        try {
+            setLoading(true)
+            await axios.get('/api/check-valid-payment', {
+                headers: { Authorization: token}
+            })
+            if(method === 'cod') {
+                return handlePaymentCOD()
+            } 
+            if (method === 'stripe') {
+                return checkoutStripeHandle()
+            } 
+            setLoading(false)
+        } catch (err) {
+            setLoading(false)
+            const viewbox = document.querySelector('.payment-method-option-box')
+            viewbox.classList.remove('active')
 
-        if(method === 'cod') {
-            return handlePaymentCOD()
-        } 
-        if (method === 'stripe') {
-            return checkoutStripeHandle()
-        } 
+            Swal.fire({
+                width: 500,
+                icon: 'error',
+                title: `<span class='title-msg-dialog'>${err.response.data.msg}</span>`,
+                showConfirmButton: true
+              })
+            
+        }
+        
         
     }
 

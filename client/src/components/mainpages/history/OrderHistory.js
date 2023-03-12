@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import ReactPaginate from 'react-paginate'
 import moment from 'moment'
+import Loading from '../utils/loading/Loading'
 function OrderHistory() {
 
     const state = useContext(GlobalState)
@@ -17,16 +18,19 @@ function OrderHistory() {
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
     const itemsPerPage = 6;
+    const [loading, setLoading] = useState(false)
     // const [search, setSearch] = useState('')
 
     useEffect(() => {
         if (token) {
             const getHistory = async () => {
+                setLoading(true)
                 const res = await axios.get(`/user/history?${status}&${sort}`, {
                     headers: { Authorization: token }
                 })
                 setHistory(res.data);
-                setData(res.data)          
+                setData(res.data)   
+                setLoading(false)       
             }
             getHistory()
         }
@@ -106,12 +110,14 @@ function OrderHistory() {
                         </div>
                 </div>
                 <div className="my__order_list_wrapper col l-9 m-9 c-12"> 
+
                     {
                         history.length !== 0 ?  <span className='number_total_orders'>{history.length} đơn hàng</span> : 
                         <span className='number_total_orders'>Không tìm thấy kết quả tìm kiếm.</span>
                     }  
                    
-                    {
+                    {   
+                        loading ? <div><Loading /></div> :
                         currentItems.map(item => (                                
                             <div className="my__order_item" key={item._id}>
                                 <div className="my__order_item_heading">
