@@ -100,8 +100,18 @@ th, td {
 }
 
 .order-infor-container {
-    margin-top: 30px;
-    background: #f0f0f0;
+    border-bottom: 1px solid #d5d3d2;
+}
+
+.order-infor-container .order__infor_heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.order-infor-container .order__infor_heading p {
+    color: #555;
+    font-weight: 300;
 }
 
 .order-infor-container .order-infor {
@@ -134,7 +144,6 @@ th, td {
 
 .list-product-order-client{
     margin-bottom: 25px;
-    overflow-x: scroll;
 }
 
 .list-product-order-client .oder-product-list-table {
@@ -178,8 +187,52 @@ th, td {
     padding: 15px;
     font-size: 15px;
     font-weight: 300;
-    border: 1px solid #ccc;
     line-height: 30px;
+    background: #fff;
+    padding-top: 0;
+}
+
+.order__bottom_info {
+    border-top: 1px solid #d5d3d2;
+    padding: 25px 0;
+    margin: 35px 0;
+}
+
+.box-style_infor .heading__box {
+    background: #f4f5f7;
+    padding: 15px;
+    display: block;
+}
+
+.box-detail_infor {
+    padding: 15px;
+    font-weight: 300;
+    line-height: 25px;
+    color: #444;
+}
+
+.box-detail_infor .payment__detail_ {
+    display: flex;
+    align-items: center;
+}
+
+.box-detail_infor img {
+    height: 35px;
+}
+
+.box-detail_infor .payment__detail_ span {
+    font-size: 14px;
+    font-weight: 500;
+    padding-left: 15px;
+}
+
+.heading__pay-infor {
+    background: #f4f5f7;
+    padding: 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    align-items: center;
 }
 
 .pay-infor .divider {
@@ -264,39 +317,30 @@ th, td {
     color: #666666;
 }
 
-.pay-infor-wrapper .cancel-order, .pay-infor-wrapper .cancel-order-disabled {
+.cancel-order, .pay-infor-wrapper .cancel-order-disabled {
     margin-top: 25px;
     text-align: center;
 }
 
-.pay-infor-wrapper .complete-order-noti button{
-    width: 100%;
-    background-color: #e3e3e3;
-    color: #aaa;
-    height: 50px;
-    margin-top: 25px;
-}
-
-.pay-infor-wrapper .cancel-order button{
-    background-color: #000;
-    color: #fff;
-    height: 45px;
-    width: 100%;
+.cancel-order button{
     font-size: 15px;
     text-transform: uppercase;
     transition: 0.5s;
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
 }
 
-.pay-infor-wrapper .cancel-order-disabled button{
-    background-color: #d5d6d7;
-    height: 45px;
-    width: 100%;
+.cancel-order-disabled button{
     font-size: 15px;
     text-transform: uppercase;
     transition: 0.5s;
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
 }
 
-.pay-infor-wrapper .cancel-order button:hover {
+.cancel-order button:hover {
     color: #888;
     transition: 0.5s;
 }
