@@ -141,9 +141,13 @@ function Products() {
           loading ? <div><Loading/></div> : 
           <div>
           <div className="products res-row">
+            <div className='col l-12 m-12 c-12'> 
             {
-              currentItems.length === 0 ?
-                <div className='items-not-found-title'><h2 className="no-results">Không tìm thấy kết quả tìm kiếm.</h2></div> :
+              products.length !== 0 ?  <span className='number_total_products'>{products.length} sản phẩm</span> : 
+              <span className='number_total_products'>Không tìm thấy kết quả tìm kiếm.</span>
+            } 
+            </div>
+            {          
                 currentItems.map(product => {
                   return <ProductItem key={product._id} product={product}
                     isAdmin={isAdmin} deleteProduct={deleteProduct} handleCheck={handleCheck}

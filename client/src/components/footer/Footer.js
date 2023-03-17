@@ -4,7 +4,8 @@ import FbIcon from '../../images/icon_fbn.webp'
 import InsIcon from '../../images/icon_instan.webp'
 import TiktokIcon from '../../images/icon_tiktok.webp'
 import PaypalIcon from '../../images/Paypal_2014_logo.png'
-import CodLogo from '../../images/cash-on-delivery.png'
+import CodLogo from '../../images/cod-logo.webp'
+import VisaLogo from '../../images/visa-logo.png'
 import * as AiIcons from 'react-icons/ai'
 import * as ImIcons from 'react-icons/im'
 import { Link } from 'react-router-dom'
@@ -104,6 +105,7 @@ function Footer() {
                                 <div className='payment__method_icon'>
                                     <img className="social__media_icon" src={CodLogo}/>
                                     <img className="social__media_icon" src={PaypalIcon}/>
+                                    <img className="social__media_icon" src={VisaLogo}/>
                                 </div>
                             </div>
                         </div>

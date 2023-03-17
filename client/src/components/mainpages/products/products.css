@@ -192,6 +192,11 @@
     text-transform: capitalize;
 }
 
+.number_total_products {
+    color: #555;
+    font-weight: 300;
+}
+
 .cate-side-bar {
     max-width: 350px;
 }

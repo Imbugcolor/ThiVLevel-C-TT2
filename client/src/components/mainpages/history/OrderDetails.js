@@ -8,6 +8,7 @@ import Loading from '../utils/loading/Loading'
 import CodLogo from '../../../images/cod-logo.webp'
 import VisaLogo from '../../../images/visa-logo.png'
 import { IoTrashBin } from 'react-icons/io5'
+import Swal from 'sweetalert2'
 
 function OrderDetails() {
     const state = useContext(GlobalState)
@@ -35,24 +36,69 @@ function OrderDetails() {
         }
     }, [params.id, history])
 
-    const handleCancelOrder = async () => {
-        if (window.confirm('Bạn có chắc chắn muốn hủy đơn hàng này không?')) {
-            try {
-                await axios.patch(`/api/payment/cancel/${orderDetails._id}`, { cancel: 'Cancel' }, {
-                    headers: { Authorization: token }
-                })
+    const swalConfirmButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn-ok',
+          cancelButton: 'btn-cancel-swal btn-mg-r'
+        },
+        buttonsStyling: false
+    })
 
-                toast.success('Hủy đơn hàng thành công.', {
-                    position: "top-center",
-                    autoClose: 3000
-                })
-
-            } catch (err) {
-                toast.error(err.response.data.msg, {
-                    position: "top-center",
-                    autoClose: 3000
-                })
+    const handleCancelOrder = async () => {     
+        swalConfirmButtons.fire({
+            title: `<span class='title-msg-dialog'>Hủy đơn hàng này?</span>`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Có',
+            cancelButtonText: 'Không',
+            reverseButtons: true
+          }).then(async(result) => {
+            if (result.isConfirmed) {
+                try {
+                    await axios.patch(`/api/payment/cancel/${orderDetails._id}`, { cancel: 'Cancel' }, {
+                        headers: { Authorization: token }
+                    })
+                    swalConfirmButtons.fire(
+                    `<span class='title-msg-dialog'>Đơn hàng đã được hủy.</span>`,
+                    '',
+                    'success'
+                    )
+                } catch (err) {
+                    swalConfirmButtons.fire(
+                        `<span class='title-msg-dialog'>${err.response.data.msg}</span>`,
+                        '',
+                        'error'
+                      )
+                }              
+            } else if (
+              /* Read more about handling dismissals below */
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalConfirmButtons.fire(
+                `<span class='title-msg-dialog'>Không hủy đơn hàng.</span>`,
+                '',
+                'error'
+                )
             }
+          })
+    }
+
+    const cancelOrder = async () => {
+        try {
+            await axios.patch(`/api/payment/cancel/${orderDetails._id}`, { cancel: 'Cancel' }, {
+                headers: { Authorization: token }
+            })
+
+            toast.success('Hủy đơn hàng thành công.', {
+                position: "top-center",
+                autoClose: 3000
+            })
+
+        } catch (err) {
+            toast.error(err.response.data.msg, {
+                position: "top-center",
+                autoClose: 3000
+            })
         }
     }
 

@@ -58,19 +58,19 @@ function Header() {
         setOpen(false)
     }
 
-    // window.onscroll = function() {
-    //     headerFixedHandle()
-    // }
+    window.onscroll = function() {
+        headerFixedHandle()
+    }
 
-    // function headerFixedHandle() {
+    function headerFixedHandle() {
 
-    //     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-    //         document.querySelector('header').classList.add('fix-scroll')
-    //     } else {
-    //         document.querySelector('header').classList.remove('fix-scroll')
-    //     }
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            document.querySelector('header').classList.add('fix-scroll')
+        } else {
+            document.querySelector('header').classList.remove('fix-scroll')
+        }
 
-    // }
+    }
 
     const loggedRouter = () => {
         return (

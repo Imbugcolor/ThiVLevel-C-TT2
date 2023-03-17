@@ -390,4 +390,10 @@ td.method-payment {
     .order-detail .pay-infor {
         margin-top: 15px;
     }
+    .list-product-order-client {
+        overflow-x: scroll;
+    }
+    .order-infor-container .order__infor_heading {
+        display: block;
+    }
 }
