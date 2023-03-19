@@ -6,6 +6,7 @@ import axios from 'axios'
 import Filters from './Filters'
 import QuickViewProduct from '../home/QuickViewProduct'
 import ReactPaginate from 'react-paginate'
+import { GrSubtract } from 'react-icons/gr'
 
 function Products() {
   const state = useContext(GlobalState)
@@ -19,12 +20,18 @@ function Products() {
   const [isCheck, setIsCheck] = useState(false)
   const [loading, setLoading] = state.productsAPI.loading
   const [currentProduct, setCurrentProduct] = useState(false)
+  const [fromPrice, setFromPrice] = useState('')
+  const [toPrice, setToPrice] = useState('')
+  const [tprice, setTprice] = state.productsAPI.tprice
+  const [fprice, setFprice] = state.productsAPI.fprice
 
   useEffect(() => {
     products.forEach(product => {
       product.checked = false
     })
     setProducts([...products])
+    setTprice(5000)
+    setFprice(0)
   }, [])
 
   const handleCheck = (id) => {
@@ -97,10 +104,22 @@ function Products() {
     setCurrentProduct(product)
   }
 
+  const handleFilterPrice = () => {
+    setFprice(fromPrice)
+    setTprice(toPrice)
+    setItemOffset(0)
+  }
+
   // if(loading) return <div><Loading /></div>
   return (
     <>
-      <Filters setItemOffset={setItemOffset} />
+      <Filters 
+        setItemOffset={setItemOffset} 
+        setFprice={setFprice} 
+        setTprice={setTprice}
+        setFromPrice={setFromPrice}
+        setToPrice={setToPrice}
+      />
       {
         isAdmin &&
         <div className="delete-all">
@@ -133,6 +152,25 @@ function Products() {
                 ))
               }
             </ul>
+          </div>
+          <div className='products_price_filter'>
+            <h3 className="products__category-heading">Khoảng giá</h3>
+            <div className='input_filter__wrapper'>
+                <div className='price_filter_input'>
+                    <input type='number' placeholder='$ TỪ'
+                        value={fromPrice}
+                        onChange={e => setFromPrice(e.target.value)}                 
+                    />
+                    <div className='divider_input'>
+                      <GrSubtract />
+                    </div>
+                    <input type='number' placeholder='$ ĐẾN'
+                        value={toPrice}
+                        onChange={e => setToPrice(e.target.value)}  
+                    />
+                </div>
+                <button onClick={handleFilterPrice}>Áp dụng</button>
+            </div>
           </div>
         </div>
         

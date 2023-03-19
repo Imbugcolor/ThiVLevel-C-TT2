@@ -20,7 +20,7 @@ import Loading from '../utils/loading/Loading'
 function DetailProduct() {
     const params = useParams()
     const state = useContext(GlobalState)
-    const [products] = state.productsAPI.productsAvailable
+    const [products] = state.productsAPI.suggestions
     const [categories] = state.categoriesAPI.categories
     const [user] = state.userAPI.user
     const addCart = state.userAPI.addCart

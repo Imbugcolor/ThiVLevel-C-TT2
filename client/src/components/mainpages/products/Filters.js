@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GlobalState } from '../../../GlobalState'
 import * as GoIcons from 'react-icons/go'
+import { FcClearFilters } from 'react-icons/fc'
 
-function Filters({ setItemOffset }) {
+function Filters({ setItemOffset, setFprice, setTprice, setFromPrice, setToPrice }) {
 
     const state = useContext(GlobalState)
     const [categories] = state.categoriesAPI.categories
@@ -13,7 +14,7 @@ function Filters({ setItemOffset }) {
     const [sort, setSort] = state.productsAPI.sort
     const [search, setSearch] = state.productsAPI.search
     const [searchItem] = state.productsAPI.searchItem
-    
+    const [isAdmin] = state.userAPI.isAdmin
 
     const [open, setOpen] = useState(false)
 
@@ -58,10 +59,30 @@ function Filters({ setItemOffset }) {
         }
         
     }
+
+    const handleRemoveFilter = () => {
+        setWordEntered('')
+        setSearch('')  
+        setCategory('')
+        setSort('')
+        setFromPrice('')
+        setToPrice('')
+        setFprice(0)
+        setTprice(5000)
+    }
+
     return (
         <div className="filter_menu product res-row">
 
-            <div className="col l-6 m-12 c-12 search" >
+            <div className="col l-6 m-12 c-12 search search_product_page" >
+                {
+                    isAdmin ? 
+                    null : 
+                    <div className='remove__filter_wrapper'>
+                        <button onClick={handleRemoveFilter}><FcClearFilters /></button>
+                    </div>
+                }
+                
                 <input className="search-input-bd-none" type="text" placeholder="Nhập sản phẩm bạn muốn tìm kiếm ..."
                     value={wordEntered}
                     onKeyPress={(e) => {handleSearch(e,wordEntered)}}

@@ -4,21 +4,23 @@
 
 .products__container .products__category-heading {
     text-transform: uppercase;
-    color: #246284;
-    border-bottom: 3px solid;
+    color: #555;
+    border-bottom: 2px solid;
     margin-bottom: 15px;
     padding-bottom: 5px;
+    font-weight: 300;
 }
 
 .products__container .products__category ul li{
     display: inline-block;
     margin-right: 5px;
     margin-top: 15px;
+    font-weight: 300;
 }
 
 .products__container .products__category ul li a{
     font-size: 17px;
-    color: #45748f;
+    color: #666;
     transition: transform .2s linear;
     display: inline-block;
     border: 1px #d5d5d5 solid;
@@ -72,6 +74,7 @@
     min-height: 40px;
     color: #008c90;
     padding: 5px 10px;
+    justify-content: space-between;
 }
 
 .admin .filter_menu {
@@ -116,6 +119,10 @@
     margin: 10px 0;
     position: relative;
     background: #fff;
+}
+
+.filter_menu .search_product_page {
+    margin: 10px -10px;
 }
 
 .filter_menu .search .search-btn {
@@ -199,6 +206,63 @@
 
 .cate-side-bar {
     max-width: 350px;
+}
+
+.products_price_filter {
+    margin-top: 25px;
+}
+
+.input_filter__wrapper  {
+    padding-top: 15px;
+}
+
+.input_filter__wrapper .price_filter_input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.price_filter_input .divider_input {
+    margin: 0 15px;
+}
+
+.input_filter__wrapper .price_filter_input input {
+    height: 35px;
+    width: 100%;
+    border: 1px solid #d5d3d2;
+    padding: 0 5px;
+    outline: none;
+}
+
+.input_filter__wrapper button {
+    margin: 15px 0;
+    width: 100%;
+    height: 35px;
+    color: #fff;
+    background: #d93938;
+    text-transform: uppercase;
+}
+
+.remove__filter_wrapper {
+    text-align: left;
+    width: 50px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.remove__filter_wrapper button {
+    height: 40px;
+    width: 40px;
+    background: #d5d3d2;
+    border: 1px solid #d5d3d2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove__filter_wrapper button svg {
+    font-size: 20px;
 }
 
 @media (max-width: 768px) {

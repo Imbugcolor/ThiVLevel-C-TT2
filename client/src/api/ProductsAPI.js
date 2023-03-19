@@ -17,11 +17,13 @@ function ProductsAPI() {
     const [suggestions, setSuggestions] = useState([])
     const [loading, setLoading] = useState(false)
     const [loadingItem, setLoadingItem] = useState(false)
+    const [tprice, setTprice] = useState(5000)
+    const [fprice, setFprice] = useState(0)
 
     useEffect(() => {
         const getProducts = async () => {
             setLoadingItem(true)
-            const res = await axios.get(`/api/products?${category}&${sort}&title[regex]=${search}`)
+            const res = await axios.get(`/api/products?${category}&${sort}&title[regex]=${search}&price[gte]=${fprice}&price[lte]=${tprice}`)
             setProducts(res.data.products)
             setResult(res.data.result)
             setLoadingItem(false)
@@ -30,7 +32,7 @@ function ProductsAPI() {
 
         const getProductsAvailable = async () => {
             setLoading(true)
-            const res = await axios.get(`/api/products?${category}&${sort}&title[regex]=${search}`)
+            const res = await axios.get(`/api/products?${category}&${sort}&title[regex]=${search}&price[gte]=${fprice}&price[lte]=${tprice}`)
             setProductsAvailable(res.data.products.filter(product => product.isPublished === true))
             setLoading(false)
         }
@@ -63,7 +65,7 @@ function ProductsAPI() {
         }
         getFilterProducts()
 
-    }, [callback, category, sort, search])
+    }, [callback, category, sort, search, tprice, fprice])
 
 
 
@@ -82,7 +84,9 @@ function ProductsAPI() {
         searchItem: [searchItem, setSearchItem],
         suggestions: [suggestions, setSuggestions],
         loading: [loading, setLoading],
-        loadingItem: [loadingItem, setLoadingItem]
+        loadingItem: [loadingItem, setLoadingItem],
+        fprice: [fprice, setFprice],
+        tprice: [tprice, setTprice]
     }
 }
 
