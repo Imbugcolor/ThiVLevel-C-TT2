@@ -43,9 +43,12 @@
 }
 
 .create_product form .row>label {
-    font-weight: 600;
     display: block;
     font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    color: #666666;
 }
 
 .create_product form input[type="text"],
@@ -55,6 +58,10 @@
     min-height: 30px;
     padding: 0 5px;
     font-size: 16px;
+    outline: none;
+    border: 1px solid #d5d3d2;
+    font-weight: 300;
+    font-size: 15px;
 }
 
 .create_product form input[type="checkbox"] {
@@ -112,6 +119,11 @@
     align-items: center;
 }
 
+.color-picker-wrapper label {
+    color: #666666;
+    font-weight: 300;
+}
+
 .color-picker-wrapper #head {
     width: 35px;
     height: 35px;
@@ -145,6 +157,7 @@
     display: block;
     text-align: center;
     font-size: 16px;
+    color: #666666;
 }
 
 .create_product .upload {
@@ -153,8 +166,10 @@
 
 .create_product .upload label {
     display: block;
-    font-weight: 600;
+    font-weight: 300;
     font-size: 16px;
+    margin: 15px 0;
+    color: #666666;
 }
 
 .upload .upload-product-images-btn {
@@ -162,8 +177,9 @@
     padding: 5px;
     background-color: #d93938;
     color: #fff;
-    font-size: 16px;
+    font-size: 15px;
     border-radius: 5px;
+    font-weight: 300;
 }
 
 ul.file-list {

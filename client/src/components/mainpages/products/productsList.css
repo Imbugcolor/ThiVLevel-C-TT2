@@ -19,7 +19,7 @@
     line-height: var(--var-height);
     display: block;
     border-radius: 10px;
-    background: #0e9f6e;
+    background: #5046e5;
     color: white;
     padding: 0 10px;
 }
@@ -29,7 +29,7 @@
     height: var(--var-height);
     line-height: var(--var-height);
     padding: 0 50px;
-    border: 2px dashed #0e9f6e;
+    border: 2px dashed #5046e5;
     border-radius: 15px;
     color: #757575;
     cursor: pointer;
@@ -62,7 +62,7 @@
 }
 
 .btn__item .btn__item-download {
-    background: #0e9f6e;
+    background: #5046e5;;
     color: white;
 }
 
@@ -85,6 +85,14 @@
     border-radius: 10px;
     border: 1px solid #ddd;
     margin-bottom: 10px;
+}
+
+.products__count_number {
+    text-align: right;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    color: #888;
+    font-weight: 300;
 }
 
 .products-list-table {

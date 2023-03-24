@@ -7,6 +7,8 @@ import LocationForm from '../utils/address/LocationForm'
 import { FaEdit } from 'react-icons/fa'
 import ChangePhoneModal from '../utils/modal/ChangePhoneModal'
 import moment from 'moment'
+import CodLogo from '../../../images/cod-logo.webp'
+import VisaLogo from '../../../images/visa-logo.png'
 
 function DetailOrderAdmin() {
     const params = useParams()
@@ -91,13 +93,12 @@ function DetailOrderAdmin() {
                 <div className='order-detail-wrapper'>
                     <div className='order-detail-header'>
                         <div className='order-id-status'>
-                            <h1>ĐƠN HÀNG</h1>
+                            <h1>ĐƠN HÀNG <span style={{ textTransform: 'uppercase', fontWeight: '500'}}>{'#' + detailOrder._id}</span></h1>
                             <p>TRẠNG THÁI: <span>{detailOrder.status}</span></p>
                             <p>THANH TOÁN: <span>{detailOrder.isPaid ? 'Đã thanh toán' : 'Chưa thanh toán'}</span></p>                           
                         </div>
                         <div className='change-order-status'>
-                            <span>Cập nhật trạng thái: </span>
-                            <select name="status" value={statusOrder} onChange={handleChangeSatus}>
+                            <select name="status" value={statusOrder} onChange={handleChangeSatus} style={{ borderRight: 'none' }}>
 
                                 <option value="Pending">
                                     Đang chờ
@@ -155,7 +156,7 @@ function DetailOrderAdmin() {
                         </div>
                         <div className='phone-number-order'>
                             <label>SỐ ĐIỆN THOẠI</label>
-                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <div style={{ textAlign: 'right' }}>
                                 <p>+84 {detailOrder.phone ? detailOrder.phone : 'NO'}</p>
                                 <a href="#!" onClick={() => handleChangePhone(detailOrder)}>
                                     <FaEdit style={{ color: '#9e9e9e', cursor: 'pointer' }} />
@@ -194,7 +195,7 @@ function DetailOrderAdmin() {
                                                     </td>
                                                     <td className='table-quantity'>{item.quantity}</td>
                                                     <td className='table-item-price'>${item.price}</td>
-                                                    <td className='table-amount'>${item.quantity * item.price}</td>
+                                                    <td className='table-amount'>${(item.quantity * item.price).toFixed(2)}</td>
                                                 </tr>
                                             )
                                         } else return null
@@ -206,8 +207,21 @@ function DetailOrderAdmin() {
                     <div className='payment-detail-order'>
                         <div className='method'>
                             <label>PHƯƠNG THỨC THANH TOÁN</label>
-                            <p>{detailOrder.method}</p>
-                            {detailOrder.paymentID ? <p>MÃ THANH TOÁN: {detailOrder.paymentID}</p> : ''}
+                            <div className='payment__detail_' style={{ display: 'flex', alignItems: 'center'}}>
+                                <img src={
+                                    detailOrder.method === 'Online' ? VisaLogo : CodLogo
+                                } style={{ marginRight: '10px', height: '45px' }}/>
+                                <span>
+                                {
+                                    detailOrder.method === 'Online' && detailOrder.isPaid === true ? 
+                                    `Đã thanh toán: ${new Date(detailOrder.createdAt).toLocaleDateString() + ' ' + moment(detailOrder.createdAt).format('LT')}` :
+                                    detailOrder.method === 'COD' && detailOrder.isPaid === true ? 
+                                    `Đã thanh toán: ${new Date(detailOrder.updatedAt).toLocaleDateString() + ' ' + moment(detailOrder.updatedAt).format('LT')}` :
+                                    'Chưa thanh toán'
+                                }
+                                </span>
+                            </div>
+                            {detailOrder.paymentID ? <span>MÃ THANH TOÁN: {detailOrder.paymentID}</span> : ''}
                         </div>
                         <div className='shipping-cost'>
                             <label>PHÍ VẬN CHUYỂN</label>

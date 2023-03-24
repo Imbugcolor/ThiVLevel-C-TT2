@@ -73,6 +73,7 @@ th, td {
 
 .my__order_item_images {
     margin: 20px 0;
+    display: flex;
 }
 
 .my__order_item_images img {
@@ -84,6 +85,19 @@ th, td {
 .my__order_item_view {
     text-align: right;
     margin: 20px 0;
+}
+
+.more_images_item {
+    display: flex;
+    align-items: flex-end;
+    font-size: 16px;
+    margin-left: 15px;
+    color: #666666;
+    font-weight: 300;
+}
+
+.more_images_item svg {
+    padding-top: 5px;
 }
 
 .my__order_item_view a {

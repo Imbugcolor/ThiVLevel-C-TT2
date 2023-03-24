@@ -100,6 +100,9 @@ function ListOrders() {
                     </div>
                 </div>
                 <div className="orders-list">
+                    <div className='products__count_number'>
+                        <span>Hiển thị {currentItems.length} / {orders.length} đơn hàng</span>
+                    </div>
                     <table className="orders-list-table">
                         <thead className="table-header">
                             <tr>
@@ -115,7 +118,7 @@ function ListOrders() {
                         </thead>
                         <tbody className="table-body">
                             {
-                                currentItems.map(order => (
+                                currentItems.length > 0 ? currentItems.map(order => (
                                     <tr key={order._id}>
                                         <td>
                                             <div className="order-id">
@@ -156,7 +159,14 @@ function ListOrders() {
                                             </div>
                                         </td>
                                     </tr>
-                                ))
+                                )) : 
+                                <tr>
+                                    <td style={{ borderBottom: 'none', textAlign: 'left' }}>
+                                        <div>
+                                            Không tìm thấy kết quả tìm kiếm.
+                                        </div>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>

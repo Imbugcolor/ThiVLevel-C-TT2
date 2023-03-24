@@ -93,6 +93,9 @@ function Staff() {
                 </div>
 
                 <div className="users-list">
+                    <div className='products__count_number'>
+                        <span>Hiển thị {currentItems.length} / {staff.length} quản lý</span>
+                    </div>
                     <table className="users-list-table">
                         <thead className="table-header">
                             <tr>
@@ -108,7 +111,7 @@ function Staff() {
                         </thead>
                         <tbody className="table-body">
                             {
-                                currentItems.map(user => (
+                                currentItems.length > 0 ? currentItems.map(user => (
                                     <tr key={user._id}>
                                         <td>
                                             <div className="user-id">
@@ -153,7 +156,14 @@ function Staff() {
                                             </div>
                                         </td>
                                     </tr>
-                                ))
+                                )) : 
+                                <tr>
+                                    <td style={{ borderBottom: 'none', textAlign: 'left' }}>
+                                        <div>
+                                            Không tìm thấy kết quả tìm kiếm.
+                                        </div>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>

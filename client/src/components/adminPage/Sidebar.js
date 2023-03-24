@@ -9,6 +9,9 @@ import SubMenu from './SubMenu'
 import { IconContext } from 'react-icons/lib'
 import MainPages from '../mainpages/Pages'
 import axios from 'axios'
+import Logo from '../logo/thivlevel-logo-4.png'
+import Unknow from '../../images/unknow.jpg'
+import { RiArrowDropDownLine } from 'react-icons/ri'
 
 const Nav = styled.div`
   border-bottom: 1px solid #ddd;
@@ -23,7 +26,7 @@ const NavIcon = styled(Link)`
   margin-left: 2rem;
   font-size: 2rem;
   height: 80px;
-  color: #008c90;
+  color: #6d6e70;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -66,7 +69,7 @@ const Logout = styled(Link)`
   justify-content: center;
   align-items: center;
   font-size: 18px;
-  color: #008c90;
+  color: #6d6e70;
   padding: 5px;
   margin-right: 20px;
 `
@@ -74,7 +77,7 @@ const Logout = styled(Link)`
 const AdminProfile = styled(Link)`
   margin: 0 20px;
   font-size: 18px;
-  color: #008c90;
+  color: #6d6e70;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -84,6 +87,7 @@ function Sidebar() {
 
   const state = useContext(GlobalState)
   const [isAdmin] = state.userAPI.isAdmin
+  const [user] = state.userAPI.user
 
   const logoutUser = async () => {
     await axios.get('/user/logout')
@@ -96,17 +100,19 @@ function Sidebar() {
   if (!isAdmin) return null;
   return (
     <>
-      <IconContext.Provider value={{ color: '#008c90' }}>
+      <IconContext.Provider value={{ color: '#6d6e70' }}>
         <Nav>
           <NavIcon to="/">
-            <AiIcons.AiFillHome style={{ marginRight: 10}}/>
-            Admin
+            <img src={Logo} style={{height: '50px'}}/>
           </NavIcon>
 
           <FlexDiv>
             <AdminProfile to='/user'>
-              <BiIcons.BiUser style={{ marginRight: 10, color: '#008c90'}} />
-              Hồ sơ của tôi
+              <div className='user__name' style={{display: 'flex', alignItems: 'center', fontWeight: '300'}}>
+                  <span>{user.username}</span>
+                  <RiArrowDropDownLine />
+              </div>
+              <img className="admin_img_profile" src={user.imageProfile?.url ?? Unknow} referrerPolicy="no-referrer" alt="profile-avt" />
             </AdminProfile>
 
             <Logout to="/" onClick={logoutUser}>

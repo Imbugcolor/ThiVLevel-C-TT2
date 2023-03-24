@@ -4,17 +4,18 @@ import { Link } from 'react-router-dom'
 
 const SidebarLink = styled(Link)`
     display: flex;
-    color: #008c90;
+    color: #8a93a2;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
     height: 60px;
     font-size: 18px;
-    box-shadow: inset 0 0 0 0 008c90;
+    box-shadow: inset 0 0 0 0 8a93a2;
     transition: box-shadow linear .2s;
-
+    font-weight: 300;
+    width: 250px;
     &:hover {
-        box-shadow: inset 5px 0 0 0 #008c90;
+        box-shadow: inset 5px 0 0 0 #8a93a2;
     }
 
 `;

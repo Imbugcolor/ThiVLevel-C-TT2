@@ -41,17 +41,19 @@
 
 }
 .order-detail-header .save-status {
-    background-color: #f05252;
-    border: 1px solid #f05252;
+    background-color: #555;
+    border: 1px solid #555;
     color: #fff;
     height: 40px;
     width: 55px;
     cursor: pointer;
+    border-left: none;
+    transition: 0.3;
 }
 
 .order-detail-header .save-status:hover {
-    background-color: #fff;
-    color: #f05252
+    opacity: 0.7;
+    transition: 0.3;
 }
 
 .order-detail-wrapper .order-name-address {

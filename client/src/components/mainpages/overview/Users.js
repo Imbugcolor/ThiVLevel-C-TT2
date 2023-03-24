@@ -87,6 +87,9 @@ function Users() {
                         onChange={search} />
                 </div>
                 <div className="users-list">
+                    <div className='products__count_number'>
+                        <span>Hiển thị {currentItems.length} / {users.length} người dùng</span>
+                    </div>
                     <table className="users-list-table">
                         <thead className="table-header">
                             <tr>
@@ -102,7 +105,7 @@ function Users() {
                         </thead>
                         <tbody className="table-body">
                             {
-                                currentItems.map(user => (
+                                currentItems.length > 0 ? currentItems.map(user => (
                                     <tr key={user._id}>
                                         <td>
                                             <div className="user-id">
@@ -147,7 +150,14 @@ function Users() {
                                             </div>
                                         </td>
                                     </tr>
-                                ))
+                                )) : 
+                                <tr>
+                                    <td style={{ borderBottom: 'none', textAlign: 'left' }}>
+                                        <div>
+                                            Không tìm thấy kết quả tìm kiếm.
+                                        </div>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>

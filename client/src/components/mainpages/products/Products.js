@@ -24,6 +24,7 @@ function Products() {
   const [toPrice, setToPrice] = useState('')
   const [tprice, setTprice] = state.productsAPI.tprice
   const [fprice, setFprice] = state.productsAPI.fprice
+  const [msgInput, setMsgInput] = useState('')
 
   useEffect(() => {
     products.forEach(product => {
@@ -104,7 +105,22 @@ function Products() {
     setCurrentProduct(product)
   }
 
+  const validate = () => {
+    const msg = {}
+
+
+    if(!fromPrice || !toPrice || fromPrice*1 < 0 || toPrice*1 < fromPrice*1) {
+      msg.price = '*Khoảng giá không hợp lệ'
+    } 
+
+    setMsgInput(msg)
+    if(Object.keys(msg).length > 0) return false
+    return true
+  }
+
   const handleFilterPrice = () => {
+    const isValid = validate()
+    if(!isValid) return
     setFprice(fromPrice)
     setTprice(toPrice)
     setItemOffset(0)
@@ -169,6 +185,7 @@ function Products() {
                         onChange={e => setToPrice(e.target.value)}  
                     />
                 </div>
+                <span style={{color: 'red', fontWeight: '300'}}>{msgInput.price}</span>
                 <button onClick={handleFilterPrice}>Áp dụng</button>
             </div>
           </div>

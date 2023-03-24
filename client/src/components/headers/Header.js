@@ -63,13 +63,15 @@ function Header() {
     }
 
     function headerFixedHandle() {
-
-        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-            document.querySelector('header').classList.add('fix-scroll')
-        } else {
-            document.querySelector('header').classList.remove('fix-scroll')
+        const header = document.querySelector('header')
+        if(header) {
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                document.querySelector('header').classList.add('fix-scroll')
+            } else {
+                document.querySelector('header').classList.remove('fix-scroll')
+            }
         }
-
+        return;
     }
 
     const loggedRouter = () => {

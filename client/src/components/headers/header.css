@@ -50,7 +50,7 @@ header .logo {
 .logo .header-logo {
     display: block;
     padding: 5px 0;
-    height: 90px;
+    height: 80px;
 }
 
 .header__top .left__top_header {
@@ -296,7 +296,7 @@ header .header-nav .login_sign_up_nav {
     flex-wrap: wrap;
 }
 
-.user__container .user__wrapper img {
+.user__container .user__wrapper img, .admin_img_profile {
     --avt-size: 35px;
     display: block;
     min-width: var(--avt-size);

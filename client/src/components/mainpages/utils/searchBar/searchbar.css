@@ -60,6 +60,17 @@
     height: 100px;
 }
 
+.list_item_suggest .not__found_msg {
+    color: #666666;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+}
+
+.not__found_msg svg {
+    margin-right: 15px;
+}
+
 /* width */
 .search__bar_wrapper .list_item_suggest::-webkit-scrollbar {
     width: 7px;

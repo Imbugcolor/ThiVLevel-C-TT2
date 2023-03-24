@@ -132,6 +132,9 @@ function ProductsList() {
                     </div>
                 </div>
                 <div className="products-list">
+                    <div className='products__count_number'>
+                        <span>Hiển thị {currentItems.length} / {products.length} sản phẩm</span>
+                    </div>
                     <table className="products-list-table">
                         <thead className="table-header">
                             <tr>
@@ -148,7 +151,7 @@ function ProductsList() {
                         </thead>
                         <tbody className="table-body">
                             {
-                                currentItems.map(product => (
+                                currentItems.length > 0 ? currentItems.map(product => (
                                     <tr key={product._id}>
                                         <td>
                                             <div className="product-id">
@@ -208,7 +211,14 @@ function ProductsList() {
                                             </div>
                                         </td>
                                     </tr>
-                                ))
+                                )) : 
+                                <tr>
+                                    <td style={{ borderBottom: 'none', textAlign: 'left' }}>
+                                        <div>
+                                            Không tìm thấy kết quả tìm kiếm.
+                                        </div>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>

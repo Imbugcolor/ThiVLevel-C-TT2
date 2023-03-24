@@ -45,32 +45,31 @@ function AddStaff() {
   return (
     <div className="login-page">
       <form onSubmit={addStaffSubmit} className="form-signin-signout">
-        <h2>New Staff</h2>
+        <h2>Thêm quản lý mới</h2>
 
-        <label>Username</label>
         <input type="text" name="username"
           value={user.username}
           onChange={onChangeInput}
+          placeholder='Nhập tên người dùng...'
           required
         />
 
-        <label>Email</label>
         <input type="email" name="email"
           value={user.email}
           onChange={onChangeInput}
+          placeholder='Nhập email...'
           required
         />
 
-        <label>Password</label>
         <input type="password" name="password"
           value={user.password}
           autoComplete="on"
           onChange={onChangeInput}
+          placeholder='Mật khẩu'
           required
         />
         <div className="row">
-          <button type="submit">ADD STAFF</button>
-          <Link to="/staff">BACK</Link>
+          <button type="submit">Xác nhận</button>
         </div>
       </form>
     </div>

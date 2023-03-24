@@ -48,7 +48,7 @@ function Categories() {
       alert(res.data.msg)
       setCallback(!callback)
     } catch (err) {
-      alert(err.response.data.msg)
+      toast.error(err.response.data.msg)
     }
   }
   return (
@@ -64,7 +64,7 @@ function Categories() {
               onChange={e => setCategory(e.target.value)}
             />
 
-            <button type="submit">{onEdit ? "Lưu" : "Tạo"}</button>
+            <button className="create__cat_btn" type="submit">{onEdit ? "Lưu" : "Tạo"}</button>
           </form>
 
           <div>
@@ -73,8 +73,8 @@ function Categories() {
                 <div className="row" key={category._id}>
                   <p>{category.name}</p>
                   <div>
-                    <button onClick={() => editCategory(category._id, category.name)}>Sửa</button>
-                    <button onClick={() => deleteCategory(category._id)}>Xóa</button>
+                    <button className="update__cat_btn" onClick={() => editCategory(category._id, category.name)}>Sửa</button>
+                    <button className="remove__cat_btn" onClick={() => deleteCategory(category._id)}>Xóa</button>
                   </div>
                 </div>
               ))

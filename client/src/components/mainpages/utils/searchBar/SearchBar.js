@@ -94,7 +94,12 @@ function SearchBar() {
                                 })
                             }
                         </ul>
-                        : null
+                        : open && filterData.length === 0 && wordEntered ? 
+                        <ul className="list_item_suggest">
+                            <li className='not__found_msg'>
+                                <GoSearch /> Không có kết quả cho '{wordEntered}'
+                            </li>
+                        </ul> : null
                 }
             </div>
 

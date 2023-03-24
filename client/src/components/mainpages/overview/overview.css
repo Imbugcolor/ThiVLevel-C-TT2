@@ -119,8 +119,8 @@
 
 .cart-title{
     padding: 15px;
-    background-color: firebrick;
-    color: #fff;
+    color: #666666;
+    background: #f4f5f7;
 }
 
 .card-chart iframe {
@@ -318,6 +318,7 @@
 .user-details-card .user-details-field {
     display: flex;
     width: 100%;
+    justify-content: space-between;
 }    
 
 .user-details-card .user-details-field .user-name-field {
@@ -327,6 +328,7 @@
 
 .user-details-card .user-details-field .user-text-field {
     color: #555;
+    text-align: right;
 }
 .user-view-close {
     position: absolute;

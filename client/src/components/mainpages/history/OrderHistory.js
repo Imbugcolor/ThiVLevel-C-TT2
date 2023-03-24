@@ -5,6 +5,8 @@ import axios from 'axios'
 import ReactPaginate from 'react-paginate'
 import moment from 'moment'
 import Loading from '../utils/loading/Loading'
+import { TfiMoreAlt } from 'react-icons/tfi'
+
 function OrderHistory() {
 
     const state = useContext(GlobalState)
@@ -141,6 +143,12 @@ function OrderHistory() {
                                 </div>
                                 <div className="my__order_item_images">
                                     <img src={item.cart[0].images[0].url}/>
+                                    {
+                                        item.cart.length > 1 ? 
+                                        <div className='more_images_item'>
+                                            <TfiMoreAlt /> và {item.cart.length - 1 } sản phẩm khác
+                                        </div> : null
+                                    }
                                 </div>
                                 <div className="my__order_item_bottom">
                                     <span>{item.cart.length} sản phẩm tổng cộng:</span>

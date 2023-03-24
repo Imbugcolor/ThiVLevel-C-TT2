@@ -11,18 +11,18 @@ export const SidebarData = [
         icon: <FaIcons.FaChartPie />
     },
     {
-        title: 'Quản lý người dùng',
+        title: 'Người dùng',
         path: '/users',
         icon: <FaIcons.FaUsers />
     },
     {
-        title: 'Quản lý nhân viên',
+        title: 'Quản lý',
         path: '/staff',
         icon: <FaIcons.FaUserShield />
     },
 
     {
-        title: 'Danh sách sản phẩm',
+        title: 'Sản phẩm',
         path: '/products_list',
         icon: <GiIcons.GiClothes />
     },
@@ -38,7 +38,7 @@ export const SidebarData = [
     },
 
     {
-        title: 'Danh sách đơn hàng',
+        title: 'Đơn hàng',
         path: '/listorders',
         icon: <BiIcons.BiReceipt />
     }
