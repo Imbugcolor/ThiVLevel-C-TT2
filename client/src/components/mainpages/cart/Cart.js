@@ -15,7 +15,7 @@ import Loading from '../utils/loading/Loading'
 function Cart() {
   const state = useContext(GlobalState)
   const [cart, setCart] = state.userAPI.cart
-  const [products] = state.productsAPI.products
+  const [products] = state.productsAPI.allProducts
   const [loadingItem] = state.productsAPI.loadingItem
   const [callback, setCallback] = state.productsAPI.callback
   const [loading, setLoading] = state.userAPI.loading

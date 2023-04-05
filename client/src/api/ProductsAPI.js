@@ -3,6 +3,7 @@ import axios from 'axios'
 
 function ProductsAPI() {
     const [products, setProducts] = useState([])
+    const [allProducts, setAllProducts] = useState([])
     const [callback, setCallback] = useState(false)
     const [category, setCategory] = useState('')
     const [sort, setSort] = useState('')
@@ -22,11 +23,9 @@ function ProductsAPI() {
 
     useEffect(() => {
         const getProducts = async () => {
-            setLoadingItem(true)
             const res = await axios.get(`/api/products?${category}&${sort}&title[regex]=${search}&price[gte]=${fprice}&price[lte]=${tprice}`)
             setProducts(res.data.products)
             setResult(res.data.result)
-            setLoadingItem(false)
         }
         getProducts()
 
@@ -60,8 +59,11 @@ function ProductsAPI() {
         getNewArrival()
 
         const getFilterProducts = async () => {
+            setLoadingItem(true)
             const res = await axios.get(`/api/products`)
+            setAllProducts(res.data.products)
             setSuggestions(res.data.products.filter(product => product.isPublished === true))
+            setLoadingItem(false)
         }
         getFilterProducts()
 
@@ -71,6 +73,7 @@ function ProductsAPI() {
 
     return {
         products: [products, setProducts],
+        allProducts: [allProducts, setAllProducts],
         callback: [callback, setCallback],
         category: [category, setCategory],
         sort: [sort, setSort],
