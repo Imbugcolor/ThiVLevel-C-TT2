@@ -16,6 +16,9 @@ import { IoIosStar } from "react-icons/io";
 import { GrFormSubtract } from 'react-icons/gr'
 import { FiPlus } from 'react-icons/fi'
 import Loading from '../utils/loading/Loading'
+import Share from '../share/Share'
+import { BASE_URL } from '../utils/config'
+import MetaTags from 'react-meta-tags'
 
 function DetailProduct() {
     const params = useParams()
@@ -224,7 +227,12 @@ function DetailProduct() {
     return (
         loading ? <div><Loading /></div> :
         <React.Fragment>
-            <section className="product-details res-row p30-tb-im">                     
+            <section className="product-details res-row p30-tb-im"> 
+                <MetaTags id='product-page-detail'>
+                    <meta name="description" content={detailProduct.description} />
+                    <meta property="og:title" content={detailProduct.title} />
+                    <meta property="og:image" content={detailProduct.images[0].url} />
+                </MetaTags>                
                 <div className="col l-12 m-12 c-12">
                     <div className="res-row">
                         <div className="col l-4 m-6 c-12">
@@ -257,6 +265,9 @@ function DetailProduct() {
                                         ))
                                     }
                                 </div>
+                            </div>
+                            <div className='share-wrapper'>
+                                <Share url={`${BASE_URL}/detail/${detailProduct._id}`} />
                             </div>
                         </div>
                         <div className="col l-8 m-6 c-12">

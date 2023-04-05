@@ -115,3 +115,6 @@ table {
 
 /* Breadcrumbs */
 @import url("./components/Breadcrumbs/breadcrumbs.css");
+
+/* Share */
+@import url("./components/mainpages/share/share.css");
