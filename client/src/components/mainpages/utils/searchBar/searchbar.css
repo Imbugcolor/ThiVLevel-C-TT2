@@ -1,8 +1,14 @@
+.search__bar_wrapper {
+    border-radius: 20px;
+    border: 1px solid #d5d2d3;
+}
+
 .search__bar_wrapper .search__bar_input{
     font-weight: 300;
-    border: 1px solid #d5d3d2;
-    border-radius: unset;
-    border-left: none;
+    border: none;
+    margin-right: 20px;
+    padding: 5px 0px;
+    font-size: 14px;
 }
 
 .search__bar_wrapper .search__input_icon {
@@ -10,35 +16,43 @@
     padding: 0 10px;
     align-items: center;
     width: 50px;
-    height: 40px;
-    background: #d93938;
-    color: #fff;
+    color: #d93938;
     text-align: center;
     display: flex;
     justify-content: center;
     border: none;
+    font-size: 18px;
 }
 
 .search__bar_wrapper .list_item_suggest {
     position: absolute;
-    top: 42px;
+    top: 50px;
     left: 0;
     background: #fff;
     width: 100%;
-    padding: 15px;
-    box-shadow: 0 0 10px rgb(0 0 0 / 20%);
     border-top: none;
     overflow: hidden;
     overflow-y: auto;
     max-height: 700px;
     z-index: 999;
+    border-radius: 10px;
+    box-shadow: 0 -4px 32px rgba(0,0,0,.2);
+    color: #1d2129;
+    margin: 0;
+    transition: all .3s ease-in-out;
+    padding: 15px;
+    animation: fadeIn .3s ease;
 }
 
 .list_item_suggest .item_suggest_result {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
-    border-top: 1px solid #d5d3d2
+    margin: 15px;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+.left__item_suggest_result {
+    flex: 1;
 }
 
 .list_item_suggest .left__item_suggest_result a{
@@ -49,24 +63,34 @@
 
 .list_item_suggest .left__item_suggest_result span {
     display: block;
-    color: #000;
-    font-size: 18px;
-    font-weight: 500;
+    font-weight: 300;
+    line-height: 3;
+}
+
+.list_item_suggest .right__item_suggest_result {
+    width: 100px;
 }
 
 .list_item_suggest .right__item_suggest_result img{
     width: 100%;
     max-width: 100px;
     height: 100px;
+    object-fit: cover;
 }
 
-.list_item_suggest .not__found_msg {
+.list_item_suggest .not__found_msg ,
+.list_item_suggest .key_search_msg {
     color: #666666;
     font-weight: 300;
     display: flex;
     align-items: center;
 }
 
+.list_item_suggest .key_search_msg {
+    padding: 15px;
+}
+
+.key_search_msg svg,
 .not__found_msg svg {
     margin-right: 15px;
 }
@@ -90,3 +114,12 @@
 .search__bar_wrapper .list_item_suggest::-webkit-scrollbar-thumb:hover {
     background: #555; 
 }
+
+@keyframes fadeIn {
+    0% {
+       opacity: 0;
+    }
+    100% {
+       opacity: 1;
+    }
+} 

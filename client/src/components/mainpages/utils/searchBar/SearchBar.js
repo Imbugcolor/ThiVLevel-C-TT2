@@ -65,6 +65,9 @@ function SearchBar() {
                 {
                     open && filterData.length > 0 ?
                         <ul className="list_item_suggest">
+                            <li className='key_search_msg'>
+                                <GoSearch /> kết quả cho '{wordEntered}'
+                            </li>
                             {
                                 filterData.map((item, index) => {
                                     return index > 15 ? null :

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { BiShow, BiHide } from 'react-icons/bi'
 
 function Register() {
   const [user, setUser] = useState({
@@ -12,6 +13,8 @@ function Register() {
   })
 
   const [validateMsg, setValidateMsg] = useState('')
+
+  const [showPass, setShowPass] = useState(false)
 
   const validate = () => {
     const msg = {}
@@ -94,15 +97,18 @@ function Register() {
         />
         <span style={{color: 'red', fontWeight: '300'}}>{validateMsg.email}</span>
 
-     
-        <input type="password" name="password" placeholder="Mật khẩu"
-          value={user.password}
-          onChange={onChangeInput}
-        />
-        <span style={{color: 'red', fontWeight: '300'}}>{validateMsg.password}</span>
+        <div className='password_wrapper'>
+          <input type={showPass ? 'text' : 'password'} name="password" placeholder="Mật khẩu"
+            value={user.password}
+            onChange={onChangeInput}
+          />
+          <span style={{color: 'red', fontWeight: '300'}}>{validateMsg.password}</span>
+          <small onClick={() => setShowPass(!showPass)}>
+                {showPass ? <BiHide /> : <BiShow />}
+          </small>
+        </div>
 
- 
-        <input type="password" name="verify_password" placeholder="Xác nhận mật khẩu"
+        <input type={showPass ? 'text' : 'password'} name="verify_password" placeholder="Xác nhận mật khẩu"
           value={user.verify_password}
           onChange={onChangeInput}
         />

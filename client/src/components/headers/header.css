@@ -186,7 +186,7 @@ header .navbar-tablet-mobile-wrapper.active {
     height: var(--avt-size);
     border-radius: 50%;
     padding: 1px;
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
 }
 
 .header-nav-tablet-mobile .user__wrapper .user__name {
@@ -211,8 +211,11 @@ header .header-nav .login__nav_icon {
 }
 
 header .header-nav .login_sign_up_nav {
-    text-align: left;
+    text-align: center;
     line-height: 25px;
+    background: #d93938;
+    border-radius: 20px;
+    padding: 8px 20px;
 }
 
 .header-nav .login_sign_up_nav span {
@@ -220,7 +223,7 @@ header .header-nav .login_sign_up_nav {
 }
 
 .header-nav .login_sign_up_nav span a {
-    color: #666666;
+    color: #fff;
     font-weight: 400;
     font-size: 15px;
     text-transform: unset;
@@ -356,6 +359,28 @@ header .header-nav .login_sign_up_nav {
     line-height: 30px;
     color: #404040;
 }
+
+header .sign_in__mobile_wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 1px;
+    right: 0;
+    background: #d93938;
+}
+
+header .sign_in__mobile_wrapper .sign_in__mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    color: #fff;
+    margin-left: -1;
+}
+
+header .sign_in__mobile_wrapper .sign_in__mobile svg {
+    font-size: 25px;
+}
+
 @keyframes dropdown {
     from {
         opacity: 0;
@@ -395,6 +420,10 @@ header .header-nav .login_sign_up_nav {
     header .header__top .header-nav,
     header .header-nav {
         display: none;
+    }
+
+    header.fix-scroll {
+        animation: none;
     }
 
     header .header__top {

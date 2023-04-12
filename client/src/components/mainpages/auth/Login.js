@@ -4,6 +4,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import { GoogleLogin } from '@react-oauth/google'
 import jwt_decode from 'jwt-decode'
+import { BiShow, BiHide } from 'react-icons/bi'
 
 function Login() {
   const [user, setUser] = useState({
@@ -11,6 +12,8 @@ function Login() {
     password: ''
   })
   const [validateMsg, setValidateMsg] = useState('')
+
+  const [showPass, setShowPass] = useState(false)
 
   const validate = () => {
     const msg = {}
@@ -92,12 +95,17 @@ function Login() {
         />
         <span style={{color: 'red', fontWeight: '300'}}>{validateMsg.email}</span>
 
-   
-        <input className="password-field-input" type="password" name="password" placeholder='Mật khẩu'
-          value={user.password}
-          autoComplete="on"
-          onChange={onChangeInput}
-        />
+        <div className='password_wrapper'>
+          <input className="password-field-input" type={showPass ? 'text' : 'password'} name="password" placeholder='Mật khẩu'
+            value={user.password}
+            autoComplete="on"
+            onChange={onChangeInput}
+          />
+          <small onClick={() => setShowPass(!showPass)}>
+                {showPass ? <BiHide /> : <BiShow />}
+          </small>
+        </div>
+
         <span style={{color: 'red', fontWeight: '300'}}>{validateMsg.password}</span>
 
         <div className="sign-up-btn-link">

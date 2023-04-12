@@ -5,13 +5,14 @@ import Unknow from '../../images/unknow.jpg'
 import * as CgIcons from 'react-icons/cg'
 import * as MdIcons from 'react-icons/md'
 import * as BiIcons from 'react-icons/bi'
-import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { Twirl as Hamburger } from 'hamburger-react'
 import { CiUser } from 'react-icons/ci'
 import SearchBar from '../mainpages/utils/searchBar/SearchBar'
 import { RiArrowDropDownLine } from 'react-icons/ri'
+import { MdKeyboardArrowRight } from 'react-icons/md'
+import { HiOutlineShoppingBag } from 'react-icons/hi'
 
 function Header() {
     const state = useContext(GlobalState)
@@ -110,7 +111,7 @@ function Header() {
                     <div className="cart-icon">
                         <span>{cart.length}</span>
                         <Link to="/cart">
-                            <AiOutlineShoppingCart />
+                            <HiOutlineShoppingBag />
                         </Link>
                     </div>
                 </li>
@@ -125,7 +126,7 @@ function Header() {
                         <li className="cart-icon">
                             <span>{cart.length}</span>
                             <Link to="/cart" onClick={() => setOpen(false)}>
-                                <CgIcons.CgShoppingCart style={{ fontSize: 24, marginRight: 15 }} />
+                                <HiOutlineShoppingBag style={{ fontSize: 24, marginRight: 15 }} />
                                 <span>Giỏ hàng</span>
                             </Link>
                         </li>
@@ -176,7 +177,6 @@ function Header() {
                             </div>
                             <div className='login_sign_up_nav'>
                                 <span><Link to="/login">Đăng nhập</Link></span>                
-                                <span><Link to="/register">Đăng ký</Link></span>
                             </div>
                         </li>
                     }
@@ -215,9 +215,21 @@ function Header() {
                         <li><Link to="/products" onClick={() => setOpen(false)}>Shop</Link></li>
                         <li><Link to="/pages/introduction" onClick={() => setOpen(false)}>About us</Link></li>
                         {
-                            isLogged ? loggedRouterMobile() : <li><Link to="/login" onClick={() => setOpen(false)}>Đăng nhập</Link></li>
+                            isLogged ? loggedRouterMobile() : null
                         }
                     </ul>
+                    <div className='sign_in__mobile_wrapper'>
+                        {
+                            isLogged ? null : 
+                            <Link to="/login" onClick={() => setOpen(false)}>
+                                <div className='sign_in__mobile'>
+                                    <CiUser />
+                                    <h4>ĐĂNG NHẬP</h4>
+                                    <MdKeyboardArrowRight />
+                                </div>
+                            </Link>
+                        }
+                    </div>
                 </div>
             </div>
             {open ? <div className="header-nav-tablet-mobile overlay"
