@@ -9,7 +9,6 @@
     width: 800px;
     position: relative;
     animation: zoomOut ease .3s;
-    border-radius: 10px;
     display: grid;
     grid-template-columns: 0.9fr 1fr;
     gap: 30px;

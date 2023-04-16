@@ -258,12 +258,16 @@ function Payment({ tranSuccess, cart, codSuccess, user, total, closePayment }) {
                                                 <span style={{color: 'red', fontSize: '12px'}}>{validateMsg.ward}</span>
                                             </div>
                                         </div>
-                                            
-                                        <input type="text" placeholder="Số nhà/đường..."
-                                            value={numStreet || ''}
-                                            onChange={e => setNumStreet(e.target.value)}
-                                            className="address-detail-input" />
-                                        <span style={{color: 'red', fontSize: '12px'}}>{validateMsg.numstreet}</span>
+                                        
+                                        <div className="detail-form-input" style={{marginRight: '15px'}}>
+                                            <label htmlFor="name">Số nhà/ đường</label>
+                                            <input type="text" placeholder="Số nhà, tòa nhà, đường..."
+                                                value={numStreet || ''}
+                                                onChange={e => setNumStreet(e.target.value)}
+                                                className="address-detail-input"
+                                                style={{marginTop:'10px'}} />
+                                            <span style={{color: 'red', fontSize: '12px'}}>{validateMsg.numstreet}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

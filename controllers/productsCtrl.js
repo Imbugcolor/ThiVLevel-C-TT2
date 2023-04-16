@@ -12,7 +12,7 @@ class APIfeatures {
         const queryObj = {...this.queryString} //queryString = req.query
         // console.log({before: queryObj}) // before delete params
 
-        const excludedFields = ['page', 'sort', 'limit']
+        const excludedFields = ['page', 'sort', 'limit', 'sizes']
         excludedFields.forEach(el => delete(queryObj[el]))
 
         // console.log({after: queryObj}) //after delete params
@@ -48,7 +48,12 @@ class APIfeatures {
 const productsCtrl = {
     getProducts: async (req, res) => {
         try {
-            const features = new APIfeatures(Products.find(), req.query).filtering().sorting()
+            const sizeString = req.query.sizes || 'XS,S,M,L,XL,XXL'
+            const sizesArray = sizeString.split(',')
+
+            const features = new APIfeatures(Products.find({
+                size: {$in: sizesArray}
+            }), req.query).filtering().sorting()
             const products = await features.query
 
             res.json({

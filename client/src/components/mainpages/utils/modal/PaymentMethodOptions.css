@@ -11,7 +11,6 @@
     position: relative;
     background: #fff;
     animation: zoomOut ease .3s;
-    border-radius: 10px;
 }
 
 .payment-method-options-modal-close {
@@ -37,21 +36,19 @@
 
 .stripe-checkout, .completed-check-option{
     width: 100%;
-    background: #3c3764;
+    background: #000;
     height: 40px;
     color: #fff;
     border-radius: 5px;
 }
 
 .list__method_wrapper {
-    border: 1px solid #d5d3d2;
     margin: 25px 0;
 }
 
 .list__method_wrapper .method_item {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #d5d3d2;
     padding: 15px
 }
 

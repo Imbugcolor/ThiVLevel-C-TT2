@@ -10,6 +10,7 @@ import { GlobalState } from '../../../GlobalState'
 import ProductItem from '../utils/productItem/ProductItem'
 import QuickViewProduct from './QuickViewProduct'
 import { Link } from 'react-router-dom'
+import Loading from '../utils/loading/Loading'
 
 const iconStyle = {
     color: '#d93938',
@@ -21,6 +22,7 @@ function Home() {
     const [recommended] = state.productsAPI.recommended
     const [bestSeller] = state.productsAPI.bestSeller
     const [newArrival] = state.productsAPI.newArrival
+    const [loading] = state.productsAPI.loadingType
     const [currentProduct, setCurrentProduct] = useState(false)
     const [callback, setCallback] = state.userAPI.callback
 
@@ -80,15 +82,18 @@ function Home() {
                         <img className="banner__products_type_list" src={RecomFYBanner}/>
                     </div>
                     <div className="col l-12 m-12 c-12">
-                        <div className="res-row products">
-                            {
-                                recommended.map(product => {
-                                    return <ProductItem key={product._id} product={product}
-                                        setCurrentProduct={setCurrentProduct} handleViewDetail={handleViewDetail}
-                                    />
-                                })
-                            }
-                        </div>
+                        {
+                            loading.recommend ? <div><Loading/></div> :
+                            <div className="res-row products">
+                                {
+                                    recommended.map(product => {
+                                        return <ProductItem key={product._id} product={product}
+                                            setCurrentProduct={setCurrentProduct} handleViewDetail={handleViewDetail}
+                                        />
+                                    })
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
                 <div className="res-row best-seller-container">
@@ -96,15 +101,18 @@ function Home() {
                         <img className="banner__products_type_list" src={BestSABanner}/>
                     </div>
                     <div className="col l-12 m-12 c-12">
-                        <div className="res-row products">
-                            {
-                                bestSeller.map(product => {
-                                    return <ProductItem key={product._id} product={product}
-                                        setCurrentProduct={setCurrentProduct} handleViewDetail={handleViewDetail}
-                                    />
-                                })
-                            }
-                        </div>
+                        {
+                            loading.bestseller ? <div><Loading/></div> :
+                            <div className="res-row products">
+                                {
+                                    bestSeller.map(product => {
+                                        return <ProductItem key={product._id} product={product}
+                                            setCurrentProduct={setCurrentProduct} handleViewDetail={handleViewDetail}
+                                        />
+                                    })
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
 
@@ -113,15 +121,18 @@ function Home() {
                         <img className="banner__products_type_list" src={NewABanner}/>
                     </div>
                     <div className="col l-12 m-12 c-12">
-                        <div className="res-row products">
-                            {
-                                newArrival.map(product => {
-                                    return <ProductItem key={product._id} product={product}
-                                        setCurrentProduct={setCurrentProduct} handleViewDetail={handleViewDetail}
-                                    />
-                                })
-                            }
-                        </div>
+                        {
+                            loading.newarrival ? <div><Loading/></div> :
+                            <div className="res-row products">
+                                {
+                                    newArrival.map(product => {
+                                        return <ProductItem key={product._id} product={product}
+                                            setCurrentProduct={setCurrentProduct} handleViewDetail={handleViewDetail}
+                                        />
+                                    })
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
                 <div className="res-row">

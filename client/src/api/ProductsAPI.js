@@ -8,7 +8,6 @@ function ProductsAPI() {
     const [category, setCategory] = useState('')
     const [sort, setSort] = useState('')
     const [search, setSearch] = useState('')
-    // const [page, setPage] = useState(1)
     const [result, setResult] = useState(0)
     const [productsAvailble, setProductsAvailable] = useState([])
     const [recommended, setRecommended] = useState([])
@@ -20,10 +19,16 @@ function ProductsAPI() {
     const [loadingItem, setLoadingItem] = useState(false)
     const [tprice, setTprice] = useState(5000)
     const [fprice, setFprice] = useState(0)
+    const [sizes, setSizes] = useState('')
+    const [loadingType, setLoadingType] = useState({
+        recommend: false,
+        bestseller: false,
+        newarrival: false
+    })
 
     useEffect(() => {
         const getProducts = async () => {
-            const res = await axios.get(`/api/products?${category}&${sort}&title[regex]=${search}&price[gte]=${fprice}&price[lte]=${tprice}`)
+            const res = await axios.get(`/api/products?${category}&${sort}&sizes=${sizes}&title[regex]=${search}&price[gte]=${fprice}&price[lte]=${tprice}`)
             setProducts(res.data.products)
             setResult(res.data.result)
         }
@@ -31,29 +36,35 @@ function ProductsAPI() {
 
         const getProductsAvailable = async () => {
             setLoading(true)
-            const res = await axios.get(`/api/products?${category}&${sort}&title[regex]=${search}&price[gte]=${fprice}&price[lte]=${tprice}`)
+            const res = await axios.get(`/api/products?${category}&${sort}&sizes=${sizes}&title[regex]=${search}&price[gte]=${fprice}&price[lte]=${tprice}`)
             setProductsAvailable(res.data.products.filter(product => product.isPublished === true))
             setLoading(false)
         }
         getProductsAvailable()
 
         const getRecommended = async () => {
+            setLoadingType({...loadingType, recommend: true})
             const res = await axios.get('/api/productsHomepage?limit=8&sort=-rating')
             setRecommended(res.data.products)
+            setLoadingType({...loadingType, recommend: false})
         }
 
         getRecommended()
 
         const getBestSeller = async () => {
+            setLoadingType({...loadingType, bestseller: true})
             const res = await axios.get('/api/productsHomepage?limit=8&sort=-sold')
             setBestSeller(res.data.products)
+            setLoadingType({...loadingType, bestseller: false})
         }
 
         getBestSeller()
 
         const getNewArrival = async () => {
+            setLoadingType({...loadingType, newarrival: true})
             const res = await axios.get('/api/productsHomepage?limit=8')
             setNewArrival(res.data.products)
+            setLoadingType({...loadingType, newarrival: false})
         }
 
         getNewArrival()
@@ -67,7 +78,7 @@ function ProductsAPI() {
         }
         getFilterProducts()
 
-    }, [callback, category, sort, search, tprice, fprice])
+    }, [callback, category, sort, search, tprice, fprice, sizes])
 
 
 
@@ -78,7 +89,7 @@ function ProductsAPI() {
         category: [category, setCategory],
         sort: [sort, setSort],
         search: [search, setSearch],
-        // page: [page, setPage],
+        loadingType: [loadingType, setLoadingType],
         result: [result, setResult],
         productsAvailable: [productsAvailble, setProductsAvailable],
         recommended: [recommended, setRecommended],
@@ -89,7 +100,8 @@ function ProductsAPI() {
         loading: [loading, setLoading],
         loadingItem: [loadingItem, setLoadingItem],
         fprice: [fprice, setFprice],
-        tprice: [tprice, setTprice]
+        tprice: [tprice, setTprice],
+        sizes: [sizes, setSizes]
     }
 }
 

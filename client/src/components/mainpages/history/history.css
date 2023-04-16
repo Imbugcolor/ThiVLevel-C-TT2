@@ -381,12 +381,13 @@ th, td {
 }
 
 .pagination .page-num:hover, .pagination .next a:hover{
-    background-color: #ee4d2d;
+    background-color: #000;
     color: #fff;
 }
 
 .pagination .active .page-num{
-    background-color: #ee4d2d;
+    background-color: #000;
+    color: #fff;
 }
 
 td.method-payment {

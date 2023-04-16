@@ -16,6 +16,7 @@ function OrderDetails() {
     const [token] = state.token
     const [orderDetails, setOrderDetails] = useState([])
     const [loading, setLoading] = useState(false)
+    const [callback, setCallback] = useState(false)
 
     const params = useParams()
     useEffect(() => {
@@ -34,7 +35,7 @@ function OrderDetails() {
                 getHistory()
             }
         }
-    }, [params.id, history])
+    }, [params.id, history, callback])
 
     const swalConfirmButtons = Swal.mixin({
         customClass: {
@@ -58,11 +59,14 @@ function OrderDetails() {
                     await axios.patch(`/api/payment/cancel/${orderDetails._id}`, { cancel: 'Cancel' }, {
                         headers: { Authorization: token }
                     })
+
                     swalConfirmButtons.fire(
                     `<span class='title-msg-dialog'>Đơn hàng đã được hủy.</span>`,
                     '',
                     'success'
                     )
+
+                    setCallback(!callback)
                 } catch (err) {
                     swalConfirmButtons.fire(
                         `<span class='title-msg-dialog'>${err.response.data.msg}</span>`,
@@ -81,25 +85,6 @@ function OrderDetails() {
                 )
             }
           })
-    }
-
-    const cancelOrder = async () => {
-        try {
-            await axios.patch(`/api/payment/cancel/${orderDetails._id}`, { cancel: 'Cancel' }, {
-                headers: { Authorization: token }
-            })
-
-            toast.success('Hủy đơn hàng thành công.', {
-                position: "top-center",
-                autoClose: 3000
-            })
-
-        } catch (err) {
-            toast.error(err.response.data.msg, {
-                position: "top-center",
-                autoClose: 3000
-            })
-        }
     }
 
     if (orderDetails.length === 0) return null;

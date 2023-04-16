@@ -73,6 +73,9 @@ function DetailProduct() {
         setSize(false)
         setQuantity(1)
         setSelectedColor(0)
+        setSlideIndex(1)
+        setRating(0)
+        setComment('')
     }, [params.id])
 
     useEffect(() => {
@@ -288,30 +291,35 @@ function DetailProduct() {
 
                                 <p className="small-desc">{detailProduct.description}</p>
 
-                                <div className="product-options">
-                                    <span>Màu sắc: </span>
-                                    {
-                                        detailProduct.colors.map((color, index) => (
-                                            <div key={color}>
-                                                <button style={{ background: color }}
-                                                    className={index === selectedColor ? 'active' : ''}
-                                                    onClick={() => handleBuyClick(color, index)}
-                                                ></button>
-                                            </div>
-                                        ))
-                                    }
-                                </div>
-                                <div className='size-select'>
-                                    <span>Size: </span>
-                                    {
-                                        detailProduct.size.map(sz => {
-                                            return <div className='size' key={sz}>
-                                                <input type='radio' name='size' key={sz} value={sz} id={sz}
-                                                    onChange={() => setSize(sz)} checked={size === sz} />
-                                                <label htmlFor={sz}>{sz}</label>
-                                            </div>
-                                        })
-                                    }
+                                <div className='select__type_wrapper'>    
+                                    <span>Chọn màu sắc: </span>
+                                    <div className="product-options">
+                                        {
+                                            detailProduct.colors.map((color, index) => (
+                                                <div key={color}>
+                                                    <button style={{ background: color }}
+                                                        className={index === selectedColor ? 'active' : ''}
+                                                        onClick={() => handleBuyClick(color, index)}
+                                                    ></button>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>    
+
+                                <div className='select__type_wrapper'>
+                                    <span>Chọn size: </span>
+                                    <div className='size-select'>
+                                        {
+                                            detailProduct.size.map(sz => {
+                                                return <div className='size' key={sz}>
+                                                    <input type='radio' name='size' key={sz} value={sz} id={sz}
+                                                        onChange={() => setSize(sz)} checked={size === sz} />
+                                                    <label htmlFor={sz}>{sz}</label>
+                                                </div>
+                                            })
+                                        }
+                                    </div>
                                 </div>
 
                                 <div className="product-page-offer">

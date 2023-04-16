@@ -24,6 +24,7 @@ function Products() {
   const [toPrice, setToPrice] = useState('')
   const [tprice, setTprice] = state.productsAPI.tprice
   const [fprice, setFprice] = state.productsAPI.fprice
+  const [sizes, setSizes] = state.productsAPI.sizes
   const [msgInput, setMsgInput] = useState('')
 
   useEffect(() => {
@@ -33,6 +34,7 @@ function Products() {
     setProducts([...products])
     setTprice(5000)
     setFprice(0)
+    setSizes('')
   }, [])
 
   const handleCheck = (id) => {
@@ -126,6 +128,19 @@ function Products() {
     setItemOffset(0)
   }
 
+  const handleFilterSizes = (e) => {
+      const { name, checked } = e.target
+        if (checked) {
+            setSizes([...sizes, name])
+        } else {
+            setSizes(sizes.filter((e) => e !== name))
+        }
+  }
+
+  const isChecked = (sizeX) => {
+    return sizes.includes(sizeX)
+  }
+
   // if(loading) return <div><Loading /></div>
   return (
     <>
@@ -135,6 +150,7 @@ function Products() {
         setTprice={setTprice}
         setFromPrice={setFromPrice}
         setToPrice={setToPrice}
+        setSizes={setSizes}
       />
       {
         isAdmin &&
@@ -188,6 +204,37 @@ function Products() {
                 <span style={{color: 'red', fontWeight: '300'}}>{msgInput.price}</span>
                 <button onClick={handleFilterPrice}>Áp dụng</button>
             </div>
+          </div>
+          <div className='products_size_filter'>
+              <h3 className="products__category-heading">Kích thước</h3>
+              <div className='input_filter__wrapper'>
+                  <div className='boxes_check_size'>
+                    <label className="boxes_container">XS
+                      <input type="checkbox" name='XS' onChange={handleFilterSizes} checked={isChecked('XS')}/>
+                      <span className="checkmark"></span>
+                    </label>
+                    <label className="boxes_container">S
+                      <input type="checkbox" name='S' onChange={handleFilterSizes} checked={isChecked('S')}/>
+                      <span className="checkmark"></span>
+                    </label>
+                    <label className="boxes_container">M
+                      <input type="checkbox" name='M' onChange={handleFilterSizes} checked={isChecked('M')}/>
+                      <span className="checkmark"></span>
+                    </label>
+                    <label className="boxes_container">L
+                      <input type="checkbox" name='L' onChange={handleFilterSizes} checked={isChecked('L')}/>
+                      <span className="checkmark"></span>
+                    </label>
+                    <label className="boxes_container">XL
+                      <input type="checkbox" name='XL' onChange={handleFilterSizes} checked={isChecked('XL')}/>
+                      <span className="checkmark"></span>
+                    </label>
+                    <label className="boxes_container">XXL
+                      <input type="checkbox" name='XXL' onChange={handleFilterSizes} checked={isChecked('XXL')}/>
+                      <span className="checkmark"></span>
+                    </label>
+                  </div>
+              </div>
           </div>
         </div>
         
