@@ -44,6 +44,12 @@ function SearchBar() {
         }
         
     }
+
+    const handleCloseSearch = () => {
+        setWordEntered('')
+        setFilterData([])
+    }
+
     return (
         <div className="filter_menu product">
 
@@ -62,6 +68,10 @@ function SearchBar() {
                             setOpen(false)
                     }}
                 />
+                <div className='close_search_bar' style={{opacity: wordEntered ? 1 : 0}}
+                onClick={handleCloseSearch}>
+                    Hủy
+                </div>
                 {
                     open && filterData.length > 0 ?
                         <ul className="list_item_suggest">

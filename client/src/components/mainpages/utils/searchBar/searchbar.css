@@ -95,6 +95,18 @@
     margin-right: 15px;
 }
 
+.close_search_bar {
+    opacity: 1;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    width: 55px;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 15px;
+    color: #666666;
+}
+
 /* width */
 .search__bar_wrapper .list_item_suggest::-webkit-scrollbar {
     width: 7px;

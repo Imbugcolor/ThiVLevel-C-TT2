@@ -25,6 +25,10 @@ header.fix-scroll {
     background: #fff
 }
 
+header.fix-scroll .menu__nav_header_bottom {
+    display: none;
+}
+
 .header__top {
     width: 100%;
     display: flex;

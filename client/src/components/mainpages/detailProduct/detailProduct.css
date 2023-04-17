@@ -290,10 +290,11 @@
 .form .form-comment textarea {
     width: 400px;
     height: 50px;
-    padding: 5px;
+    padding: 10px;
     font-size: 14px;
-    border: 1px solid #ccc;
+    border: none;
     outline: none;
+    background: rgba(0,0,0,.03);
 }
 
 .form-comment label {

@@ -376,7 +376,6 @@ th, td {
 .pagination .page-num, .pagination .next a{
     padding: 8px 15px;
     cursor: pointer;
-    border: 1px #000 solid;
     font-weight: 400;
 }
 

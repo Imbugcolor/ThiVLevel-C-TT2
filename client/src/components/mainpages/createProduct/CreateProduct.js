@@ -397,7 +397,7 @@ function CreateProduct() {
 
                         <button type="submit">{onEdit ? "Cập nhập" : "Tạo"}</button>
                     </form>
-                    <div className="divider"></div>
+
                     <div className="upload">
                         <label htmlFor="">Hình ảnh sản phẩm</label>
                         <input type="file" name="file" id="file_up" ref={fileUpRef}
