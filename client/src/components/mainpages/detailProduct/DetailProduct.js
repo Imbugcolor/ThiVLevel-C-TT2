@@ -288,8 +288,13 @@ function DetailProduct() {
                                 <p className="product-price">
                                     ${detailProduct.price}
                                 </p>
-
-                                <p className="small-desc">{detailProduct.description}</p>
+                                
+                                <div className ='description__product_wrapper'>
+                                    <div className='description_heading'>
+                                        Đặc điểm nổi bật
+                                    </div>
+                                    <p className="small-desc">{detailProduct.description}</p>
+                                </div>
 
                                 <div className='select__type_wrapper'>    
                                     <span>Chọn màu sắc: </span>
@@ -322,9 +327,9 @@ function DetailProduct() {
                                     </div>
                                 </div>
 
-                                <div className="product-page-offer">
+                                {/* <div className="product-page-offer">
                                     <i className="fa-solid fa-tag" />20% Discount
-                                </div>
+                                </div> */}
 
                                 <div className="product-sold">
                                     <BsCartCheck />
@@ -357,7 +362,9 @@ function DetailProduct() {
                         </div>
                         <div className="col l-12 m-12 c-12">
                             <div className="product-page-content">
-                                <h3>Thông tin sản phẩm</h3>
+                                <div className='description_heading'>
+                                    Thông tin chi tiết sản phẩm
+                                </div>
                                 <p>{detailProduct.content}</p>
                             </div>
                         </div>

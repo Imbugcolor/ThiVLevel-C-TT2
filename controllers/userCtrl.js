@@ -271,6 +271,57 @@ const userCtrl = {
       return res.status(500).json({ msg: err.message })
     }
   },
+  facebookAuthLogin: async (req, res) => {
+    try {
+      const { name, email, imageUrl, accessToken } = req.body;
+      const user = await Users.findOne({ email })
+      if (user) {
+
+        //Password Encrypt
+        const passwordHash = await bcrypt.hash(accessToken, 10)
+
+        await Users.findOneAndUpdate({ email }, {
+          password: passwordHash
+        })
+        //If login success, create access token and refresh token
+        const accesstoken = createAccessToken({ id: user._id })
+        const refreshtoken = createRefreshToken({ id: user._id })
+
+        res.cookie('refreshtoken', refreshtoken, {
+          httpOnly: true,
+          path: '/user/refresh_token',
+          maxAge: 7 * 24 * 60 * 60 * 1000
+        })
+        res.json({ accesstoken })
+        return;
+      }
+
+      //Password Encrypt
+      const passwordHash = await bcrypt.hash(accessToken, 10)
+
+      const newUser = new Users({
+        username: name, email, imageProfile: { url: imageUrl }, password: passwordHash, isLogSocialNetwork: true,
+      })
+
+      //save to database
+      await newUser.save()
+
+      //Then create jsonwebtoken to authentication
+      const accesstoken = createAccessToken({ id: newUser._id })
+      const refreshtoken = createRefreshToken({ id: newUser._id })
+
+      res.cookie('refreshtoken', refreshtoken, {
+        httpOnly: true,
+        path: '/user/refresh_token',
+        maxAge: 7 * 24 * 60 * 60 * 1000
+      })
+      res.json({ accesstoken })
+      // res.json({msg: "Register success!"})
+
+    } catch (err) {
+      return res.status(500).json({ msg: err.message })
+    }
+  },
   changePassword: async (req, res) => {
     try {
       const { oldPassword, newPassword, verifyPassword } = req.body;

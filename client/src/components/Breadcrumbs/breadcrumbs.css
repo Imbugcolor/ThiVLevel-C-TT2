@@ -15,3 +15,7 @@
 .MuiBreadcrumbs-li .MuiTypography-colorPrimary {
     color: #525151 !important;
 }
+
+.MuiBreadcrumbs-li {
+    cursor: pointer;
+}

@@ -132,6 +132,7 @@ function Products() {
       const { name, checked } = e.target
         if (checked) {
             setSizes([...sizes, name])
+            setItemOffset(0)
         } else {
             setSizes(sizes.filter((e) => e !== name))
         }

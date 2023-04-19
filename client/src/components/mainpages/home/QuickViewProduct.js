@@ -179,9 +179,9 @@ function QuickViewProduct({ detailProduct }) {
                         </div>
                     </div>
 
-                    <div className="product-page-offer">
+                    {/* <div className="product-page-offer">
                         <i className="fa-solid fa-tag" />20% Discount
-                    </div>
+                    </div> */}
                     <div className="product-sold">
                         <img src={Instock} alt="SoldIcon" />
                         <strong>{detailProduct.countInStock} <span>in stock.</span></strong>

@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { GoogleLogin } from '@react-oauth/google'
+import FacebookLogin from 'react-facebook-login'
 import jwt_decode from 'jwt-decode'
 import { BiShow, BiHide } from 'react-icons/bi'
+import { FaFacebookF } from 'react-icons/fa'
 
 function Login() {
   const [user, setUser] = useState({
@@ -68,7 +70,10 @@ function Login() {
 
       window.location.href = "/"
     } catch (err) {
-      console.log(err)
+      toast.error(err, {
+        position: "top-center",
+        autoClose: 3000
+      })
     }
   }
 
@@ -76,6 +81,22 @@ function Login() {
     console.log(err)
   }
 
+  const responseFacebook = async (res) => {
+    try {
+      const { accessToken, email, name, picture } = res
+      await axios.post('/user/facebookauth', {name, email, imageUrl: picture.data.url, accessToken})
+
+      localStorage.setItem('firstLogin', true)
+
+      window.location.href = '/'
+
+    } catch (err) {
+      toast.error(err, {
+        position: "top-center",
+        autoClose: 3000
+      })
+    }
+  }
 
   return (
     <div className="login-page">
@@ -127,6 +148,18 @@ function Login() {
             onError={() => {
               responseGoogleFailure('login failed!')
             }}
+            width='280px'
+          />
+        </div>
+        <div className='facebook-login-button-wrapper'>
+          <FacebookLogin
+            appId="1820452108356438"
+            autoLoad={false}
+            fields="name,email,picture"
+            callback={responseFacebook}
+            cssClass="facebook-login-button"
+            icon={<FaFacebookF />}
+            textButton='Đăng nhập với Facebook'
           />
         </div>
       </div>

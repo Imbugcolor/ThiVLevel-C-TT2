@@ -9,6 +9,8 @@ router.post('/login', userCtrl.login)
 
 router.post('/googleauth', userCtrl.googleAuthLogin)
 
+router.post('/facebookauth', userCtrl.facebookAuthLogin)
+
 router.get('/logout', userCtrl.logout)
 
 router.get('/refresh_token', userCtrl.refreshToken)
